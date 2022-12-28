@@ -4,7 +4,7 @@ const initialState = {
   theme: "light",
 };
 
-const postsSlice = createSlice({
+const themeSlice = createSlice({
   name: "theme",
   initialState,
   reducers: {
@@ -13,3 +13,6 @@ const postsSlice = createSlice({
     },
   },
 });
+
+export const { setMode } = themeSlice.actions;
+export default themeSlice.reducer;
