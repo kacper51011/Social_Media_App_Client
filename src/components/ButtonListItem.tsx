@@ -8,12 +8,16 @@ import { ExtendButtonBase } from "@mui/material/ButtonBase";
 import { ListItemButtonTypeMap } from "@mui/material/ListItemButton";
 import { ReactNode } from "react";
 
-type Props = {
+export type ButtonListItemProps = {
   icon: ReactNode;
   content: string;
 } & ExtendButtonBase<ListItemButtonTypeMap<{}, "div">>;
 
-const ButtonListItem = ({ icon, content, ...listItemButtonProps }: Props) => {
+const ButtonListItem = ({
+  icon,
+  content,
+  ...listItemButtonProps
+}: ButtonListItemProps) => {
   return (
     <ListItem disablePadding>
       <ListItemButton {...listItemButtonProps}>
