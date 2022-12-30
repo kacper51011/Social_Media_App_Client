@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router";
 import { useMemo } from "react";
-import { ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/system";
 import { useSelector } from "react-redux";
 import Home from "./pages/Home";
@@ -13,11 +13,13 @@ function App() {
 
   return (
     <div>
-      <ThemeProvider theme={theme}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </ThemeProvider>
+      <CssBaseline>
+        <ThemeProvider theme={theme}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </ThemeProvider>
+      </CssBaseline>
     </div>
   );
 }
