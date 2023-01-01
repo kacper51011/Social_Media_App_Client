@@ -18,10 +18,11 @@ type Props = {
 const PostInputComponent = ({ picturePath }: Props) => {
   const [isImage, setIsImage] = useState(false);
   const [imageToSend, setImageToSend] = useState<File | null>(null);
+  const [postInput, setPostInput] = useState("");
 
   return (
     <Paper sx={{ display: "flex", flexDirection: "column" }}>
-      <Grid container width={1}>
+      <Grid container direction="row" width={1}>
         <Grid item xs={2}>
           <Avatar src={picturePath} />
         </Grid>
