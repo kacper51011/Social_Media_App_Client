@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import { RootState } from "./store";
 import { themeSettings } from "./utils/theme";
 import UserCard from "./components/UserCard";
+import Navbar from "./components/Navbar";
 
 function App() {
   const mode = useSelector((state: RootState) => state.theme.theme);
@@ -14,17 +15,18 @@ function App() {
 
   return (
     <div>
-      <UserCard
-        photo="123"
-        firstName="Kacper"
-        lastName="Tylec"
-        location="Nagoszyn"
-        followedPeopleNumber={10}
-        job="Programmer"
-        numberOfLikes={10}
-        numberOfProfileViews={15}
-      ></UserCard>
       <CssBaseline>
+        <Navbar />
+        <UserCard
+          photo="123"
+          firstName="Kacper"
+          lastName="Tylec"
+          location="Nagoszyn"
+          followedPeopleNumber={10}
+          job="Programmer"
+          numberOfLikes={10}
+          numberOfProfileViews={15}
+        ></UserCard>
         <ThemeProvider theme={theme}>
           <Routes>
             <Route path="/" element={<Home />} />
