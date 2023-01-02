@@ -6,8 +6,8 @@ import { useSelector } from "react-redux";
 import Home from "./pages/Home";
 import { RootState } from "./store";
 import { themeSettings } from "./utils/theme";
-import UserCard from "./components/UserCard";
 import Navbar from "./components/Navbar";
+import Main from "./pages/Main";
 
 function App() {
   const mode = useSelector((state: RootState) => state.theme.theme);
@@ -15,24 +15,10 @@ function App() {
 
   return (
     <div>
-      <CssBaseline>
-        <Navbar />
-        <UserCard
-          photo="123"
-          firstName="Kacper"
-          lastName="Tylec"
-          location="Nagoszyn"
-          followedPeopleNumber={10}
-          job="Programmer"
-          numberOfLikes={10}
-          numberOfProfileViews={15}
-        ></UserCard>
-        <ThemeProvider theme={theme}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </ThemeProvider>
-      </CssBaseline>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Main />} />
+      </Routes>
     </div>
   );
 }

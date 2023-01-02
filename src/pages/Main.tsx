@@ -1,5 +1,6 @@
-import { Grid } from "@mui/material";
+import { Grid, Container } from "@mui/material";
 import { useState } from "react";
+import UserCard from "../components/UserCard";
 
 type displayedColumn = "profile" | "posts" | "follows";
 
@@ -13,14 +14,33 @@ const Main = () => {
   };
 
   return (
-    <Grid minHeight="100vh" width="100vw" container direction="row">
-      {/* profile column */}
-      <Grid item xs={checkVisibility("profile")} md={4}></Grid>
-      {/* posts column */}
-      <Grid item xs={checkVisibility("posts")} md={4}></Grid>
-      {/* follows column */}
-      <Grid item xs={checkVisibility("follows")} md={4}></Grid>
-    </Grid>
+    <Container>
+      <Grid
+        spacing={2}
+        minHeight="100vh"
+        width="100vw"
+        container
+        direction="row"
+      >
+        {/* profile column */}
+        <Grid item xs={12} md={4} mt={10}>
+          <UserCard
+            photo="123"
+            firstName="Kacper"
+            lastName="Tylec"
+            location="Nagoszyn"
+            followedPeopleNumber={10}
+            job="Programmer"
+            numberOfLikes={10}
+            numberOfProfileViews={15}
+          />
+        </Grid>
+        {/* posts column */}
+        <Grid item xs={checkVisibility("posts")} md={3.5}></Grid>
+        {/* follows column */}
+        <Grid item xs={checkVisibility("follows")} md={3.5}></Grid>
+      </Grid>
+    </Container>
   );
 };
 

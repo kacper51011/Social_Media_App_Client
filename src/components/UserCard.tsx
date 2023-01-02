@@ -27,7 +27,7 @@ const UserCard = ({
     <Paper
       elevation={3}
       sx={{
-        width: "0.2",
+        width: "0.55",
         p: "calc(0.5vw + 10px)",
         display: "flex",
         flexDirection: "column",
@@ -36,7 +36,7 @@ const UserCard = ({
       <Grid
         container
         py={1}
-        width="0.8"
+        width="1"
         direction="row"
         justifyContent="space-around"
         alignItems="center"
