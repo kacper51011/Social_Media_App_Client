@@ -10,6 +10,7 @@ import {
 import CustomIconButton from "./CustomIconButton";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
+import CustomInput from "./CustomInput";
 
 type Props = {
   photo: string;
@@ -69,7 +70,7 @@ Props) => {
       {/* post content */}
       <Typography pb={2}>{content}</Typography>
       {/* post image */}
-      <Paper>
+      <Paper elevation={2}>
         <CardMedia
           component="img"
           src=""
@@ -88,7 +89,13 @@ Props) => {
         <Typography variant="caption">{"50" + " " + "comments"}</Typography>
       </Box>
       <Divider />
-      <Paper></Paper>
+      <Paper
+        elevation={2}
+        sx={{ minHeight: "5vw", color: "bisque", p: 2, mt: 2 }}
+      >
+        <CustomInput minRows={3} multiline height={1} firstName="Kacper" />
+      </Paper>
+      <Divider />
       <Paper></Paper>
     </Paper>
   );

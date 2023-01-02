@@ -15,17 +15,24 @@ const CustomInput = ({
   firstName,
   picturePath,
   height = 0.3,
-  width = 0.8,
+  width = 1,
   ...inputProps
 }: Props) => {
   return (
-    <Grid container direction="row" width={width} height={height}>
-      <Grid item xs={3}>
+    <Grid
+      container
+      direction="row"
+      justifyContent="space-between"
+      alignItems="center"
+      width={width}
+      height={height}
+    >
+      <Grid item>
         <Avatar src={picturePath || ""}>{firstName[0]} </Avatar>
       </Grid>
-      <Grid item xs={8}>
-        <Paper elevation={0} sx={{ width: 1, minHeight: 0.2 }}>
-          <InputBase {...inputProps} sx={{ width: 0.8, minHeight: 0.8 }} />
+      <Grid item xs={10} sx={{ width: 1, minHeight: 0.2 }}>
+        <Paper sx={{ backgroundColor: "grey" }} elevation={1}>
+          <InputBase {...inputProps} sx={{ width: 1, minHeight: 0.9 }} />
         </Paper>
       </Grid>
     </Grid>
