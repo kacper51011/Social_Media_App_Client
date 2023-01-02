@@ -4,14 +4,13 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { ExtendButtonBase } from "@mui/material/ButtonBase";
-import { ListItemButtonTypeMap } from "@mui/material/ListItemButton";
-import { ReactNode } from "react";
+
+import { ComponentProps, ReactNode } from "react";
 
 export type ButtonListItemProps = {
   icon: ReactNode;
   content: string;
-} & ExtendButtonBase<ListItemButtonTypeMap<{}, "div">>;
+} & ComponentProps<typeof ListItemButton>;
 
 const ButtonListItem = ({
   icon,
