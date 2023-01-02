@@ -1,5 +1,6 @@
 import { Grid, Container } from "@mui/material";
 import { useState } from "react";
+import PostItem from "../components/PostItem";
 import UserCard from "../components/UserCard";
 
 type displayedColumn = "profile" | "posts" | "follows";
@@ -36,7 +37,17 @@ const Main = () => {
           />
         </Grid>
         {/* posts column */}
-        <Grid item xs={checkVisibility("posts")} md={3.5}></Grid>
+        <Grid item xs={checkVisibility("posts")} md={4}>
+          <PostItem
+            content="random post"
+            firstName="Kacper"
+            lastName="Tylec"
+            location="Nagoszyn"
+            isFollowed={false}
+            photo=""
+            likes={23}
+          />
+        </Grid>
         {/* follows column */}
         <Grid item xs={checkVisibility("follows")} md={3.5}></Grid>
       </Grid>

@@ -22,11 +22,20 @@ const Navbar = () => {
           <Typography variant="h5">SocialMediaApp</Typography>
           <Stack direction="row" minWidth="15%" justifyContent="space-between">
             <CustomIconButton
+              sx={{ px: 3, py: 1.5 }}
               icon={darkMode ? <DarkModeIcon /> : <LightModeIcon />}
               title={darkMode ? "dark mode" : "light mode"}
             />
-            <CustomIconButton icon={<SmartToyIcon />} title="voice helper" />
-            <CustomIconButton icon={<LogoutIcon />} title="logout" />
+            <CustomIconButton
+              sx={{ px: 3, py: 1.5 }}
+              icon={<SmartToyIcon />}
+              title="voice helper"
+            />
+            <CustomIconButton
+              sx={{ px: 3, py: 1.5 }}
+              icon={<LogoutIcon />}
+              title="logout"
+            />
           </Stack>
         </Toolbar>
       </AppBar>
