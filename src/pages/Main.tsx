@@ -1,7 +1,7 @@
 import { Grid, Container } from "@mui/material";
 import { useState } from "react";
 import Navbar from "../components/navbar/Navbar";
-import PostItem from "../components/PostItem";
+import PostItem from "../components/post/PostItem";
 import UserCard from "../components/UserCard";
 
 export type displayedColumn = "profile" | "posts" | "follows";
@@ -34,7 +34,7 @@ const Main = () => {
           <Grid
             item
             display={{ xs: checkVisibility("profile"), md: "block" }}
-            xs={10}
+            xs={8}
             md={3.5}
             mt={10}
           >

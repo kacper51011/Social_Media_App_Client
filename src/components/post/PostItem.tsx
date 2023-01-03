@@ -8,11 +8,11 @@ import {
   Box,
   Divider,
 } from "@mui/material";
-import CustomIconButton from "./CustomIconButton";
+import CustomIconButton from "../buttons/CustomIconButton";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
-import CustomInput from "./CustomInput";
+import CustomInput from "../CustomInput";
 import CommentItem from "./CommentItem";
 
 type Props = {

@@ -1,4 +1,4 @@
-import { Avatar, Divider, Grid, Paper, Typography } from "@mui/material";
+import { Avatar, Box, Divider, Grid, Paper, Typography } from "@mui/material";
 import PlaceIcon from "@mui/icons-material/Place";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 
@@ -53,24 +53,15 @@ const UserCard = ({
         </Grid>
       </Grid>
       <Divider />
-      <Grid container direction="column" py={1}>
-        <Grid px={0.5} py={1} container direction="row">
-          <Grid item pr={0.2}>
-            <PlaceIcon />
-          </Grid>
-          <Grid item>
-            <Typography variant="caption">{location}</Typography>
-          </Grid>
-        </Grid>
-        <Grid px={0.5} py={1} container direction="row">
-          <Grid item pr={0.2}>
-            <BusinessCenterIcon />
-          </Grid>
-          <Grid item>
-            <Typography variant="caption">{job}</Typography>
-          </Grid>
-        </Grid>
-      </Grid>
+      <Box my={1} mx={0.5} display="flex">
+        <PlaceIcon />
+        <Typography variant="caption">{location}</Typography>
+      </Box>
+      <Box my={1} mx={0.5} display="flex">
+        <BusinessCenterIcon />
+        <Typography variant="caption">{job}</Typography>
+      </Box>
+
       <Divider />
       <Grid container direction="column" py={1}>
         <Grid

@@ -12,7 +12,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import { useState } from "react";
-import CustomIconButton from "../CustomIconButton";
+import CustomIconButton from "../buttons/CustomIconButton";
 
 const DesktopNavbar = () => {
   const [darkMode, toggleDarkMode] = useState(false);

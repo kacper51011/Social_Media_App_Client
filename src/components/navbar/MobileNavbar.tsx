@@ -1,6 +1,6 @@
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import CustomIconButton from "../CustomIconButton";
+import CustomIconButton from "../buttons/CustomIconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import LogoutIcon from "@mui/icons-material/Logout";
