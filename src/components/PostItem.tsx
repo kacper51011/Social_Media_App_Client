@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Paper,
   Grid,
@@ -10,7 +11,9 @@ import {
 import CustomIconButton from "./CustomIconButton";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
+import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import CustomInput from "./CustomInput";
+import CommentItem from "./CommentItem";
 
 type Props = {
   photo: string;
@@ -23,6 +26,8 @@ type Props = {
   // comments: []
 };
 
+// todo: comments and likes as objects, then check if user liked post or not
+
 const PostItem = ({
   photo,
   firstName,
@@ -31,36 +36,25 @@ const PostItem = ({
   isFollowed,
   content,
   likes,
-}: // comments
-Props) => {
+}: Props) => {
   return (
     <Paper
       sx={{ display: "flex", flexDirection: "column", minWidth: "30vh", p: 2 }}
     >
       {/* avatar, name, location, button to follow */}
-      <Grid
-        container
-        py={1}
-        width="1"
-        direction="row"
-        justifyContent="space-between"
-        alignItems="center"
-      >
-        <Grid container xs={5} direction="row">
-          <Grid item pr={2}>
-            <Avatar src={photo || ""}>{firstName[0]}</Avatar>
-          </Grid>
-
-          <Grid item>
-            <Typography variant="body1">
-              {firstName + " " + lastName}
-            </Typography>
-
-            <Typography variant="caption">{location}</Typography>
-          </Grid>
+      <Grid container py={1} width="1" direction="row" alignItems="center">
+        <Grid item pr={2} xs={1.5}>
+          <Avatar src={photo || ""}>{firstName[0]}</Avatar>
         </Grid>
 
-        <Grid item>
+        <Grid item xs={8}>
+          <Typography variant="body1">{firstName + " " + lastName}</Typography>
+
+          <Typography variant="caption">{location}</Typography>
+        </Grid>
+
+        <Grid item xs={2.5}>
+          <CustomIconButton title="like post" icon={<ThumbUpAltIcon />} />
           <CustomIconButton
             title="follow"
             icon={isFollowed ? <PersonRemoveIcon /> : <PersonAddIcon />}
@@ -85,18 +79,23 @@ Props) => {
         my={2}
       >
         <Typography variant="caption">{likes + " " + "likes"}</Typography>
+
         {/* todo create comment type */}
         <Typography variant="caption">{"50" + " " + "comments"}</Typography>
       </Box>
       <Divider />
-      <Paper
-        elevation={2}
-        sx={{ minHeight: "5vw", color: "bisque", p: 2, mt: 2 }}
-      >
-        <CustomInput minRows={3} multiline height={1} firstName="Kacper" />
-      </Paper>
+      <Box sx={{ minHeight: "5vw", color: "bisque", p: 2, mt: 2 }}>
+        <CustomInput minRows={2} multiline height={1} firstName="Kacper" />
+      </Box>
       <Divider />
-      <Paper></Paper>
+      <Box my={2}>
+        <CommentItem
+          commentContent="nice one"
+          commentCreatorFirstName="Kacper"
+          commentCreatorLastName="Tylec"
+          commentCreatorPicture=""
+        />
+      </Box>
     </Paper>
   );
 };

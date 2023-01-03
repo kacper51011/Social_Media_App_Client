@@ -31,7 +31,7 @@ const CustomInput = ({
         <Avatar src={picturePath || ""}>{firstName[0]} </Avatar>
       </Grid>
       <Grid item xs={10} sx={{ width: 1, minHeight: 0.2 }}>
-        <Paper sx={{ backgroundColor: "grey" }} elevation={1}>
+        <Paper sx={{ backgroundColor: "whitesmoke" }} elevation={1}>
           <InputBase {...inputProps} sx={{ width: 1, minHeight: 0.9 }} />
         </Paper>
       </Grid>
