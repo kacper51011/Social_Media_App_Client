@@ -11,20 +11,20 @@ const Main = () => {
 
   // function for checking which one column should be displayed now and setting the visibility on mobiles (posts visible by default)
   const checkVisibility = (column: displayedColumn) => {
-    return displayedColumn === column ? 12 : 0;
+    return displayedColumn === column ? "block" : "none";
   };
 
   return (
     <Container>
-      <Grid
-        spacing={2}
-        minHeight="100vh"
-        width="100vw"
-        container
-        direction="row"
-      >
+      <Grid spacing={2} minHeight="100vh" container direction="row">
         {/* profile column */}
-        <Grid item xs={12} md={4} mt={10}>
+        <Grid
+          item
+          display={{ xs: checkVisibility("profile"), md: "block" }}
+          xs={12}
+          md={4}
+          mt={10}
+        >
           <UserCard
             photo="123"
             firstName="Kacper"
@@ -37,7 +37,12 @@ const Main = () => {
           />
         </Grid>
         {/* posts column */}
-        <Grid item xs={checkVisibility("posts")} md={4}>
+        <Grid
+          item
+          display={{ xs: checkVisibility("posts"), md: "block" }}
+          xs={12}
+          md={4}
+        >
           <PostItem
             content="random post"
             firstName="Kacper"
@@ -49,7 +54,12 @@ const Main = () => {
           />
         </Grid>
         {/* follows column */}
-        <Grid item xs={checkVisibility("follows")} md={3.5}></Grid>
+        <Grid
+          item
+          display={{ xs: checkVisibility("posts"), md: "block" }}
+          xs={12}
+          md={3.5}
+        ></Grid>
       </Grid>
     </Container>
   );

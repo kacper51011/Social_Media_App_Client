@@ -1,4 +1,4 @@
-import { Avatar, Grid, Paper, Typography, Box } from "@mui/material";
+import { Avatar, Grid, Paper, Typography } from "@mui/material";
 
 type Props = {
   commentContent: string;

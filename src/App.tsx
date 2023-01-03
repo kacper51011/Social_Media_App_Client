@@ -6,20 +6,21 @@ import { useSelector } from "react-redux";
 import Home from "./pages/Home";
 import { RootState } from "./store";
 import { themeSettings } from "./utils/theme";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbar/Navbar";
 import Main from "./pages/Main";
+import Box from "@mui/material/Box";
 
 function App() {
   const mode = useSelector((state: RootState) => state.theme.theme);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
 
   return (
-    <div>
+    <Box>
       <Navbar />
       <Routes>
         <Route path="/" element={<Main />} />
       </Routes>
-    </div>
+    </Box>
   );
 }
 

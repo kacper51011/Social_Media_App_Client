@@ -88,7 +88,7 @@ const PostItem = ({
         <CustomInput minRows={2} multiline height={1} firstName="Kacper" />
       </Box>
       <Divider />
-      <Box my={2}>
+      <Box mt={1}>
         <CommentItem
           commentContent="nice one"
           commentCreatorFirstName="Kacper"

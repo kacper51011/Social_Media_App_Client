@@ -1,14 +1,23 @@
-import { AppBar, Box, Toolbar, Typography, Stack } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  Typography,
+  Stack,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import { useState } from "react";
-import CustomIconButton from "./CustomIconButton";
+import CustomIconButton from "../CustomIconButton";
 
-const Navbar = () => {
+const DesktopNavbar = () => {
   const [darkMode, toggleDarkMode] = useState(false);
-
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <Box sx={{ flexGrow: 1, width: 1 }}>
       <AppBar position="static">
@@ -43,4 +52,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default DesktopNavbar;
