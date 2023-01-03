@@ -16,7 +16,6 @@ function App() {
 
   return (
     <Box>
-      <Navbar />
       <Routes>
         <Route path="/" element={<Main />} />
       </Routes>

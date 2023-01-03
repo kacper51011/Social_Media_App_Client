@@ -1,12 +1,21 @@
 import { useTheme, useMediaQuery } from "@mui/material";
 import MobileNavbar from "./MobileNavbar";
 import DesktopNavbar from "./DesktopNavbar";
+import { displayedColumn } from "../../pages/Main";
 
-const Navbar = () => {
+type Props = {
+  changeColumn: (column: displayedColumn) => void;
+};
+
+const Navbar = ({ changeColumn }: Props) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  return mobile ? <MobileNavbar darkMode /> : <DesktopNavbar />;
+  return mobile ? (
+    <MobileNavbar darkMode changeColumn={changeColumn} />
+  ) : (
+    <DesktopNavbar />
+  );
 };
 
 export default Navbar;

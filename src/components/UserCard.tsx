@@ -1,4 +1,4 @@
-import { Avatar, Box, Divider, Grid, Paper, Typography } from "@mui/material";
+import { Avatar, Divider, Grid, Paper, Typography } from "@mui/material";
 import PlaceIcon from "@mui/icons-material/Place";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 
@@ -27,7 +27,7 @@ const UserCard = ({
     <Paper
       elevation={3}
       sx={{
-        width: "0.55",
+        width: 1,
         p: "calc(0.5vw + 10px)",
         display: "flex",
         flexDirection: "column",
