@@ -1,9 +1,10 @@
-import { Grid, Container } from "@mui/material";
+import { Grid, Container, Box } from "@mui/material";
 import { useState } from "react";
 import Navbar from "../components/navbar/Navbar";
 import PostItem from "../components/column posts/PostItem";
 import UserCard from "../components/column user/UserCard";
 import FollowedPersonItem from "../components/column follows/FollowedPersonItem";
+import FollowsContainer from "../components/column follows/FollowsContainer";
 
 export type displayedColumn = "profile" | "posts" | "follows";
 
@@ -23,9 +24,9 @@ const Main = () => {
   return (
     <>
       <Navbar changeColumn={changeColumn} />
-      <Container>
+      <Box mx={10}>
         <Grid
-          spacing={10}
+          spacing={7}
           minHeight="100vh"
           justifyContent="center"
           container
@@ -53,10 +54,10 @@ const Main = () => {
           {/* posts column */}
           <Grid
             item
-            display={{ xs: checkVisibility("follows"), md: "block" }}
+            display={{ xs: checkVisibility("posts"), md: "block" }}
             xs={11}
             md={5}
-            mt={5}
+            mt={10}
           >
             <PostItem
               content="random post"
@@ -71,19 +72,24 @@ const Main = () => {
           {/* follows column */}
           <Grid
             item
-            display={{ xs: checkVisibility("posts"), md: "block" }}
-            xs={10}
+            display={{ xs: checkVisibility("follows"), md: "block" }}
+            xs={8}
             md={3.5}
+            mt={10}
           >
-            <FollowedPersonItem
-              firstName="Paulina"
-              lastName="Wójcik"
-              job="teacher"
-              followFunction={() => "none"}
+            <FollowsContainer
+              childrens={
+                <FollowedPersonItem
+                  firstName="Paulina"
+                  lastName="Wójcik"
+                  job="teacher"
+                  followFunction={() => "none"}
+                />
+              }
             />
           </Grid>
         </Grid>
-      </Container>
+      </Box>
     </>
   );
 };

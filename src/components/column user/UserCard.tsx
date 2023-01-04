@@ -25,7 +25,7 @@ const UserCard = ({
 }: Props) => {
   return (
     <Paper
-      elevation={3}
+      elevation={5}
       sx={{
         minWidth: 1,
         p: "calc(0.5vw + 10px)",
@@ -33,7 +33,7 @@ const UserCard = ({
         flexDirection: "column",
       }}
     >
-      <Grid container py={1} width="1" direction="row" alignItems="center">
+      <Grid container width="1" direction="row" alignItems="center">
         <Grid item xs={3}>
           <Avatar src={photo || ""}>{firstName[0]}</Avatar>
         </Grid>
@@ -45,7 +45,7 @@ const UserCard = ({
           </Typography>
         </Grid>
       </Grid>
-      <Divider />
+      <Divider sx={{ my: 1 }} />
       <Box my={1} mx={0.5} display="flex">
         <PlaceIcon />
         <Typography variant="caption">{location}</Typography>
@@ -55,7 +55,7 @@ const UserCard = ({
         <Typography variant="caption">{job}</Typography>
       </Box>
 
-      <Divider />
+      <Divider sx={{ my: 1 }} />
       <Grid container direction="column" py={1}>
         <Grid
           container

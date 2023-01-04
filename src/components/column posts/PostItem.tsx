@@ -37,7 +37,10 @@ const PostItem = ({
   likes,
 }: Props) => {
   return (
-    <Paper sx={{ display: "flex", flexDirection: "column", p: 2 }}>
+    <Paper
+      elevation={5}
+      sx={{ display: "flex", flexDirection: "column", p: 2 }}
+    >
       {/* avatar, name, location, button to follow */}
       <Grid container py={1} direction="row" alignItems="center">
         <Grid item xs={2}>
