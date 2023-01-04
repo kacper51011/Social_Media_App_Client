@@ -44,13 +44,13 @@ const PostItem = ({
           <Avatar src={photo || ""}>{firstName[0]}</Avatar>
         </Grid>
 
-        <Grid item xs={6}>
+        <Grid item xs={7}>
           <Typography variant="body1">{firstName + " " + lastName}</Typography>
 
           <Typography variant="caption">{location}</Typography>
         </Grid>
 
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <CustomIconButton title="like post" icon={<ThumbUpAltIcon />} />
           <CustomIconButton
             title="follow"

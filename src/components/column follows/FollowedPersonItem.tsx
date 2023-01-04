@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
@@ -32,8 +32,10 @@ const FollowedPersonItem = ({
         <Avatar src={photo || ""}>{firstName[0]}</Avatar>
       </Grid>
       <Grid item xs={3} direction="column">
-        <Typography variant="h4">{firstName + " " + lastName}</Typography>
-        <Typography variant="subtitle1">{job}</Typography>
+        <Typography variant="subtitle1">
+          {firstName + " " + lastName}
+        </Typography>
+        <Typography variant="caption">{job}</Typography>
       </Grid>
 
       <Grid item xs={3}>

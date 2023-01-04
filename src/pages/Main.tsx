@@ -1,8 +1,9 @@
 import { Grid, Container } from "@mui/material";
 import { useState } from "react";
 import Navbar from "../components/navbar/Navbar";
-import PostItem from "../components/post/PostItem";
-import UserCard from "../components/UserCard";
+import PostItem from "../components/column posts/PostItem";
+import UserCard from "../components/column user/UserCard";
+import FollowedPersonItem from "../components/column follows/FollowedPersonItem";
 
 export type displayedColumn = "profile" | "posts" | "follows";
 
@@ -52,7 +53,7 @@ const Main = () => {
           {/* posts column */}
           <Grid
             item
-            display={{ xs: checkVisibility("posts"), md: "block" }}
+            display={{ xs: checkVisibility("follows"), md: "block" }}
             xs={11}
             md={5}
             mt={5}
@@ -73,7 +74,14 @@ const Main = () => {
             display={{ xs: checkVisibility("posts"), md: "block" }}
             xs={10}
             md={3.5}
-          ></Grid>
+          >
+            <FollowedPersonItem
+              firstName="Paulina"
+              lastName="Wójcik"
+              job="teacher"
+              followFunction={() => "none"}
+            />
+          </Grid>
         </Grid>
       </Container>
     </>
