@@ -14,7 +14,7 @@ import SmartToyIcon from "@mui/icons-material/SmartToy";
 import { useState } from "react";
 import CustomIconButton from "../buttons/CustomIconButton";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+
 import { setMode } from "../../store/themeSlice";
 
 const DesktopNavbar = () => {

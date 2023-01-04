@@ -41,7 +41,7 @@ const UserCard = ({
         <Grid sx={{ flexDirection: "column" }}>
           <Typography variant="h6">{firstName + " " + lastName}</Typography>
           <Typography variant="caption">
-            {followedPeopleNumber + " " + "Follows"}
+            {`${followedPeopleNumber} Follows`}
           </Typography>
         </Grid>
       </Grid>

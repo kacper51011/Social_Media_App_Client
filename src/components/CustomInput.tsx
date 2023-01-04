@@ -1,4 +1,4 @@
-import { Avatar, Grid, InputBase, Paper } from "@mui/material";
+import { Avatar, Grid, InputBase, Paper, useTheme } from "@mui/material";
 import { ComponentProps } from "react";
 
 type Props = {
@@ -18,6 +18,7 @@ const CustomInput = ({
   width = 1,
   ...inputProps
 }: Props) => {
+  const theme = useTheme();
   return (
     <Grid
       container
@@ -31,7 +32,10 @@ const CustomInput = ({
         <Avatar src={picturePath || ""}>{firstName[0]} </Avatar>
       </Grid>
       <Grid item xs={10} sx={{ width: 1, minHeight: 0.2 }}>
-        <Paper sx={{ backgroundColor: "whitesmoke" }} elevation={1}>
+        <Paper
+          sx={{ backgroundColor: theme.palette.neutral.light }}
+          elevation={1}
+        >
           <InputBase {...inputProps} sx={{ width: 1, minHeight: 0.9 }} />
         </Paper>
       </Grid>

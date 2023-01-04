@@ -53,7 +53,7 @@ const Main = () => {
           <Grid
             item
             display={{ xs: checkVisibility("posts"), md: "block" }}
-            xs={10}
+            xs={11}
             md={5}
             mt={5}
           >

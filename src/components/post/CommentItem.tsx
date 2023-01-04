@@ -1,4 +1,4 @@
-import { Avatar, Grid, Paper, Typography } from "@mui/material";
+import { Avatar, Grid, Paper, Typography, useTheme } from "@mui/material";
 
 type Props = {
   commentContent: string;
@@ -13,6 +13,7 @@ const CommentItem = ({
   commentCreatorLastName,
   commentCreatorPicture,
 }: Props) => {
+  const theme = useTheme();
   return (
     <Grid
       container
@@ -26,7 +27,10 @@ const CommentItem = ({
         </Avatar>
       </Grid>
       <Grid item xs={10} sx={{ width: 1, minHeight: 0.2 }}>
-        <Paper sx={{ backgroundColor: "whitesmoke" }} elevation={1}>
+        <Paper
+          elevation={1}
+          sx={{ backgroundColor: theme.palette.neutral.light }}
+        >
           <Typography>
             {commentCreatorFirstName + " " + commentCreatorLastName}
           </Typography>

@@ -28,7 +28,7 @@ const MobileNavbar = ({ darkMode, changeColumn }: Props) => {
   };
 
   return (
-    <Box sx={{ backgroundColor: theme.palette.secondary.dark }}>
+    <Box sx={{ backgroundColor: theme.palette.neutral.light }}>
       <AppBar
         color="inherit"
         position="fixed"
@@ -71,9 +71,3 @@ const MobileNavbar = ({ darkMode, changeColumn }: Props) => {
 };
 
 export default MobileNavbar;
-{
-  /* <CustomIconButton
-          icon={darkMode ? <DarkModeIcon /> : <LightModeIcon />}
-          title={darkMode ? "dark mode" : "light mode"}
-        /> */
-}

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Paper,
   Grid,
@@ -38,22 +37,20 @@ const PostItem = ({
   likes,
 }: Props) => {
   return (
-    <Paper
-      sx={{ display: "flex", flexDirection: "column", minWidth: "30vh", p: 2 }}
-    >
+    <Paper sx={{ display: "flex", flexDirection: "column", p: 2 }}>
       {/* avatar, name, location, button to follow */}
-      <Grid container py={1} width="1" direction="row" alignItems="center">
-        <Grid item pr={2} xs={1.5}>
+      <Grid container py={1} direction="row" alignItems="center">
+        <Grid item xs={2}>
           <Avatar src={photo || ""}>{firstName[0]}</Avatar>
         </Grid>
 
-        <Grid item xs={8}>
+        <Grid item xs={6}>
           <Typography variant="body1">{firstName + " " + lastName}</Typography>
 
           <Typography variant="caption">{location}</Typography>
         </Grid>
 
-        <Grid item xs={2.5}>
+        <Grid item xs={4}>
           <CustomIconButton title="like post" icon={<ThumbUpAltIcon />} />
           <CustomIconButton
             title="follow"
