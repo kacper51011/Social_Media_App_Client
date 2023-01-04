@@ -13,14 +13,28 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import { useState } from "react";
 import CustomIconButton from "../buttons/CustomIconButton";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { setMode } from "../../store/themeSlice";
 
 const DesktopNavbar = () => {
   const [darkMode, toggleDarkMode] = useState(false);
   const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const dispatch = useDispatch();
+
+  const toggleMode = () => {
+    dispatch(setMode());
+  };
+
   return (
-    <Box sx={{ flexGrow: 1, width: 1 }}>
-      <AppBar position="static">
+    <Box
+      sx={{
+        flexGrow: 1,
+        width: 1,
+        backgroundColor: theme.palette.secondary.dark,
+      }}
+    >
+      <AppBar color="inherit" position="static">
         <Toolbar
           sx={{
             display: "flex",
@@ -32,6 +46,7 @@ const DesktopNavbar = () => {
           <Stack direction="row" minWidth="15%" justifyContent="space-between">
             <CustomIconButton
               sx={{ px: 3, py: 1.5 }}
+              onClick={() => toggleMode()}
               icon={darkMode ? <DarkModeIcon /> : <LightModeIcon />}
               title={darkMode ? "dark mode" : "light mode"}
             />

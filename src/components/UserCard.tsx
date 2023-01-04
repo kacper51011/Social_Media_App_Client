@@ -27,21 +27,14 @@ const UserCard = ({
     <Paper
       elevation={3}
       sx={{
-        width: 1,
+        minWidth: 1,
         p: "calc(0.5vw + 10px)",
         display: "flex",
         flexDirection: "column",
       }}
     >
-      <Grid
-        container
-        py={1}
-        width="1"
-        direction="row"
-        justifyContent="space-around"
-        alignItems="center"
-      >
-        <Grid item>
+      <Grid container py={1} width="1" direction="row" alignItems="center">
+        <Grid item xs={3}>
           <Avatar src={photo || ""}>{firstName[0]}</Avatar>
         </Grid>
 

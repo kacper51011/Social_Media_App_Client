@@ -5,7 +5,7 @@ type Props = {
 };
 
 const initialState: Props = {
-  theme: "light",
+  theme: "dark",
 };
 
 const themeSlice = createSlice({
