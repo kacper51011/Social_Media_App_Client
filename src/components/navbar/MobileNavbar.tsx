@@ -1,17 +1,15 @@
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import CustomIconButton from "../buttons/CustomIconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import { Box } from "@mui/material";
-
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
-import { Stack, useTheme } from "@mui/material";
+import { Stack, useTheme, Box } from "@mui/material";
 import ArticleIcon from "@mui/icons-material/Article";
 import PeopleIcon from "@mui/icons-material/People";
 import { displayedColumn } from "../../pages/Main";
 import { useDispatch } from "react-redux";
 import { setMode } from "../../store/themeSlice";
+import MobileMenu from "./MobileMenu";
 
 type Props = {
   darkMode: boolean;
@@ -43,7 +41,7 @@ const MobileNavbar = ({ darkMode, changeColumn }: Props) => {
             justifyContent: "space-around",
           }}
         >
-          <CustomIconButton icon={<MenuIcon />} title="menu" />
+          <MobileMenu toggleMode={toggleMode} />
 
           <Stack direction="row">
             <CustomIconButton

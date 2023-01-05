@@ -1,4 +1,4 @@
-import { Paper, useTheme } from "@mui/material";
+import { Paper, Typography, useTheme } from "@mui/material";
 import { ReactElement } from "react";
 import { FollowProps } from "./FollowedPersonItem";
 
@@ -17,10 +17,13 @@ const FollowsContainer = ({ childrens }: Props) => {
         minHeight: "50vh",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
+
         p: "calc(0.5vw + 10px)",
       }}
     >
+      <Typography mb={2} fontWeight="bold" variant="caption">
+        Follows List
+      </Typography>
       {childrens}
     </Paper>
   );

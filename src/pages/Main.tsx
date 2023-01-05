@@ -5,6 +5,7 @@ import PostItem from "../components/column posts/PostItem";
 import UserCard from "../components/column user/UserCard";
 import FollowedPersonItem from "../components/column follows/FollowedPersonItem";
 import FollowsContainer from "../components/column follows/FollowsContainer";
+import PostInputComponent from "../components/PostInputComponent";
 
 export type displayedColumn = "profile" | "posts" | "follows";
 
@@ -24,7 +25,7 @@ const Main = () => {
   return (
     <>
       <Navbar changeColumn={changeColumn} />
-      <Box mx={10}>
+      <Box mx={{ xs: 5, md: 10 }}>
         <Grid
           spacing={7}
           minHeight="100vh"
@@ -36,7 +37,7 @@ const Main = () => {
           <Grid
             item
             display={{ xs: checkVisibility("profile"), md: "block" }}
-            xs={8}
+            xs={12}
             md={3.5}
             mt={10}
           >
@@ -55,10 +56,10 @@ const Main = () => {
           <Grid
             item
             display={{ xs: checkVisibility("posts"), md: "block" }}
-            xs={11}
+            xs={12}
             md={5}
-            mt={10}
           >
+            <PostInputComponent picturePath="" />
             <PostItem
               content="random post"
               firstName="Kacper"
@@ -73,7 +74,7 @@ const Main = () => {
           <Grid
             item
             display={{ xs: checkVisibility("follows"), md: "block" }}
-            xs={8}
+            xs={10}
             md={3.5}
             mt={10}
           >

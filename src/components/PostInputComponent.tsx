@@ -1,15 +1,5 @@
 import { useState } from "react";
-import {
-  Paper,
-  Box,
-  Divider,
-  Grid,
-  Avatar,
-  TextField,
-  Typography,
-  Button,
-  IconButton,
-} from "@mui/material";
+import { Paper, Box, Divider, Grid, Avatar, TextField } from "@mui/material";
 
 type Props = {
   picturePath: string;
@@ -21,7 +11,9 @@ const PostInputComponent = ({ picturePath }: Props) => {
   const [postInput, setPostInput] = useState("");
 
   return (
-    <Paper sx={{ display: "flex", flexDirection: "column" }}>
+    <Paper
+      sx={{ display: "flex", flexDirection: "column", mt: 10, mb: 5, p: 2 }}
+    >
       <Grid container direction="row" width={1}>
         <Grid item xs={2}>
           <Avatar src={picturePath} />

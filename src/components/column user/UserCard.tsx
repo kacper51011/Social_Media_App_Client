@@ -48,11 +48,15 @@ const UserCard = ({
       <Divider sx={{ my: 1 }} />
       <Box my={1} mx={0.5} display="flex">
         <PlaceIcon />
-        <Typography variant="caption">{location}</Typography>
+        <Typography ml={4} variant="caption">
+          {location}
+        </Typography>
       </Box>
       <Box my={1} mx={0.5} display="flex">
         <BusinessCenterIcon />
-        <Typography variant="caption">{job}</Typography>
+        <Typography ml={4} variant="caption">
+          {job}
+        </Typography>
       </Box>
 
       <Divider sx={{ my: 1 }} />

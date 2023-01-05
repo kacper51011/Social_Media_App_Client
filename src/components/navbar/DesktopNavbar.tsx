@@ -18,7 +18,6 @@ import { useDispatch } from "react-redux";
 import { setMode } from "../../store/themeSlice";
 
 const DesktopNavbar = () => {
-  const [darkMode, toggleDarkMode] = useState(false);
   const theme = useTheme();
   const dispatch = useDispatch();
 
@@ -47,8 +46,14 @@ const DesktopNavbar = () => {
             <CustomIconButton
               sx={{ px: 3, py: 1.5 }}
               onClick={() => toggleMode()}
-              icon={darkMode ? <DarkModeIcon /> : <LightModeIcon />}
-              title={darkMode ? "dark mode" : "light mode"}
+              icon={
+                theme.palette.mode === "dark" ? (
+                  <DarkModeIcon />
+                ) : (
+                  <LightModeIcon />
+                )
+              }
+              title={theme.palette.mode === "dark" ? "dark mode" : "light mode"}
             />
             <CustomIconButton
               sx={{ px: 3, py: 1.5 }}
