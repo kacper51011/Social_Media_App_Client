@@ -27,7 +27,10 @@ const FollowedPersonItem = ({
       px={0.75}
       justifyContent="space-between"
       alignItems="center"
-      sx={{ backgroundColor: theme.palette.neutral.light }}
+      sx={{
+        backgroundColor: theme.palette.neutral.light,
+        borderRadius: "16px",
+      }}
     >
       <Grid item xs={3}>
         <Avatar src={photo || ""}>{firstName[0]}</Avatar>

@@ -17,7 +17,7 @@ const FollowsContainer = ({ childrens }: Props) => {
         minHeight: "50vh",
         display: "flex",
         flexDirection: "column",
-
+        borderRadius: "16px",
         p: "calc(0.5vw + 10px)",
       }}
     >

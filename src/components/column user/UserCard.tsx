@@ -1,4 +1,12 @@
-import { Avatar, Box, Divider, Grid, Paper, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Divider,
+  Grid,
+  Paper,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import PlaceIcon from "@mui/icons-material/Place";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 
@@ -23,6 +31,7 @@ const UserCard = ({
   numberOfProfileViews,
   numberOfLikes,
 }: Props) => {
+  const theme = useTheme();
   return (
     <Paper
       elevation={5}
@@ -31,6 +40,7 @@ const UserCard = ({
         p: "calc(0.5vw + 10px)",
         display: "flex",
         flexDirection: "column",
+        borderRadius: "16px",
       }}
     >
       <Grid container width="1" direction="row" alignItems="center">

@@ -39,7 +39,12 @@ const PostItem = ({
   return (
     <Paper
       elevation={5}
-      sx={{ display: "flex", flexDirection: "column", p: 2 }}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        p: 2,
+        borderRadius: "16px",
+      }}
     >
       {/* avatar, name, location, button to follow */}
       <Grid container py={1} direction="row" alignItems="center">
