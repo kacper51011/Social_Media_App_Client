@@ -13,6 +13,7 @@ import { useDropzone } from "react-dropzone";
 import Button from "@mui/material/Button";
 import CustomIconButton from "./buttons/CustomIconButton";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import CustomDropzone from "./CustomDropzone";
 
 type Props = {
   picturePath: string;
@@ -73,46 +74,8 @@ const PostInputComponent = ({ picturePath }: Props) => {
           </Paper>
         </Grid>
       </Grid>
-      <Box>
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          width={1}
-          minHeight="10vh"
-          sx={{
-            backgroundColor: theme.palette.neutral.medium,
-            borderRadius: "16px",
-            borderStyle: "dashed",
-            cursor: !fileToSend ? "pointer" : "default",
-            opacity: 0.7,
-          }}
-          {...getRootProps({ className: "dropzone" })}
-        >
-          <InputBase sx={{ display: "none" }} {...getInputProps} />
-          <Typography>
-            {!fileToSend
-              ? "Drop your Image or click to choose"
-              : "Image choosed!"}
-          </Typography>
-        </Box>
-        {fileToSend && <Typography mt={2}>Files:</Typography>}
-        {fileToSend && (
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            <Typography variant="caption">{fileToSend.name}</Typography>
-            <CustomIconButton
-              size="small"
-              icon={<RemoveCircleIcon />}
-              title="delete image"
-              onClick={() => setFileToSend(null)}
-            />
-          </Box>
-        )}
-      </Box>
+
+      <CustomDropzone fileToSend={fileToSend} setFileToSend={setFileToSend} />
       <Divider orientation="horizontal" sx={{ my: 2 }} />
       <Box display="flex" justifyContent="right" width={1}>
         <Button disabled={!postInput} variant="outlined">

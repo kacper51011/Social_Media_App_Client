@@ -36,7 +36,7 @@ const FollowedPersonItem = ({
         <Avatar src={photo || ""}>{firstName[0]}</Avatar>
       </Grid>
       <Grid item xs={6} flexDirection="column">
-        <Typography variant="subtitle1">
+        <Typography sx={{ cursor: "pointer" }} variant="subtitle1">
           {firstName + " " + lastName}
         </Typography>
         <Typography variant="caption">{job}</Typography>

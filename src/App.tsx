@@ -17,7 +17,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline>
           <Routes>
-            <Route path="/" element={<Main />} />
+            <Route path="/" element={<Home />} />
           </Routes>
         </CssBaseline>
       </ThemeProvider>

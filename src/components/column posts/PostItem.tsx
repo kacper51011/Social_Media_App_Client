@@ -53,18 +53,20 @@ const PostItem = ({
       }}
     >
       {/* avatar, name, location, button to follow */}
-      <Grid container py={1} direction="row" alignItems="center">
+      <Grid container width={1} py={1} direction="row" alignItems="center">
         <Grid item xs={2}>
           <Avatar src={photo || ""}>{firstName[0]}</Avatar>
         </Grid>
 
-        <Grid item xs={6}>
-          <Typography variant="body1">{firstName + " " + lastName}</Typography>
+        <Grid item xs={7}>
+          <Typography sx={{ cursor: "pointer" }} variant="body1">
+            {firstName + " " + lastName}
+          </Typography>
 
           <Typography variant="caption">{location}</Typography>
         </Grid>
 
-        <Grid item xs={4} display="flex" justifyContent="right">
+        <Grid xs={2.5} item display="flex" justifyContent="right">
           <CustomIconButton title="like post" icon={<ThumbUpAltIcon />} />
           <CustomIconButton
             title="follow"

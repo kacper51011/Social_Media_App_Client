@@ -44,12 +44,14 @@ const UserCard = ({
       }}
     >
       <Grid container width="1" direction="row" alignItems="center">
-        <Grid item xs={3}>
+        <Grid item xs={2.5}>
           <Avatar src={photo || ""}>{firstName[0]}</Avatar>
         </Grid>
 
-        <Grid sx={{ flexDirection: "column" }}>
-          <Typography variant="h6">{firstName + " " + lastName}</Typography>
+        <Grid sx={{ flexDirection: "column", justifyContent: "center" }}>
+          <Typography sx={{ cursor: "pointer" }} variant="body1">
+            {firstName + " " + lastName}
+          </Typography>
           <Typography variant="caption">
             {`${followedPeopleNumber} Follows`}
           </Typography>
