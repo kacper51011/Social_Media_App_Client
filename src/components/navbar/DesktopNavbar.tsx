@@ -4,14 +4,12 @@ import {
   Toolbar,
   Typography,
   Stack,
-  useMediaQuery,
   useTheme,
 } from "@mui/material";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
-import { useState } from "react";
 import CustomIconButton from "../buttons/CustomIconButton";
 import { useDispatch } from "react-redux";
 
@@ -41,7 +39,9 @@ const DesktopNavbar = () => {
             alignItems: "center",
           }}
         >
-          <Typography variant="h5">SocialMediaApp</Typography>
+          <Typography variant="h5" color={theme.palette.neutral.main}>
+            SocialMediaApp
+          </Typography>
           <Stack direction="row" minWidth="15%" justifyContent="space-between">
             <CustomIconButton
               sx={{ px: 3, py: 1.5 }}

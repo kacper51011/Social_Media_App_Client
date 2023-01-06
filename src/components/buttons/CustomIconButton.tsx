@@ -1,4 +1,4 @@
-import { Tooltip, IconButton } from "@mui/material";
+import { Tooltip, IconButton, Typography } from "@mui/material";
 import { ComponentProps, ReactNode } from "react";
 
 type Props = {
@@ -6,7 +6,12 @@ type Props = {
   icon: ReactNode;
 } & ComponentProps<typeof IconButton>;
 
-const CustomIconButton = ({ title, icon, ...IconButtonProps }: Props) => {
+const CustomIconButton = ({
+  title,
+  icon,
+
+  ...IconButtonProps
+}: Props) => {
   return (
     <Tooltip title={title}>
       <IconButton {...IconButtonProps}>{icon}</IconButton>

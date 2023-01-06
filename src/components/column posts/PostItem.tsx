@@ -73,7 +73,7 @@ const PostItem = ({
         <CardMedia
           component="img"
           src=""
-          sx={{ minWidth: "20vw", minHeight: "20vw" }}
+          sx={{ minWidth: "20vw", minHeight: "20vw", borderRadius: "16px" }}
         />
       </Paper>
       {/* statistics */}

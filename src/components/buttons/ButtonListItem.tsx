@@ -18,7 +18,7 @@ const ButtonListItem = ({
   ...listItemButtonProps
 }: ButtonListItemProps) => {
   return (
-    <ListItem disablePadding>
+    <ListItem dense disablePadding>
       <ListItemButton {...listItemButtonProps}>
         <ListItemIcon>{icon}</ListItemIcon>
         <ListItemText primary={content} />
