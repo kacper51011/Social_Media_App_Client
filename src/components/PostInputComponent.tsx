@@ -9,20 +9,30 @@ import {
   InputBase,
   Typography,
 } from "@mui/material";
-
 import { useDropzone } from "react-dropzone";
 import Button from "@mui/material/Button";
+import CustomIconButton from "./buttons/CustomIconButton";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
 type Props = {
   picturePath: string;
 };
 
 const PostInputComponent = ({ picturePath }: Props) => {
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
-    accept: { "image/*": [] },
-  });
+  // I created separate state for file to send, it helps me with deleting already downloaded files from upload list
 
   const [postInput, setPostInput] = useState("");
+  const [fileToSend, setFileToSend] = useState<null | File>(null);
+
+  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+    accept: { "image/*": [".png", ".jpg", ".jpeg"] },
+    maxSize: 3000000,
+    multiple: false,
+    disabled: !!fileToSend,
+    onDropAccepted(files, event) {
+      setFileToSend(files[0]);
+    },
+  });
 
   const theme = useTheme();
 
@@ -46,7 +56,7 @@ const PostInputComponent = ({ picturePath }: Props) => {
             sx={{
               borderRadius: "16px",
               backgroundColor: theme.palette.neutral.light,
-              minHeight: "10vh",
+              minHeight: "5vh",
               width: 1,
               p: 1,
               ml: 3,
@@ -58,7 +68,6 @@ const PostInputComponent = ({ picturePath }: Props) => {
                 setPostInput(e.target.value);
               }}
               placeholder="Write your post here..."
-              multiline
               sx={{ width: "90%" }}
             />
           </Paper>
@@ -75,14 +84,34 @@ const PostInputComponent = ({ picturePath }: Props) => {
             backgroundColor: theme.palette.neutral.medium,
             borderRadius: "16px",
             borderStyle: "dashed",
-            cursor: "pointer",
+            cursor: !fileToSend ? "pointer" : "default",
             opacity: 0.7,
           }}
           {...getRootProps({ className: "dropzone" })}
         >
           <InputBase sx={{ display: "none" }} {...getInputProps} />
-          <Typography>Drop your Image here or click here to choose</Typography>
+          <Typography>
+            {!fileToSend
+              ? "Drop your Image or click to choose"
+              : "Image choosed!"}
+          </Typography>
         </Box>
+        {fileToSend && <Typography mt={2}>Files:</Typography>}
+        {fileToSend && (
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Typography variant="caption">{fileToSend.name}</Typography>
+            <CustomIconButton
+              size="small"
+              icon={<RemoveCircleIcon />}
+              title="delete image"
+              onClick={() => setFileToSend(null)}
+            />
+          </Box>
+        )}
       </Box>
       <Divider orientation="horizontal" sx={{ my: 2 }} />
       <Box display="flex" justifyContent="right" width={1}>

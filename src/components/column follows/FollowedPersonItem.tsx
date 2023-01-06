@@ -32,10 +32,10 @@ const FollowedPersonItem = ({
         borderRadius: "16px",
       }}
     >
-      <Grid item xs={3}>
+      <Grid marginRight={1} item xs={3}>
         <Avatar src={photo || ""}>{firstName[0]}</Avatar>
       </Grid>
-      <Grid item xs={7} flexDirection="column">
+      <Grid item xs={6} flexDirection="column">
         <Typography variant="subtitle1">
           {firstName + " " + lastName}
         </Typography>

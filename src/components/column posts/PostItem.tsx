@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Paper,
   Grid,
@@ -6,6 +7,7 @@ import {
   CardMedia,
   Box,
   Divider,
+  useTheme,
 } from "@mui/material";
 import CustomIconButton from "../buttons/CustomIconButton";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
@@ -13,6 +15,7 @@ import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import CustomInput from "../CustomInput";
 import CommentItem from "./CommentItem";
+import { ButtonBase } from "@mui/material";
 
 type Props = {
   photo: string;
@@ -36,6 +39,9 @@ const PostItem = ({
   content,
   likes,
 }: Props) => {
+  const [commentsVisible, setCommentsVisible] = useState(false);
+  const theme = useTheme();
+
   return (
     <Paper
       elevation={5}
@@ -86,7 +92,14 @@ const PostItem = ({
         <Typography variant="caption">{likes + " " + "likes"}</Typography>
 
         {/* todo create comment type */}
-        <Typography variant="caption">{"50" + " " + "comments"}</Typography>
+        <Typography
+          onClick={() => setCommentsVisible(!commentsVisible)}
+          component="span"
+          variant="caption"
+          sx={{ cursor: "pointer" }}
+        >
+          {"50" + " " + "comments"}
+        </Typography>
       </Box>
       <Divider />
       <Box sx={{ minHeight: "5vw", color: "bisque", p: 2, mt: 2 }}>
@@ -94,12 +107,14 @@ const PostItem = ({
       </Box>
       <Divider />
       <Box mt={1}>
-        <CommentItem
-          commentContent="nice one"
-          commentCreatorFirstName="Kacper"
-          commentCreatorLastName="Tylec"
-          commentCreatorPicture=""
-        />
+        {commentsVisible && (
+          <CommentItem
+            commentContent="nice one"
+            commentCreatorFirstName="Kacper"
+            commentCreatorLastName="Tylec"
+            commentCreatorPicture=""
+          />
+        )}
       </Box>
     </Paper>
   );
