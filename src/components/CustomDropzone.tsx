@@ -33,7 +33,7 @@ const CustomDropzone = ({
         justifyContent="center"
         alignItems="center"
         width={1}
-        minHeight="10vh"
+        minHeight="5vw"
         sx={{
           backgroundColor: theme.palette.neutral.medium,
           borderRadius: "16px",
@@ -52,8 +52,15 @@ const CustomDropzone = ({
       </Box>
       {fileToSend && <Typography mt={2}>Files:</Typography>}
       {fileToSend && (
-        <Box display="flex" justifyContent="space-between" alignItems="center">
-          <Typography variant="caption">{fileToSend.name}</Typography>
+        <Box
+          width={1}
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <Typography noWrap variant="caption">
+            {fileToSend.name}
+          </Typography>
           <CustomIconButton
             size="small"
             icon={<RemoveCircleIcon />}
