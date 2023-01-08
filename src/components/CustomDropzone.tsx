@@ -6,12 +6,14 @@ import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
 type Props = {
   fileToSend: File | null;
+  holdSpace?: Boolean;
   setFileToSend: Dispatch<React.SetStateAction<File | null>>;
 } & ComponentProps<typeof Box>;
 
 const CustomDropzone = ({
   fileToSend,
   setFileToSend,
+  holdSpace,
   ...containerProps
 }: Props) => {
   const theme = useTheme();
@@ -32,8 +34,7 @@ const CustomDropzone = ({
         display="flex"
         justifyContent="center"
         alignItems="center"
-        width={1}
-        minHeight="5vw"
+        minHeight="calc(3.5vw + 35px)"
         sx={{
           backgroundColor: theme.palette.neutral.medium,
           borderRadius: "16px",
@@ -44,7 +45,7 @@ const CustomDropzone = ({
         {...getRootProps({ className: "dropzone" })}
       >
         <InputBase sx={{ display: "none" }} {...getInputProps} />
-        <Typography>
+        <Typography textAlign="center">
           {!fileToSend
             ? "Drop your Image or click to choose"
             : "Image choosed!"}
@@ -66,6 +67,31 @@ const CustomDropzone = ({
             icon={<RemoveCircleIcon />}
             title="delete image"
             onClick={() => setFileToSend(null)}
+          />
+        </Box>
+      )}
+      {/* placeholder for popping file name */}
+
+      {holdSpace && !fileToSend && (
+        <Typography visibility="hidden" mt={2}>
+          Files:
+        </Typography>
+      )}
+      {holdSpace && !fileToSend && (
+        <Box
+          width={1}
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          visibility="hidden"
+        >
+          <Typography noWrap variant="caption">
+            placeholder
+          </Typography>
+          <CustomIconButton
+            size="small"
+            icon={<RemoveCircleIcon />}
+            title="delete image"
           />
         </Box>
       )}

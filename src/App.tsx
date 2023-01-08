@@ -13,11 +13,11 @@ function App() {
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
 
   return (
-    <Box mb={10}>
+    <Box overflow="hidden" mb={10}>
       <ThemeProvider theme={theme}>
         <CssBaseline>
           <Routes>
-            <Route path="/" element={<Main />} />
+            <Route path="/" element={<Home />} />
           </Routes>
         </CssBaseline>
       </ThemeProvider>
