@@ -8,12 +8,31 @@ import {
   TextField,
   Button,
 } from "@mui/material";
+import { z } from "zod";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { UserLoginSchema } from "../../utils/ValidationSchemas";
 
 type Props = {
   setShowRegisterWindow: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+type UserLoginType = z.infer<typeof UserLoginSchema>;
+
 const LoginWindow = ({ setShowRegisterWindow }: Props) => {
+  const {
+    register,
+    watch,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<UserLoginType>({
+    resolver: zodResolver(UserLoginSchema),
+  });
+
+  const onSubmit: SubmitHandler<UserLoginType> = (data) => {
+    console.log(data);
+  };
+
   const theme = useTheme();
   const desktopSize = useMediaQuery(theme.breakpoints.up("md"));
 
@@ -29,6 +48,8 @@ const LoginWindow = ({ setShowRegisterWindow }: Props) => {
       }}
     >
       <Box
+        component="form"
+        onSubmit={handleSubmit(onSubmit)}
         width={{ xs: 0.9, lg: 0.5 }}
         display="flex"
         height={1}
@@ -48,12 +69,16 @@ const LoginWindow = ({ setShowRegisterWindow }: Props) => {
             variant="standard"
             sx={{ my: 2 }}
             fullWidth
+            {...register("email")}
+            disabled={isSubmitting}
           />
           <TextField
             placeholder="Password"
             variant="standard"
             sx={{ my: 2 }}
             fullWidth
+            {...register("password")}
+            disabled={isSubmitting}
           />
         </Box>
 
@@ -64,8 +89,13 @@ const LoginWindow = ({ setShowRegisterWindow }: Props) => {
           alignItems="center"
           sx={{ mt: 4, mb: 2 }}
         >
+          {/* spaceholder */}
+          <Typography variant="caption" visibility="hidden">
+            spaceholder for errors
+          </Typography>
           <Button
             variant="contained"
+            type="submit"
             sx={{
               width: 0.3,
               py: 1.5,

@@ -30,14 +30,21 @@ const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
   const {
     register,
     watch,
+    setError,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<UserRegisterType>({
+  } = useForm<UserRegisterType & { customError: string }>({
     resolver: zodResolver(UserRegisterSchema),
   });
 
   const onSubmit: SubmitHandler<UserRegisterType> = (data) => {
     console.log(data);
+    if (!registerFile) {
+      setError("customError", {
+        type: "custom",
+        message: "Enter a photo for your profile picture!",
+      });
+    }
   };
 
   const errorMessages =
@@ -47,7 +54,8 @@ const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
     errors.password?.message ||
     errors.confirmPassword?.message ||
     errors.location?.message ||
-    errors.job?.message;
+    errors.job?.message ||
+    errors.customError?.message;
 
   return (
     <Paper

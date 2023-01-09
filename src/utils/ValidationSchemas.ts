@@ -6,20 +6,20 @@ const errorHandler = (
   errorRange: number
 ) => {
   let errorCauseMessage =
-    errorCause === "max" ? "should be no longer than" : "should be longer than";
+    errorCause === "max" ? "should be no longer than" : "should have at least";
 
-  return `${errorField} field ${errorCauseMessage} ${errorRange}`;
+  return `${errorField} ${errorCauseMessage} ${errorRange} letters`;
 };
 
 export const UserRegisterSchema = z
   .object({
     firstName: z
       .string()
-      .min(1, { message: errorHandler("First Name", "min", 1) })
+      .min(3, { message: errorHandler("First Name", "min", 3) })
       .max(20, { message: errorHandler("First Name", "max", 20) }),
     lastName: z
       .string()
-      .min(1, { message: errorHandler("Last Name", "min", 1) })
+      .min(3, { message: errorHandler("Last Name", "min", 3) })
       .max(20, { message: errorHandler("Last Name", "max", 20) }),
     email: z.string().email({ message: "Enter valid email!" }).max(255),
     password: z
