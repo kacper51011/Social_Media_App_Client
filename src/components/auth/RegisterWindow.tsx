@@ -164,12 +164,17 @@ const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
         </Box>
 
         <Box display="flex" flexDirection="column" alignItems="center">
-          {!errors && (
-            <Typography visibility="hidden" variant="caption">
-              hidden placeholder
+          {!errorMessages && (
+            <Typography visibility="hidden" variant="caption" color="error">
+              spaceholder for errors
             </Typography>
           )}
-          {errors && <Typography color="error"> errors.firstName</Typography>}
+          {errorMessages && (
+            <Typography variant="caption" color="error">
+              {" "}
+              {errorMessages}
+            </Typography>
+          )}
           <Button
             type="submit"
             variant="contained"
