@@ -1,16 +1,26 @@
-import { Box, CardMedia, Paper } from "@mui/material";
-import Button from "@mui/material/Button";
+import {
+  Box,
+  Paper,
+  Button,
+  TextField,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
+import { z } from "zod";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useTheme } from "@mui/material/styles";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
-import useMediaQuery from "@mui/material/useMediaQuery";
+
 import { useState } from "react";
 import CustomDropzone from "../CustomDropzone";
 import { ReactComponent as RegisterWindowImage } from "../../utils/RegisterWindowImage.svg";
+import { UserRegisterSchema } from "../../utils/ValidationSchemas";
 
 type Props = {
   setShowRegisterWindow: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
+type UserRegisterType = z.infer<typeof UserRegisterSchema>;
 
 const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
   const [registerFile, setRegisterFile] = useState<File | null>(null);
