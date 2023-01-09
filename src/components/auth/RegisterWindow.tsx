@@ -27,6 +27,28 @@ const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
   const theme = useTheme();
   const desktopSize = useMediaQuery(theme.breakpoints.up("md"));
 
+  const {
+    register,
+    watch,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<UserRegisterType>({
+    resolver: zodResolver(UserRegisterSchema),
+  });
+
+  const onSubmit: SubmitHandler<UserRegisterType> = (data) => {
+    console.log(data);
+  };
+
+  const errorMessages =
+    errors.firstName?.message ||
+    errors.lastName?.message ||
+    errors.email?.message ||
+    errors.password?.message ||
+    errors.confirmPassword?.message ||
+    errors.location?.message ||
+    errors.job?.message;
+
   return (
     <Paper
       elevation={4}
@@ -50,6 +72,8 @@ const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
       )}
 
       <Box
+        component="form"
+        onSubmit={handleSubmit(onSubmit)}
         width={{ xs: 1, lg: 0.5 }}
         height={1}
         display="flex"
@@ -66,12 +90,16 @@ const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
             label="First Name"
             variant="standard"
             sx={{ width: 0.45 }}
+            disabled={isSubmitting}
+            {...register("firstName")}
           ></TextField>
           <Box width={0.1} />
           <TextField
             label="Last Name"
             variant="standard"
             sx={{ width: 0.45 }}
+            disabled={isSubmitting}
+            {...register("lastName")}
           ></TextField>
         </Box>
         {/* Location and Job row */}
@@ -80,6 +108,8 @@ const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
             sx={{ my: 1, width: 0.45 }}
             variant="standard"
             label="Location"
+            disabled={isSubmitting}
+            {...register("location")}
           ></TextField>
           <Box width={0.1} />
           <TextField
@@ -87,14 +117,19 @@ const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
             variant="standard"
             label="Job"
             fullWidth
+            disabled={isSubmitting}
+            {...register("job")}
           ></TextField>
         </Box>
         {/* email */}
         <TextField
           variant="standard"
           sx={{ my: 1 }}
+          type="email"
           label="Email"
           fullWidth
+          disabled={isSubmitting}
+          {...register("email")}
         ></TextField>
         {/* password row */}
         <Box display="flex">
@@ -102,13 +137,19 @@ const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
             sx={{ my: 1, width: 0.45 }}
             variant="standard"
             label="Password"
+            type="password"
             fullWidth
+            disabled={isSubmitting}
+            {...register("password")}
           ></TextField>
           <Box width={0.1} />
           <TextField
             sx={{ my: 1, width: 0.45 }}
             variant="standard"
+            type="password"
             label="ConfirmPassword"
+            disabled={isSubmitting}
+            {...register("confirmPassword")}
             fullWidth
           ></TextField>
         </Box>
@@ -123,8 +164,16 @@ const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
         </Box>
 
         <Box display="flex" flexDirection="column" alignItems="center">
+          {!errors && (
+            <Typography visibility="hidden" variant="caption">
+              hidden placeholder
+            </Typography>
+          )}
+          {errors && <Typography color="error"> errors.firstName</Typography>}
           <Button
+            type="submit"
             variant="contained"
+            disabled={isSubmitting}
             sx={{
               width: 0.3,
               py: 1.5,
@@ -135,6 +184,7 @@ const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
           >
             Register
           </Button>
+
           <Typography
             sx={{ cursor: "pointer" }}
             fontWeight="700"
