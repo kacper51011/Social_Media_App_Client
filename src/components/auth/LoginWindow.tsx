@@ -16,16 +16,14 @@ import { UserLoginSchema } from "../../utils/ValidationSchemas";
 type Props = {
   setShowRegisterWindow: React.Dispatch<React.SetStateAction<boolean>>;
 };
-
 type UserLoginType = z.infer<typeof UserLoginSchema>;
 
 const LoginWindow = ({ setShowRegisterWindow }: Props) => {
   const {
     register,
-    watch,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<UserLoginType>({
+  } = useForm<UserLoginType & { customError: string }>({
     resolver: zodResolver(UserLoginSchema),
   });
 

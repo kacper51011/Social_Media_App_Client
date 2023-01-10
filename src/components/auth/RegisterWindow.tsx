@@ -15,6 +15,12 @@ import { useState } from "react";
 import CustomDropzone from "../CustomDropzone";
 import { ReactComponent as RegisterWindowImage } from "../../utils/RegisterWindowImage.svg";
 import { UserRegisterSchema } from "../../utils/ValidationSchemas";
+import axios from "axios";
+
+// pre: I decided to not mess with dropzone and react hook form + zod,
+// so Im using state for file, which is not controlled by react hook form(state which let user add and delete single image )
+// Also I decided to not preload data in new FormData, cause whole information about it will be in one place, not in components (A bit less code there)
+//
 
 type Props = {
   setShowRegisterWindow: React.Dispatch<React.SetStateAction<boolean>>;
@@ -29,7 +35,6 @@ const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
 
   const {
     register,
-    watch,
     setError,
     handleSubmit,
     formState: { errors, isSubmitting },
@@ -38,12 +43,35 @@ const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
   });
 
   const onSubmit: SubmitHandler<UserRegisterType> = (data) => {
-    console.log(data);
     if (!registerFile) {
-      setError("customError", {
+      return setError("customError", {
         type: "custom",
         message: "Enter a photo for your profile picture!",
       });
+    }
+
+    const formData = new FormData();
+    formData.append("firstName", data.firstName);
+    formData.append("lastName", data.lastName);
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+    formData.append("job", data.job);
+    formData.append("location", data.location);
+    formData.append("profilePhoto", registerFile);
+
+    try {
+      const responseData = axios
+        .post("http://localhost:3001/api/user/register", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -172,13 +200,14 @@ const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
         </Box>
 
         <Box display="flex" flexDirection="column" alignItems="center">
+          {/* spaceholder */}
           {!errorMessages && (
             <Typography visibility="hidden" variant="caption" color="error">
               spaceholder for errors
             </Typography>
           )}
           {errorMessages && (
-            <Typography variant="caption" color="error">
+            <Typography variant="caption" fontWeight="bold" color="error">
               {" "}
               {errorMessages}
             </Typography>
