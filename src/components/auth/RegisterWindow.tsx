@@ -16,6 +16,7 @@ import CustomDropzone from "../CustomDropzone";
 import { ReactComponent as RegisterWindowImage } from "../../utils/RegisterWindowImage.svg";
 import { UserRegisterSchema } from "../../utils/ValidationSchemas";
 import axios from "axios";
+import { ErrorResponse } from "@remix-run/router";
 
 // pre: I decided to not mess with dropzone and react hook form + zod,
 // so Im using state for file, which is not controlled by react hook form(state which let user add and delete single image )
@@ -27,6 +28,11 @@ type Props = {
 };
 
 type UserRegisterType = z.infer<typeof UserRegisterSchema>;
+
+type responseType = {
+  status: string;
+  message: string;
+};
 
 const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
   const [registerFile, setRegisterFile] = useState<File | null>(null);
@@ -42,7 +48,7 @@ const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
     resolver: zodResolver(UserRegisterSchema),
   });
 
-  const onSubmit: SubmitHandler<UserRegisterType> = (data) => {
+  const onSubmit: SubmitHandler<UserRegisterType> = async (data) => {
     if (!registerFile) {
       return setError("customError", {
         type: "custom",
@@ -60,19 +66,23 @@ const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
     formData.append("profilePhoto", registerFile);
 
     try {
-      const responseData = axios
-        .post("http://localhost:3001/api/user/register", formData, {
-          headers: { "Content-Type": "multipart/form-data" },
-        })
-        .then((res) => {
-          console.log(res);
-          setShowRegisterWindow(false);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      const responseData = await axios.post<
+        UserRegisterType & { profilePhoto: File }
+      >("http://localhost:3001/api/user/register", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      setShowRegisterWindow(false);
     } catch (err) {
-      console.log(err);
+      if (axios.isAxiosError(err)) {
+        return setError("customError", {
+          type: "custom",
+          message: err.response?.data.message,
+        });
+      } else
+        return setError("customError", {
+          type: "custom",
+          message: "Unexpected error",
+        });
     }
   };
 

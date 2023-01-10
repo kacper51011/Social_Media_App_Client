@@ -23,6 +23,7 @@ const LoginWindow = ({ setShowRegisterWindow }: Props) => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<UserLoginType & { customError: string }>({
     resolver: zodResolver(UserLoginSchema),
@@ -30,16 +31,21 @@ const LoginWindow = ({ setShowRegisterWindow }: Props) => {
 
   const onSubmit: SubmitHandler<UserLoginType> = async (data) => {
     try {
-      const responseData = axios
-        .post("http://localhost:3001/api/user/login", data)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      const responseData = await axios.post(
+        "http://localhost:3001/api/user/login",
+        data
+      );
     } catch (err) {
-      console.log(err);
+      if (axios.isAxiosError(err)) {
+        return setError("customError", {
+          type: "custom",
+          message: err.response?.data.message,
+        });
+      } else
+        return setError("customError", {
+          type: "custom",
+          message: "Unexpected error",
+        });
     }
   };
 
