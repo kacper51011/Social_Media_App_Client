@@ -66,6 +66,7 @@ const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
         })
         .then((res) => {
           console.log(res);
+          setShowRegisterWindow(false);
         })
         .catch((err) => {
           console.log(err);

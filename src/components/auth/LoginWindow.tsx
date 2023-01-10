@@ -12,6 +12,7 @@ import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserLoginSchema } from "../../utils/ValidationSchemas";
+import axios from "axios";
 
 type Props = {
   setShowRegisterWindow: React.Dispatch<React.SetStateAction<boolean>>;
@@ -27,8 +28,19 @@ const LoginWindow = ({ setShowRegisterWindow }: Props) => {
     resolver: zodResolver(UserLoginSchema),
   });
 
-  const onSubmit: SubmitHandler<UserLoginType> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<UserLoginType> = async (data) => {
+    try {
+      const responseData = axios
+        .post("http://localhost:3001/api/user/login", data)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const theme = useTheme();
@@ -73,6 +85,7 @@ const LoginWindow = ({ setShowRegisterWindow }: Props) => {
           <TextField
             placeholder="Password"
             variant="standard"
+            type="password"
             sx={{ my: 2 }}
             fullWidth
             {...register("password")}
