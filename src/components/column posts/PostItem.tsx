@@ -50,6 +50,7 @@ const PostItem = ({
         flexDirection: "column",
         p: 2,
         borderRadius: "16px",
+        mb: 5,
       }}
     >
       {/* avatar, name, location, button to follow */}

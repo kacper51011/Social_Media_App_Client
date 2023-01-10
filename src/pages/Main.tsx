@@ -25,7 +25,7 @@ const Main = () => {
   return (
     <>
       <Navbar changeColumn={changeColumn} />
-      <Box mx={{ xs: 5, md: 10 }}>
+      <Box mx={{ xs: 1, md: 8 }}>
         <Grid
           spacing={7}
           minHeight="100vh"

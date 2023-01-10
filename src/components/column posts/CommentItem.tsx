@@ -29,7 +29,7 @@ const CommentItem = ({
       <Grid item xs={10} sx={{ width: 1, minHeight: 0.2 }}>
         <Paper
           elevation={1}
-          sx={{ backgroundColor: theme.palette.neutral.light }}
+          sx={{ backgroundColor: theme.palette.neutral.light, py: 1, px: 0.5 }}
         >
           <Typography>
             {commentCreatorFirstName + " " + commentCreatorLastName}
