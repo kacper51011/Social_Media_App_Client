@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ComponentPropsWithRef, Ref, useState } from "react";
 import {
   Paper,
   Grid,
@@ -15,28 +15,39 @@ import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import CustomInput from "../CustomInput";
 import CommentItem from "./CommentItem";
-import { ButtonBase } from "@mui/material";
+type Comment = {
+  id: string;
+  userId: string;
+  postId: string;
+  content: string;
+};
 
 type Props = {
-  photo: string;
+  id: string;
+  userId: string;
+  userPicturePath: string;
+  picturePath: string;
   firstName: string;
   lastName: string;
   location: string;
   isFollowed: boolean;
-  content: string;
-  likes: number;
-  // comments: []
-};
+  description: string;
+  likes?: string[];
+  comments?: Comment[];
+} & ComponentPropsWithRef<typeof Paper>;
 
 // todo: comments and likes as objects, then check if user liked post or not
 
 const PostItem = ({
-  photo,
+  id,
+  userId,
+  userPicturePath,
+  picturePath,
   firstName,
   lastName,
   location,
   isFollowed,
-  content,
+  description,
   likes,
 }: Props) => {
   const [commentsVisible, setCommentsVisible] = useState(false);
@@ -56,7 +67,7 @@ const PostItem = ({
       {/* avatar, name, location, button to follow */}
       <Grid container width={1} py={1} direction="row" alignItems="center">
         <Grid item xs={2}>
-          <Avatar src={photo || ""}>{firstName[0]}</Avatar>
+          <Avatar src={userPicturePath || ""}>{firstName[0]}</Avatar>
         </Grid>
 
         <Grid item xs={7}>
@@ -76,7 +87,7 @@ const PostItem = ({
         </Grid>
       </Grid>
       {/* post content */}
-      <Typography pb={2}>{content}</Typography>
+      <Typography pb={2}>{description}</Typography>
       {/* post image */}
       <Paper elevation={2}>
         <CardMedia

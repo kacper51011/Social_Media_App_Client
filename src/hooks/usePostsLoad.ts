@@ -2,11 +2,6 @@ import axios from "axios";
 import { useState, useEffect, useCallback } from "react";
 import { setLogin } from "../store/authSlice";
 
-type Props = {
-  url: string;
-  page: number;
-};
-
 type Post = {
   id: string;
   userId: string;
@@ -23,7 +18,7 @@ type Post = {
 
 // I made the decision about two loading states, caused by two different animations on first load and every other ones
 
-const usePostsLoad = ({ url, page }: Props) => {
+const usePostsLoad = (url: string, page: number) => {
   const [firstLoad, setFirstLoad] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -54,6 +49,8 @@ const usePostsLoad = ({ url, page }: Props) => {
 
     return controller.abort();
   }, [url, page]);
+
+  return { firstLoad, loading, error, posts, hasMore };
 };
 
 export default usePostsLoad;

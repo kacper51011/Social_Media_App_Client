@@ -1,11 +1,13 @@
-import { Grid, Container, Box } from "@mui/material";
-import { useState } from "react";
+import { Grid, Box } from "@mui/material";
+import { useCallback, useRef, useState } from "react";
 import Navbar from "../components/navbar/Navbar";
 import PostItem from "../components/column posts/PostItem";
 import UserCard from "../components/column user/UserCard";
 import FollowedPersonItem from "../components/column follows/FollowedPersonItem";
 import FollowsContainer from "../components/column follows/FollowsContainer";
 import PostInputComponent from "../components/PostInputComponent";
+import usePostsLoad from "../hooks/usePostsLoad";
+import { JsxElement } from "typescript";
 
 export type displayedColumn = "profile" | "posts" | "follows";
 
@@ -21,6 +23,26 @@ const Main = () => {
   const checkVisibility = (column: displayedColumn) => {
     return displayedColumn === column ? "block" : "none";
   };
+  const [pageNum, setPageNum] = useState(1);
+  const { firstLoad, loading, error, posts, hasMore } = usePostsLoad(
+    "url",
+    pageNum
+  );
+
+  const observer = useRef<IntersectionObserver | null>(null);
+  const lastBookElementRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPageNum((prev) => prev + 1);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [loading, hasMore]
+  );
 
   return (
     <>
@@ -61,14 +83,24 @@ const Main = () => {
           >
             <PostInputComponent picturePath="" />
             <PostItem
-              content="random post"
+              id="random"
+              description="random post"
               firstName="Kacper"
               lastName="Tylec"
               location="Nagoszyn"
               isFollowed={false}
-              photo=""
-              likes={23}
+              userPicturePath=""
+              likes={["123"]}
+              userId={""}
+              picturePath={""}
             />
+            {posts.map((post, index) => {
+              if (posts.length === index + 1) {
+                return <PostItem ref={lastBookElementRef} key={post.id} />;
+              } else {
+                return <PostItem key={post.id} />;
+              }
+            })}
           </Grid>
           {/* follows column */}
           <Grid
