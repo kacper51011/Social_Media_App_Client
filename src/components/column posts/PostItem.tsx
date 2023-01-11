@@ -15,6 +15,11 @@ import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import CustomInput from "../CustomInput";
 import CommentItem from "./CommentItem";
+
+
+// todo: connect redux toolkit to posts
+
+
 type Comment = {
   id: string;
   userId: string;
@@ -30,7 +35,6 @@ type Props = {
   firstName: string;
   lastName: string;
   location: string;
-  isFollowed: boolean;
   description: string;
   likes?: string[];
   comments?: Comment[];
@@ -46,7 +50,6 @@ const PostItem = ({
   firstName,
   lastName,
   location,
-  isFollowed,
   description,
   likes,
 }: Props) => {
@@ -82,7 +85,7 @@ const PostItem = ({
           <CustomIconButton title="like post" icon={<ThumbUpAltIcon />} />
           <CustomIconButton
             title="follow"
-            icon={isFollowed ? <PersonRemoveIcon /> : <PersonAddIcon />}
+            icon={true ? <PersonRemoveIcon /> : <PersonAddIcon />}
           />
         </Grid>
       </Grid>

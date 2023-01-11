@@ -12,7 +12,10 @@ import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserLoginSchema } from "../../utils/ValidationSchemas";
+import { useDispatch } from "react-redux";
 import axios from "axios";
+import authSlice, { setLogin } from "../../store/authSlice";
+import { useNavigate } from "react-router";
 
 type Props = {
   setShowRegisterWindow: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,6 +23,8 @@ type Props = {
 type UserLoginType = z.infer<typeof UserLoginSchema>;
 
 const LoginWindow = ({ setShowRegisterWindow }: Props) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -35,6 +40,7 @@ const LoginWindow = ({ setShowRegisterWindow }: Props) => {
         "http://localhost:3001/api/user/login",
         data
       );
+      dispatch(setLogin(responseData.data.user));
     } catch (err) {
       if (axios.isAxiosError(err)) {
         return setError("customError", {

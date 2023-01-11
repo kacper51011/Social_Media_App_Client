@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router";
 import { useMemo } from "react";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { useSelector } from "react-redux";
-import Home from "./pages/Home";
 import { RootState } from "./store";
 import { themeSettings } from "./utils/theme";
 import Main from "./pages/Main";

@@ -7,7 +7,6 @@ import FollowedPersonItem from "../components/column follows/FollowedPersonItem"
 import FollowsContainer from "../components/column follows/FollowsContainer";
 import PostInputComponent from "../components/PostInputComponent";
 import usePostsLoad from "../hooks/usePostsLoad";
-import { JsxElement } from "typescript";
 
 export type displayedColumn = "profile" | "posts" | "follows";
 
@@ -88,19 +87,18 @@ const Main = () => {
               firstName="Kacper"
               lastName="Tylec"
               location="Nagoszyn"
-              isFollowed={false}
               userPicturePath=""
               likes={["123"]}
               userId={""}
               picturePath={""}
             />
-            {posts.map((post, index) => {
+            {/* {posts.map((post, index) => {
               if (posts.length === index + 1) {
                 return <PostItem ref={lastBookElementRef} key={post.id} />;
               } else {
                 return <PostItem key={post.id} />;
               }
-            })}
+            })} */}
           </Grid>
           {/* follows column */}
           <Grid
