@@ -14,7 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { UserLoginSchema } from "../../utils/ValidationSchemas";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import authSlice, { setLogin } from "../../store/authSlice";
+import { setLogin } from "../../store/authSlice";
 import { useNavigate } from "react-router";
 
 type Props = {

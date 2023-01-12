@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState, useEffect, useCallback } from "react";
-import { setLogin } from "../store/authSlice";
 
 type Post = {
   id: string;
@@ -46,7 +45,7 @@ const usePostsLoad = (url: string, page: number) => {
         setFirstLoad(false);
       }
     };
-
+    getData();
     return controller.abort();
   }, [url, page]);
 
