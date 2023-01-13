@@ -13,10 +13,13 @@ import Button from "@mui/material/Button";
 import CustomDropzone from "./CustomDropzone";
 import axios from "axios";
 import { useAppSelector } from "../hooks/reduxHooks";
+import { useDispatch } from "react-redux";
+import { setNewUserPost } from "../store/authSlice";
 
 const PostInputComponent = () => {
   // I created separate state for file to send, it helps me with deleting already downloaded files from upload list
   const user = useAppSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
   const [postInput, setPostInput] = useState("");
   const [fileToSend, setFileToSend] = useState<null | File>(null);
   const theme = useTheme();
@@ -30,12 +33,19 @@ const PostInputComponent = () => {
     },
   });
 
-  const createPost = () => {
-    axios.post("/api/post/createPost", {
-      userId: user?.id,
-      description: postInput,
-      postPhoto: fileToSend,
-    });
+  const createPost = async () => {
+    const formData = new FormData();
+    formData.append("userId", user?.id as string);
+    formData.append("description", postInput);
+    formData.append("postPhoto", fileToSend as File);
+    try {
+      const response = await axios.post("/api/post/createPost", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      dispatch(setNewUserPost(response.data.message));
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -79,7 +89,11 @@ const PostInputComponent = () => {
       <CustomDropzone fileToSend={fileToSend} setFileToSend={setFileToSend} />
       <Divider orientation="horizontal" sx={{ my: 2 }} />
       <Box display="flex" justifyContent="right" width={1}>
-        <Button disabled={!postInput} variant="outlined">
+        <Button
+          disabled={!postInput}
+          onClick={() => createPost()}
+          variant="outlined"
+        >
           Send
         </Button>
       </Box>
