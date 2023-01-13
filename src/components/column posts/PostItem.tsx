@@ -7,7 +7,6 @@ import {
   CardMedia,
   Box,
   Divider,
-  useTheme,
 } from "@mui/material";
 import CustomIconButton from "../buttons/CustomIconButton";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
@@ -24,6 +23,9 @@ import axios from "axios";
 type Comment = {
   id: string;
   userId: string;
+  userFirstName: string;
+  userLastName: string;
+  userPhotoPicturePath: string;
   postId: string;
   content: string;
 };
@@ -51,8 +53,10 @@ const PostItem = ({
   firstName,
   lastName,
   location,
+  comments,
   description,
   likes,
+  ...paperProps
 }: Post) => {
   const [commentsVisible, setCommentsVisible] = useState(false);
   const authUserId = useAppSelector((state) => state.auth.user?.id);
@@ -91,6 +95,7 @@ const PostItem = ({
         borderRadius: "16px",
         mb: 5,
       }}
+      {...paperProps}
     >
       {/* avatar, name, location, button to follow */}
       <Grid container width={1} py={1} direction="row" alignItems="center">
@@ -162,14 +167,18 @@ const PostItem = ({
       </Box>
       <Divider />
       <Box mt={1}>
-        {commentsVisible && (
-          <CommentItem
-            commentContent="nice one"
-            commentCreatorFirstName="Kacper"
-            commentCreatorLastName="Tylec"
-            commentCreatorPicture=""
-          />
-        )}
+        {commentsVisible &&
+          comments &&
+          comments.map((comment) => {
+            return (
+              <CommentItem
+                commentContent={comment.content}
+                commentCreatorFirstName={comment.userFirstName}
+                commentCreatorLastName={comment.userLastName}
+                commentCreatorPicture={comment.userPhotoPicturePath}
+              />
+            );
+          })}
       </Box>
     </Paper>
   );
