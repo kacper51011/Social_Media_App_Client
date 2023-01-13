@@ -24,7 +24,7 @@ const Main = () => {
   };
   const [pageNum, setPageNum] = useState(1);
   const { firstLoad, loading, error, posts, hasMore } = usePostsLoad(
-    "url",
+    "http://localhost:3001/api/post/getPosts",
     pageNum
   );
 
@@ -63,7 +63,7 @@ const Main = () => {
             mt={10}
           >
             <UserCard
-              photo="123"
+              photo=""
               firstName="Kacper"
               lastName="Tylec"
               location="Nagoszyn"

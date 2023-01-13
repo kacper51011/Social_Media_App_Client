@@ -1,9 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  user: null,
+type User = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  picturePath: string;
+  location: string;
+  job: string;
+  viewsProfile: number;
+  postsIds: string[];
+  likedPostIds: string[];
+  followedByIds: string[];
+  followingIds: string[];
 };
 
+let userAuthCheck: User | null = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo") || "")
+  : null;
+
+const initialState = {
+  user: userAuthCheck,
+};
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -14,7 +31,6 @@ const authSlice = createSlice({
     setLogout: (state) => {
       state.user = null;
       localStorage.clear();
-      sessionStorage.clear();
     },
   },
 });

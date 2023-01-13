@@ -16,9 +16,7 @@ import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import CustomInput from "../CustomInput";
 import CommentItem from "./CommentItem";
 
-
 // todo: connect redux toolkit to posts
-
 
 type Comment = {
   id: string;
@@ -27,7 +25,7 @@ type Comment = {
   content: string;
 };
 
-type Props = {
+type Post = {
   id: string;
   userId: string;
   userPicturePath: string;
@@ -52,7 +50,7 @@ const PostItem = ({
   location,
   description,
   likes,
-}: Props) => {
+}: Post) => {
   const [commentsVisible, setCommentsVisible] = useState(false);
   const theme = useTheme();
 
@@ -95,7 +93,7 @@ const PostItem = ({
       <Paper elevation={2}>
         <CardMedia
           component="img"
-          src=""
+          src={picturePath}
           sx={{ minWidth: "20vw", minHeight: "20vw", borderRadius: "16px" }}
         />
       </Paper>

@@ -10,14 +10,15 @@ import { displayedColumn } from "../../pages/Main";
 import { useDispatch } from "react-redux";
 import { setMode } from "../../store/themeSlice";
 import MobileMenu from "./MobileMenu";
+import useLogout from "../../hooks/useLogout";
 
 type Props = {
-  darkMode: boolean;
   changeColumn: (column: displayedColumn) => void;
 };
 
-const MobileNavbar = ({ darkMode, changeColumn }: Props) => {
+const MobileNavbar = ({ changeColumn }: Props) => {
   const theme = useTheme();
+  const logout = useLogout();
 
   const dispatch = useDispatch();
 
@@ -61,7 +62,11 @@ const MobileNavbar = ({ darkMode, changeColumn }: Props) => {
             />
           </Stack>
 
-          <CustomIconButton icon={<LogoutIcon />} title="logout" />
+          <CustomIconButton
+            onClick={() => logout()}
+            icon={<LogoutIcon />}
+            title="logout"
+          />
         </Toolbar>
       </AppBar>
     </Box>

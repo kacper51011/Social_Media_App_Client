@@ -12,7 +12,7 @@ const Navbar = ({ changeColumn }: Props) => {
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return mobile ? (
-    <MobileNavbar darkMode changeColumn={changeColumn} />
+    <MobileNavbar changeColumn={changeColumn} />
   ) : (
     <DesktopNavbar />
   );

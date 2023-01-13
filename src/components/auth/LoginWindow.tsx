@@ -36,11 +36,10 @@ const LoginWindow = ({ setShowRegisterWindow }: Props) => {
 
   const onSubmit: SubmitHandler<UserLoginType> = async (data) => {
     try {
-      const responseData = await axios.post(
-        "http://localhost:3001/api/user/login",
-        data
-      );
+      const responseData = await axios.post("/api/user/login", data);
       dispatch(setLogin(responseData.data.user));
+      navigate("/main");
+      localStorage.setItem("userInfo", JSON.stringify(responseData.data.user));
     } catch (err) {
       if (axios.isAxiosError(err)) {
         return setError("customError", {
@@ -116,6 +115,11 @@ const LoginWindow = ({ setShowRegisterWindow }: Props) => {
           <Typography variant="caption" visibility="hidden">
             spaceholder for errors
           </Typography>
+          {errors.customError?.message && (
+            <Typography variant="caption" color="error" fontWeight="bold">
+              {errors.customError.message}
+            </Typography>
+          )}
           <Button
             variant="contained"
             type="submit"

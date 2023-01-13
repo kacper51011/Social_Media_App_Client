@@ -14,10 +14,12 @@ import CustomIconButton from "../buttons/CustomIconButton";
 import { useDispatch } from "react-redux";
 
 import { setMode } from "../../store/themeSlice";
+import useLogout from "../../hooks/useLogout";
 
 const DesktopNavbar = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
+  const logout = useLogout();
 
   const toggleMode = () => {
     dispatch(setMode());
@@ -64,6 +66,7 @@ const DesktopNavbar = () => {
               sx={{ px: 3, py: 1.5 }}
               icon={<LogoutIcon />}
               title="logout"
+              onClick={() => logout()}
             />
           </Stack>
         </Toolbar>
