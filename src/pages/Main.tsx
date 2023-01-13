@@ -80,7 +80,7 @@ const Main = () => {
             xs={12}
             md={5}
           >
-            <PostInputComponent picturePath="" />
+            <PostInputComponent />
             <PostItem
               id="random"
               description="random post"

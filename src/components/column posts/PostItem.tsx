@@ -13,8 +13,11 @@ import CustomIconButton from "../buttons/CustomIconButton";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
+import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import CustomInput from "../CustomInput";
 import CommentItem from "./CommentItem";
+import { useAppSelector } from "../../hooks/reduxHooks";
+import axios from "axios";
 
 // todo: connect redux toolkit to posts
 
@@ -52,7 +55,31 @@ const PostItem = ({
   likes,
 }: Post) => {
   const [commentsVisible, setCommentsVisible] = useState(false);
-  const theme = useTheme();
+  const authUserId = useAppSelector((state) => state.auth.user?.id);
+  const authUserPostsLikes = useAppSelector(
+    (state) => state.auth.user?.likedPostIds
+  );
+  const authUserFollows = useAppSelector(
+    (state) => state.auth.user?.followingIds
+  );
+
+  const IsAuthUserAnAuthor = authUserId === userId;
+  const doUserLikePost = authUserPostsLikes?.includes(id) ? true : false;
+  const doUserFollowAuthor = authUserFollows?.includes(userId) ? true : false;
+
+  const followUnfollow = () => {
+    axios.patch("/api/user/followUnfollow", {
+      id: authUserId,
+      userToFollowId: userId,
+    });
+  };
+
+  const likeUnlike = () => {
+    axios.patch("/api/user/likePost", {
+      userId: authUserId,
+      postId: id,
+    });
+  };
 
   return (
     <Paper
@@ -80,11 +107,24 @@ const PostItem = ({
         </Grid>
 
         <Grid xs={2.5} item display="flex" justifyContent="right">
-          <CustomIconButton title="like post" icon={<ThumbUpAltIcon />} />
-          <CustomIconButton
-            title="follow"
-            icon={true ? <PersonRemoveIcon /> : <PersonAddIcon />}
-          />
+          {!IsAuthUserAnAuthor && (
+            <>
+              <CustomIconButton
+                title="like post"
+                onClick={() => likeUnlike()}
+                icon={
+                  doUserLikePost ? <ThumbDownAltIcon /> : <ThumbUpAltIcon />
+                }
+              />
+              <CustomIconButton
+                title="follow"
+                onClick={() => followUnfollow()}
+                icon={
+                  doUserFollowAuthor ? <PersonRemoveIcon /> : <PersonAddIcon />
+                }
+              />
+            </>
+          )}
         </Grid>
       </Grid>
       {/* post content */}

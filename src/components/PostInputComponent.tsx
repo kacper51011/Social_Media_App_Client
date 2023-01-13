@@ -7,24 +7,19 @@ import {
   Avatar,
   useTheme,
   InputBase,
-  Typography,
 } from "@mui/material";
 import { useDropzone } from "react-dropzone";
 import Button from "@mui/material/Button";
-import CustomIconButton from "./buttons/CustomIconButton";
-import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import CustomDropzone from "./CustomDropzone";
+import axios from "axios";
+import { useAppSelector } from "../hooks/reduxHooks";
 
-type Props = {
-  picturePath: string;
-};
-
-const PostInputComponent = ({ picturePath }: Props) => {
+const PostInputComponent = () => {
   // I created separate state for file to send, it helps me with deleting already downloaded files from upload list
-
+  const user = useAppSelector((state) => state.auth.user);
   const [postInput, setPostInput] = useState("");
   const [fileToSend, setFileToSend] = useState<null | File>(null);
-
+  const theme = useTheme();
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     accept: { "image/*": [".png", ".jpg", ".jpeg"] },
     maxSize: 3000000,
@@ -35,7 +30,13 @@ const PostInputComponent = ({ picturePath }: Props) => {
     },
   });
 
-  const theme = useTheme();
+  const createPost = () => {
+    axios.post("/api/post/createPost", {
+      userId: user?.id,
+      description: postInput,
+      postPhoto: fileToSend,
+    });
+  };
 
   return (
     <Paper
@@ -50,7 +51,7 @@ const PostInputComponent = ({ picturePath }: Props) => {
     >
       <Grid container direction="row" alignItems="center" width={1}>
         <Grid item xs={1}>
-          <Avatar src={picturePath} />
+          <Avatar src={user?.picturePath} />
         </Grid>
         <Grid item xs={11} display="flex" justifyContent="right">
           <Paper

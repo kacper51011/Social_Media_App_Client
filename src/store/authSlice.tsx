@@ -32,9 +32,32 @@ const authSlice = createSlice({
       state.user = null;
       localStorage.clear();
     },
+    setNewUserPost: (state, action) => {
+      state.user?.postsIds.push(action.payload);
+    },
+    likePost: (state, action) => {
+      state.user?.likedPostIds.push(action.payload);
+    },
+    unlikePost: (state, action) => {
+      state.user?.likedPostIds.filter((id) => id !== action.payload);
+    },
+    follow: (state, action) => {
+      state.user?.followingIds.push(action.payload);
+    },
+    unfollow: (state, action) => {
+      state.user?.followingIds.filter((id) => id !== action.payload);
+    },
   },
 });
 
-export const { setLogin, setLogout } = authSlice.actions;
+export const {
+  setLogin,
+  setLogout,
+  setNewUserPost,
+  likePost,
+  unlikePost,
+  follow,
+  unfollow,
+} = authSlice.actions;
 
 export default authSlice.reducer;
