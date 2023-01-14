@@ -1,7 +1,7 @@
 import { Routes, Route, useNavigate } from "react-router";
 import { useMemo } from "react";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "./store";
 import { themeSettings } from "./utils/theme";
 import Main from "./pages/Main";

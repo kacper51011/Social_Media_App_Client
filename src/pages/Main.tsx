@@ -24,7 +24,7 @@ const Main = () => {
   };
   const [pageNum, setPageNum] = useState(1);
   const { firstLoad, loading, error, posts, hasMore } = usePostsLoad(
-    "http://localhost:3001/api/post/getPosts",
+    "/api/post/getPosts",
     pageNum
   );
 
@@ -81,7 +81,7 @@ const Main = () => {
             md={5}
           >
             <PostInputComponent />
-            <PostItem
+            {/* <PostItem
               id="random"
               description="random post"
               firstName="Kacper"
@@ -91,14 +91,44 @@ const Main = () => {
               likes={["123"]}
               userId={""}
               picturePath={""}
-            />
-            {/* {posts.map((post, index) => {
+              comments = 
+            /> */}
+            {posts.map((post, index) => {
               if (posts.length === index + 1) {
-                return <PostItem ref={lastBookElementRef} key={post.id} />;
+                return (
+                  <PostItem
+                    ref={lastBookElementRef}
+                    key={post.id}
+                    id={post.id}
+                    userId={post.userId}
+                    userPicturePath={post.userPicturePath}
+                    picturePath={post.picturePath}
+                    firstName={post.firstName}
+                    lastName={post.lastName}
+                    location={post.location}
+                    description={post.description}
+                    comments={post.comments}
+                    likes={post.likes}
+                  />
+                );
               } else {
-                return <PostItem key={post.id} />;
+                return (
+                  <PostItem
+                    key={post.id}
+                    id={post.id}
+                    userId={post.userId}
+                    userPicturePath={post.userPicturePath}
+                    picturePath={post.picturePath}
+                    firstName={post.firstName}
+                    lastName={post.lastName}
+                    location={post.location}
+                    description={post.description}
+                    likes={post.likes}
+                    comments={post.comments}
+                  />
+                );
               }
-            })} */}
+            })}
           </Grid>
           {/* follows column */}
           <Grid

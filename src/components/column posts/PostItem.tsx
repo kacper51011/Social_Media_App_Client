@@ -20,7 +20,7 @@ import axios from "axios";
 
 // todo: connect redux toolkit to posts
 
-type Comment = {
+export type Comment = {
   id: string;
   userId: string;
   userFirstName: string;
@@ -30,7 +30,7 @@ type Comment = {
   content: string;
 };
 
-type Post = {
+export type Post = {
   id: string;
   userId: string;
   userPicturePath: string;
@@ -39,8 +39,8 @@ type Post = {
   lastName: string;
   location: string;
   description: string;
-  likes?: string[];
-  comments?: Comment[];
+  likes: string[];
+  comments: Comment[];
 } & ComponentPropsWithRef<typeof Paper>;
 
 // todo: comments and likes as objects, then check if user liked post or not
@@ -138,7 +138,7 @@ const PostItem = ({
       <Paper elevation={2}>
         <CardMedia
           component="img"
-          src={picturePath}
+          src={`http://localhost:3001${picturePath}`}
           sx={{ minWidth: "20vw", minHeight: "20vw", borderRadius: "16px" }}
         />
       </Paper>
@@ -149,16 +149,18 @@ const PostItem = ({
         justifyContent="space-between"
         my={2}
       >
-        <Typography variant="caption">{likes + " " + "likes"}</Typography>
+        <Typography variant="caption">
+          {likes?.length + " " + "likes"}
+        </Typography>
 
-        {/* todo create comment type */}
+        {/* number of comments */}
         <Typography
           onClick={() => setCommentsVisible(!commentsVisible)}
           component="span"
           variant="caption"
           sx={{ cursor: "pointer" }}
         >
-          {"50" + " " + "comments"}
+          {comments?.length + " " + "comments"}
         </Typography>
       </Box>
       <Divider />
