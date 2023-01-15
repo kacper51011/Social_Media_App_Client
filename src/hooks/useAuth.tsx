@@ -35,6 +35,5 @@ const useAuth = () => {
     checkIsLoggedIn();
   }, [isLoggedIn]);
 };
-// todo: this hook connected to backend getUser, apply it on app, navigation from home to main
 
 export default useAuth;

@@ -7,6 +7,7 @@ import FollowedPersonItem from "../components/column follows/FollowedPersonItem"
 import FollowsContainer from "../components/column follows/FollowsContainer";
 import PostInputComponent from "../components/PostInputComponent";
 import usePostsLoad from "../hooks/usePostsLoad";
+import CustomSkeleton from "../components/CustomSkeleton";
 
 export type displayedColumn = "profile" | "posts" | "follows";
 
@@ -24,13 +25,14 @@ const Main = () => {
   };
   const [pageNum, setPageNum] = useState(1);
   const { firstLoad, loading, error, posts, hasMore } = usePostsLoad(
-    "/api/post/getPosts",
+    `/api/post/getPosts/${pageNum}`,
     pageNum
   );
 
-  const observer = useRef<IntersectionObserver | null>(null);
-  const lastBookElementRef = useCallback(
-    (node: HTMLDivElement | null) => {
+  const observer = useRef<IntersectionObserver>();
+  const lastPostElementRef = useCallback(
+    (node: Element) => {
+      console.log("123");
       if (loading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
@@ -38,7 +40,9 @@ const Main = () => {
           setPageNum((prev) => prev + 1);
         }
       });
-      if (node) observer.current.observe(node);
+      if (node) {
+        observer.current.observe(node);
+      }
     },
     [loading, hasMore]
   );
@@ -81,23 +85,12 @@ const Main = () => {
             md={5}
           >
             <PostInputComponent />
-            {/* <PostItem
-              id="random"
-              description="random post"
-              firstName="Kacper"
-              lastName="Tylec"
-              location="Nagoszyn"
-              userPicturePath=""
-              likes={["123"]}
-              userId={""}
-              picturePath={""}
-              comments = 
-            /> */}
+
             {posts.map((post, index) => {
               if (posts.length === index + 1) {
                 return (
                   <PostItem
-                    ref={lastBookElementRef}
+                    ref={lastPostElementRef}
                     key={post.id}
                     id={post.id}
                     userId={post.userId}
@@ -129,6 +122,9 @@ const Main = () => {
                 );
               }
             })}
+            {loading && <CustomSkeleton width="100%" height="30vw" />}
+            {loading && <CustomSkeleton width="100%" height="30vw" />}
+            {loading && <CustomSkeleton width="100%" height="30vw" />}
           </Grid>
           {/* follows column */}
           <Grid
