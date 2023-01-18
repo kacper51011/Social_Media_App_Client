@@ -66,7 +66,7 @@ const PostInputComponent = () => {
     >
       <Grid container direction="row" alignItems="center" width={1}>
         <Grid item xs={1}>
-          <Avatar src={user?.picturePath} />
+          <Avatar src={`assets/${user?.picturePath}`} />
         </Grid>
         <Grid item xs={11} display="flex" justifyContent="right">
           <Paper

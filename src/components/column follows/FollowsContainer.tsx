@@ -3,7 +3,7 @@ import { ReactElement } from "react";
 import { FollowProps } from "./FollowedPersonItem";
 
 type Props = {
-  childrens?: ReactElement<FollowProps>;
+  childrens?: ReactElement<FollowProps>[];
 };
 
 const FollowsContainer = ({ childrens }: Props) => {

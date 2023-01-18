@@ -8,10 +8,12 @@ import FollowsContainer from "../components/column follows/FollowsContainer";
 import PostInputComponent from "../components/PostInputComponent";
 import usePostsLoad from "../hooks/usePostsLoad";
 import CustomSkeleton from "../components/CustomSkeleton";
+import { useAppSelector } from "../hooks/reduxHooks";
 
 export type displayedColumn = "profile" | "posts" | "follows";
 
 const Main = () => {
+  const followings = useAppSelector((state) => state.auth.user?.following);
   const [displayedColumn, setDisplayedColumn] =
     useState<displayedColumn>("posts");
 
@@ -102,24 +104,11 @@ const Main = () => {
                     description={post.description}
                     comments={post.comments}
                     likes={post.likes}
+                    job={post.job}
                   />
                 );
               } else {
-                return (
-                  <PostItem
-                    key={post.id}
-                    id={post.id}
-                    userId={post.userId}
-                    userPicturePath={post.userPicturePath}
-                    picturePath={post.picturePath}
-                    firstName={post.firstName}
-                    lastName={post.lastName}
-                    location={post.location}
-                    description={post.description}
-                    likes={post.likes}
-                    comments={post.comments}
-                  />
-                );
+                return <PostItem key={post.id} {...post} />;
               }
             })}
             {loading && <CustomSkeleton width="100%" height="30vw" />}
@@ -136,12 +125,18 @@ const Main = () => {
           >
             <FollowsContainer
               childrens={
-                <FollowedPersonItem
-                  firstName="Paulina"
-                  lastName="Wójcik"
-                  job="teacher"
-                  followFunction={() => "none"}
-                />
+                followings &&
+                followings.map((following) => {
+                  return (
+                    <FollowedPersonItem
+                      id={following.id}
+                      photo={following.picturePath}
+                      firstName={following.firstName}
+                      lastName={following.lastName}
+                      job={following.job}
+                    />
+                  );
+                })
               }
             />
           </Grid>

@@ -29,6 +29,7 @@ export type Post = {
   firstName: string;
   lastName: string;
   location: string;
+  job: string;
   description: string;
   likes: string[];
   comments: Comment[];
@@ -59,10 +60,12 @@ const PostItem = forwardRef(
       comments,
       description,
       likes,
+      job,
     }: Post,
     ref: Ref<Element | null | undefined>
   ) => {
     const [commentsVisible, setCommentsVisible] = useState(false);
+    const [commentToSend, setCommentToSend] = useState("");
 
     const dispatch = useDispatch();
     const authUser = useAppSelector((state) => state.auth.user!);
@@ -83,14 +86,20 @@ const PostItem = forwardRef(
           id: authUser!.id,
           userToFollowId: userId,
         });
-
-        console.log(doUserFollowAuthor);
       } catch (err) {
-        console.log(err);
+        return;
       }
       doUserFollowAuthor
         ? dispatch(unfollow(userId))
-        : dispatch(follow(userId));
+        : dispatch(
+            follow({
+              id: userId,
+              firstName: firstName,
+              lastName: lastName,
+              picturePath: userPicturePath,
+              job: job,
+            })
+          );
     };
 
     const likeUnlike = async () => {
@@ -99,14 +108,10 @@ const PostItem = forwardRef(
           userId: authUser!.id,
           postId: id,
         });
-
-        console.log(doUserLikePost);
       } catch (err) {
-        console.log(err);
+        return;
       }
-      authLikedPosts.includes(id)
-        ? dispatch(unlikePost(id))
-        : dispatch(likePost(id));
+      doUserLikePost ? dispatch(unlikePost(id)) : dispatch(likePost(id));
     };
 
     return (
@@ -115,15 +120,15 @@ const PostItem = forwardRef(
         sx={{
           display: "flex",
           flexDirection: "column",
-          p: 2,
+          p: { xs: 0, md: 2 },
           borderRadius: "16px",
           mb: 5,
         }}
       >
         {/* avatar, name, location, button to follow */}
         <Grid container width={1} py={1} direction="row" alignItems="center">
-          <Grid item xs={2}>
-            <Avatar src={userPicturePath || ""}>{firstName[0]}</Avatar>
+          <Grid item xs={1.75}>
+            <Avatar src={`assets/${userPicturePath}`}>{firstName[0]}</Avatar>
           </Grid>
 
           <Grid item xs={7}>
@@ -166,11 +171,11 @@ const PostItem = forwardRef(
         {/* post content */}
         <Typography pb={2}>{description}</Typography>
         {/* post image */}
-        <Paper elevation={2}>
+        <Paper elevation={0}>
           <CardMedia
             component="img"
-            src={`http://localhost:3001${picturePath}`}
-            sx={{ minWidth: "20vw", minHeight: "20vw", borderRadius: "16px" }}
+            src={`assets/${picturePath}`}
+            sx={{ minHeight: "20vw", borderRadius: "16px" }}
           />
         </Paper>
         {/* statistics */}
@@ -195,11 +200,18 @@ const PostItem = forwardRef(
           </Typography>
         </Box>
         <Divider />
-        <Box sx={{ minHeight: "5vw", color: "bisque", p: 2, mt: 2 }}>
-          <CustomInput minRows={2} multiline height={1} firstName="Kacper" />
+        <Box sx={{ minHeight: "5vw", color: "bisque", p: 2, mt: 0.3 }}>
+          <CustomInput
+            minRows={2}
+            multiline
+            height={1}
+            value={commentToSend}
+            onChange={(e) => setCommentToSend(e.target.value)}
+            firstName="Kacper"
+          />
         </Box>
         <Divider />
-        <Box ref={ref} mt={1}>
+        <Box ref={ref} mt={0.2}>
           {commentsVisible &&
             comments &&
             comments.map((comment) => {

@@ -1,24 +1,44 @@
 import { Grid, useTheme } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { useAppSelector } from "../../hooks/reduxHooks";
+import { unfollow } from "../../store/authSlice";
+import CustomIconButton from "../buttons/CustomIconButton";
 
 export type FollowProps = {
-  photo?: string;
+  id: string;
+  photo: string;
   firstName: string;
   lastName: string;
   job: string;
-  followFunction: React.MouseEventHandler;
 };
 
 const FollowedPersonItem = ({
+  id,
   firstName,
   lastName,
-  followFunction,
   job,
   photo,
 }: FollowProps) => {
   const theme = useTheme();
+  const authUser = useAppSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+
+  const deleteFollow = async () => {
+    try {
+      await axios.patch("/api/user/follow", {
+        id: authUser!.id,
+        userToFollowId: id,
+      });
+    } catch (err) {
+      return;
+    }
+    dispatch(unfollow(id));
+  };
+
   return (
     <Grid
       container
@@ -33,7 +53,7 @@ const FollowedPersonItem = ({
       }}
     >
       <Grid marginRight={1} item xs={3}>
-        <Avatar src={photo || ""}>{firstName[0]}</Avatar>
+        <Avatar src={`assets/${photo}` || ""}>{firstName[0]}</Avatar>
       </Grid>
       <Grid item xs={6} flexDirection="column">
         <Typography sx={{ cursor: "pointer" }} variant="subtitle1">
@@ -43,7 +63,13 @@ const FollowedPersonItem = ({
       </Grid>
 
       <Grid item xs={2}>
-        <PersonAddIcon onClick={followFunction} />
+        <CustomIconButton
+          title={"unfollow"}
+          icon={<PersonRemoveIcon />}
+          onClick={() => {
+            deleteFollow();
+          }}
+        />
       </Grid>
     </Grid>
   );

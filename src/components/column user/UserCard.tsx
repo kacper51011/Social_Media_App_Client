@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import PlaceIcon from "@mui/icons-material/Place";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
+import { useAppSelector } from "../../hooks/reduxHooks";
 
 type Props = {
   photo: string;
@@ -31,7 +32,8 @@ const UserCard = ({
   numberOfProfileViews,
   numberOfLikes,
 }: Props) => {
-  const theme = useTheme();
+  const user = useAppSelector((state) => state.auth.user);
+
   return (
     <Paper
       elevation={5}
@@ -45,15 +47,15 @@ const UserCard = ({
     >
       <Grid container width="1" direction="row" alignItems="center">
         <Grid item xs={2.5}>
-          <Avatar src={photo || ""}>{firstName[0]}</Avatar>
+          <Avatar src={`assets/${user?.picturePath}`}>{firstName[0]}</Avatar>
         </Grid>
 
         <Grid sx={{ flexDirection: "column", justifyContent: "center" }}>
           <Typography sx={{ cursor: "pointer" }} variant="body1">
-            {firstName + " " + lastName}
+            {user!.firstName + " " + user!.lastName}
           </Typography>
           <Typography variant="caption">
-            {`${followedPeopleNumber} Follows`}
+            {`${user!.followingIDs.length} Follows`}
           </Typography>
         </Grid>
       </Grid>
@@ -61,13 +63,13 @@ const UserCard = ({
       <Box my={1} mx={0.5} display="flex">
         <PlaceIcon />
         <Typography ml={4} variant="caption">
-          {location}
+          {user!.location}
         </Typography>
       </Box>
       <Box my={1} mx={0.5} display="flex">
         <BusinessCenterIcon />
         <Typography ml={4} variant="caption">
-          {job}
+          {user!.job}
         </Typography>
       </Box>
 
@@ -82,7 +84,7 @@ const UserCard = ({
             <Typography variant="caption">Profile views</Typography>
           </Grid>
           <Grid item py={1}>
-            <Typography> {numberOfProfileViews}</Typography>
+            <Typography> {user!.viewsProfile}</Typography>
           </Grid>
         </Grid>
         <Grid
