@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type User = {
   id: string;
@@ -9,9 +9,9 @@ type User = {
   job: string;
   viewsProfile: number;
   postsIds: string[];
-  likedPostIds: string[];
-  followedByIds: string[];
-  followingIds: string[];
+  likedPostsIDs: string[];
+  followedByIDs: string[];
+  followingIDs: string[];
 };
 
 let userAuthCheck: User | null = localStorage.getItem("userInfo")
@@ -33,19 +33,23 @@ const authSlice = createSlice({
       localStorage.clear();
     },
     setNewUserPost: (state, action) => {
-      state.user?.postsIds.push(action.payload);
+      state.user!.postsIds.push(action.payload);
     },
     likePost: (state, action) => {
-      state.user?.likedPostIds.push(action.payload);
+      state.user!.likedPostsIDs.push(action.payload);
     },
     unlikePost: (state, action) => {
-      state.user?.likedPostIds.filter((id) => id !== action.payload);
+      state.user!.likedPostsIDs = state.user!.likedPostsIDs.filter(
+        (id) => id !== action.payload
+      );
     },
     follow: (state, action) => {
-      state.user?.followingIds.push(action.payload);
+      state.user!.followingIDs.push(action.payload);
     },
     unfollow: (state, action) => {
-      state.user?.followingIds.filter((id) => id !== action.payload);
+      state.user!.followingIDs = state.user!.followingIDs.filter(
+        (userId) => userId !== action.payload
+      );
     },
   },
 });

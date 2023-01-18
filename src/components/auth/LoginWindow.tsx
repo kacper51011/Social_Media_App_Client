@@ -37,6 +37,7 @@ const LoginWindow = ({ setShowRegisterWindow }: Props) => {
   const onSubmit: SubmitHandler<UserLoginType> = async (data) => {
     try {
       const responseData = await axios.post("/api/user/login", data);
+      console.log(responseData.data.user);
       dispatch(setLogin(responseData.data.user));
       navigate("/main");
       localStorage.setItem("userInfo", JSON.stringify(responseData.data.user));

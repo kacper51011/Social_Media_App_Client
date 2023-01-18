@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef, forwardRef, Ref, useState } from "react";
+import { forwardRef, Ref, useState } from "react";
 import {
   Paper,
   Grid,
@@ -17,19 +17,10 @@ import CustomInput from "../CustomInput";
 import CommentItem from "./CommentItem";
 import { useAppSelector } from "../../hooks/reduxHooks";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { follow, likePost, unfollow, unlikePost } from "../../store/authSlice";
 
 // todo: connect redux toolkit to posts
-
-export type Comment = {
-  id: string;
-  userId: string;
-  userFirstName: string;
-  userLastName: string;
-  userPhotoPicturePath: string;
-  postId: string;
-  content: string;
-};
-
 export type Post = {
   id: string;
   userId: string;
@@ -41,6 +32,16 @@ export type Post = {
   description: string;
   likes: string[];
   comments: Comment[];
+};
+
+export type Comment = {
+  id: string;
+  userId: string;
+  userFirstName: string;
+  userLastName: string;
+  userPhotoPicturePath: string;
+  postId: string;
+  content: string;
 };
 
 // todo: comments and likes as objects, then check if user liked post or not
@@ -62,30 +63,50 @@ const PostItem = forwardRef(
     ref: Ref<Element | null | undefined>
   ) => {
     const [commentsVisible, setCommentsVisible] = useState(false);
-    const authUserId = useAppSelector((state) => state.auth.user?.id);
-    const authUserPostsLikes = useAppSelector(
-      (state) => state.auth.user?.likedPostIds
+
+    const dispatch = useDispatch();
+    const authUser = useAppSelector((state) => state.auth.user!);
+    const authLikedPosts = useAppSelector(
+      (state) => state.auth.user!.likedPostsIDs
     );
-    const authUserFollows = useAppSelector(
-      (state) => state.auth.user?.followingIds
+    const authFollowings = useAppSelector(
+      (state) => state.auth.user!.followingIDs
     );
 
-    const IsAuthUserAnAuthor = authUserId === userId;
-    const doUserLikePost = authUserPostsLikes?.includes(id) ? true : false;
-    const doUserFollowAuthor = authUserFollows?.includes(userId) ? true : false;
+    const IsAuthUserAnAuthor = authUser.id === userId;
+    const doUserLikePost = authLikedPosts.includes(id);
+    const doUserFollowAuthor = authFollowings.includes(userId);
 
-    const followUnfollow = () => {
-      axios.patch("/api/user/followUnfollow", {
-        id: authUserId,
-        userToFollowId: userId,
-      });
+    const followUnfollow = async () => {
+      try {
+        await axios.patch("/api/user/follow", {
+          id: authUser!.id,
+          userToFollowId: userId,
+        });
+
+        console.log(doUserFollowAuthor);
+      } catch (err) {
+        console.log(err);
+      }
+      doUserFollowAuthor
+        ? dispatch(unfollow(userId))
+        : dispatch(follow(userId));
     };
 
-    const likeUnlike = () => {
-      axios.patch("/api/user/likePost", {
-        userId: authUserId,
-        postId: id,
-      });
+    const likeUnlike = async () => {
+      try {
+        await axios.patch("/api/post/likePost", {
+          userId: authUser!.id,
+          postId: id,
+        });
+
+        console.log(doUserLikePost);
+      } catch (err) {
+        console.log(err);
+      }
+      authLikedPosts.includes(id)
+        ? dispatch(unlikePost(id))
+        : dispatch(likePost(id));
     };
 
     return (
@@ -120,7 +141,11 @@ const PostItem = forwardRef(
                   title="like post"
                   onClick={() => likeUnlike()}
                   icon={
-                    doUserLikePost ? <ThumbDownAltIcon /> : <ThumbUpAltIcon />
+                    authLikedPosts.includes(id) ? (
+                      <ThumbDownAltIcon />
+                    ) : (
+                      <ThumbUpAltIcon />
+                    )
                   }
                 />
                 <CustomIconButton
