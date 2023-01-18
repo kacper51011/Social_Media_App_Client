@@ -14,7 +14,6 @@ const useLogout = () => {
     try {
       axios.delete("/api/user/logout");
       dispatch(setLogout());
-      navigate("/");
     } catch (err) {}
   };
 

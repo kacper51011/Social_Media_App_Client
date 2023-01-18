@@ -33,9 +33,10 @@ const PostInputComponent = () => {
     },
   });
 
-  const createPost = async () => {
+  const createPost: React.FormEventHandler<HTMLFormElement> = async (event) => {
+    event.preventDefault();
     const formData = new FormData();
-    formData.append("userId", user?.id as string);
+    formData.append("userId", user!.id as string);
     formData.append("description", postInput);
     formData.append("postPhoto", fileToSend as File);
     try {
@@ -46,10 +47,14 @@ const PostInputComponent = () => {
     } catch (err) {
       console.log(err);
     }
+    setPostInput("");
+    setFileToSend(null);
   };
 
   return (
     <Paper
+      onSubmit={createPost}
+      component="form"
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -79,6 +84,7 @@ const PostInputComponent = () => {
               onChange={(e) => {
                 setPostInput(e.target.value);
               }}
+              value={postInput}
               placeholder="Write your post here..."
               sx={{ width: "90%" }}
             />
@@ -89,11 +95,7 @@ const PostInputComponent = () => {
       <CustomDropzone fileToSend={fileToSend} setFileToSend={setFileToSend} />
       <Divider orientation="horizontal" sx={{ my: 2 }} />
       <Box display="flex" justifyContent="right" width={1}>
-        <Button
-          disabled={!postInput}
-          onClick={() => createPost()}
-          variant="outlined"
-        >
+        <Button disabled={!postInput} variant="outlined" type="submit">
           Send
         </Button>
       </Box>

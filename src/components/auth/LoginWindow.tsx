@@ -39,7 +39,7 @@ const LoginWindow = ({ setShowRegisterWindow }: Props) => {
       const responseData = await axios.post("/api/user/login", data);
       console.log(responseData.data.user);
       dispatch(setLogin(responseData.data.user));
-      navigate("/main");
+
       localStorage.setItem("userInfo", JSON.stringify(responseData.data.user));
     } catch (err) {
       if (axios.isAxiosError(err)) {
