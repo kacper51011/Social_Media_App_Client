@@ -1,12 +1,4 @@
-import {
-  Avatar,
-  Box,
-  Divider,
-  Grid,
-  Paper,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Avatar, Box, Divider, Grid, Paper, Typography } from "@mui/material";
 import PlaceIcon from "@mui/icons-material/Place";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import { useAppSelector } from "../../hooks/reduxHooks";
@@ -23,13 +15,8 @@ type Props = {
 };
 
 const UserCard = ({
-  photo,
   firstName,
-  lastName,
-  followedPeopleNumber,
-  location,
-  job,
-  numberOfProfileViews,
+
   numberOfLikes,
 }: Props) => {
   const user = useAppSelector((state) => state.auth.user);
@@ -43,6 +30,7 @@ const UserCard = ({
         display: "flex",
         flexDirection: "column",
         borderRadius: "16px",
+        position: "sticky",
       }}
     >
       <Grid container width="1" direction="row" alignItems="center">

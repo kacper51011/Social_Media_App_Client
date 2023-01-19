@@ -7,6 +7,7 @@ import {
   CardMedia,
   Box,
   Divider,
+  Button,
 } from "@mui/material";
 import CustomIconButton from "../buttons/CustomIconButton";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
@@ -56,7 +57,7 @@ const PostItem = forwardRef(
       picturePath,
       firstName,
       lastName,
-      location,
+
       comments,
       description,
       likes,
@@ -80,7 +81,10 @@ const PostItem = forwardRef(
     const doUserLikePost = authLikedPosts.includes(id);
     const doUserFollowAuthor = authFollowings.includes(userId);
 
-    const followUnfollow = async () => {
+    // Function responsible for following and unfollowing post creator through the post
+    const followUnfollow: React.MouseEventHandler<
+      HTMLButtonElement
+    > = async () => {
       try {
         await axios.patch("/api/user/follow", {
           id: authUser!.id,
@@ -102,7 +106,8 @@ const PostItem = forwardRef(
           );
     };
 
-    const likeUnlike = async () => {
+    // function responsible for leaving a like or unliking the post
+    const likeUnlike: React.MouseEventHandler<HTMLButtonElement> = async () => {
       try {
         await axios.patch("/api/post/likePost", {
           userId: authUser!.id,
@@ -114,37 +119,55 @@ const PostItem = forwardRef(
       doUserLikePost ? dispatch(unlikePost(id)) : dispatch(likePost(id));
     };
 
+    const sendComment: React.MouseEventHandler<
+      HTMLButtonElement
+    > = async () => {
+      try {
+        await axios.post("/api/post/commentPost", {
+          id: authUser!.id,
+          postId: id,
+          content: commentToSend,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+      setCommentToSend("");
+    };
+
     return (
       <Paper
         elevation={5}
         sx={{
           display: "flex",
           flexDirection: "column",
-          p: { xs: 0, md: 2 },
+          p: { xs: 1, md: 2 },
           borderRadius: "16px",
           mb: 5,
         }}
       >
         {/* avatar, name, location, button to follow */}
         <Grid container width={1} py={1} direction="row" alignItems="center">
-          <Grid item xs={1.75}>
-            <Avatar src={`assets/${userPicturePath}`}>{firstName[0]}</Avatar>
+          <Grid item xs={8}>
+            <Box display="flex" justifyContent="left" alignItems="top">
+              <Avatar src={`assets/${userPicturePath}`}>{firstName[0]}</Avatar>
+
+              <Typography
+                sx={{ cursor: "pointer" }}
+                fontWeight="bold"
+                variant="body1"
+                ml={1}
+              >
+                {firstName + " " + lastName}
+              </Typography>
+            </Box>
           </Grid>
 
-          <Grid item xs={7}>
-            <Typography sx={{ cursor: "pointer" }} variant="body1">
-              {firstName + " " + lastName}
-            </Typography>
-
-            <Typography variant="caption">{location}</Typography>
-          </Grid>
-
-          <Grid xs={2.5} item display="flex" justifyContent="right">
+          <Grid xs={2} item display="flex" ml="auto">
             {!IsAuthUserAnAuthor && (
               <>
                 <CustomIconButton
                   title="like post"
-                  onClick={() => likeUnlike()}
+                  onClick={likeUnlike}
                   icon={
                     authLikedPosts.includes(id) ? (
                       <ThumbDownAltIcon />
@@ -155,7 +178,7 @@ const PostItem = forwardRef(
                 />
                 <CustomIconButton
                   title="follow"
-                  onClick={() => followUnfollow()}
+                  onClick={followUnfollow}
                   icon={
                     doUserFollowAuthor ? (
                       <PersonRemoveIcon />
@@ -169,7 +192,7 @@ const PostItem = forwardRef(
           </Grid>
         </Grid>
         {/* post content */}
-        <Typography pb={2}>{description}</Typography>
+        <Typography py={2}>{description}</Typography>
         {/* post image */}
         <Paper elevation={0}>
           <CardMedia
@@ -199,24 +222,43 @@ const PostItem = forwardRef(
             {comments?.length + " " + "comments"}
           </Typography>
         </Box>
-        <Divider />
-        <Box sx={{ minHeight: "5vw", color: "bisque", p: 2, mt: 0.3 }}>
-          <CustomInput
-            minRows={2}
-            multiline
-            height={1}
-            value={commentToSend}
-            onChange={(e) => setCommentToSend(e.target.value)}
-            firstName="Kacper"
-          />
-        </Box>
-        <Divider />
-        <Box ref={ref} mt={0.2}>
+        {commentsVisible && <Divider />}
+
+        <Box ref={ref} my={0.2}>
+          {commentsVisible && (
+            <>
+              <Box
+                my={2}
+                display="flex"
+                flexDirection="column"
+                alignItems="flex-end"
+              >
+                <CustomInput
+                  minRows={3}
+                  multiline
+                  height={1}
+                  value={commentToSend}
+                  onChange={(e) => setCommentToSend(e.target.value)}
+                />
+                <Button
+                  sx={{ mt: 2 }}
+                  disabled={!commentToSend!}
+                  variant="outlined"
+                  onClick={sendComment}
+                >
+                  Send
+                </Button>
+              </Box>
+              <Divider />
+            </>
+          )}
+
           {commentsVisible &&
             comments &&
             comments.map((comment) => {
               return (
                 <CommentItem
+                  key={comment.id}
                   commentContent={comment.content}
                   commentCreatorFirstName={comment.userFirstName}
                   commentCreatorLastName={comment.userLastName}

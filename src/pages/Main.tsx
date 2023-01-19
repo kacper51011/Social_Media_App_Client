@@ -13,7 +13,7 @@ import { useAppSelector } from "../hooks/reduxHooks";
 export type displayedColumn = "profile" | "posts" | "follows";
 
 const Main = () => {
-  const followings = useAppSelector((state) => state.auth.user?.following);
+  const followings = useAppSelector((state) => state.auth?.user?.following);
   const [displayedColumn, setDisplayedColumn] =
     useState<displayedColumn>("posts");
 
@@ -129,6 +129,7 @@ const Main = () => {
                 followings.map((following) => {
                   return (
                     <FollowedPersonItem
+                      key={following.id}
                       id={following.id}
                       photo={following.picturePath}
                       firstName={following.firstName}

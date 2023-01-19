@@ -10,13 +10,11 @@ import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTheme } from "@mui/material/styles";
-
 import { useState } from "react";
 import CustomDropzone from "../CustomDropzone";
 import { ReactComponent as RegisterWindowImage } from "../../utils/RegisterWindowImage.svg";
 import { UserRegisterSchema } from "../../utils/ValidationSchemas";
 import axios from "axios";
-import { ErrorResponse } from "@remix-run/router";
 
 // pre: I decided to not mess with dropzone and react hook form + zod,
 // so Im using state for file, which is not controlled by react hook form(state which let user add and delete single image )
@@ -28,11 +26,6 @@ type Props = {
 };
 
 type UserRegisterType = z.infer<typeof UserRegisterSchema>;
-
-type responseType = {
-  status: string;
-  message: string;
-};
 
 const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
   const [registerFile, setRegisterFile] = useState<File | null>(null);
@@ -66,11 +59,13 @@ const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
     formData.append("profilePhoto", registerFile);
 
     try {
-      const responseData = await axios.post<
-        UserRegisterType & { profilePhoto: File }
-      >("http://localhost:3001/api/user/register", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      await axios.post<UserRegisterType & { profilePhoto: File }>(
+        "http://localhost:3001/api/user/register",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
       setShowRegisterWindow(false);
     } catch (err) {
       if (axios.isAxiosError(err)) {
