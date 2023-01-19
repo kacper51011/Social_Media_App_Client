@@ -20,6 +20,11 @@ import { useAppSelector } from "../../hooks/reduxHooks";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { follow, likePost, unfollow, unlikePost } from "../../store/authSlice";
+import {
+  addLikeForPost,
+  commentPost,
+  removeLikeFromPost,
+} from "../../store/postsSlice";
 
 // todo: connect redux toolkit to posts
 export type Post = {
@@ -116,6 +121,9 @@ const PostItem = forwardRef(
       } catch (err) {
         return;
       }
+      doUserLikePost
+        ? dispatch(removeLikeFromPost({ postId: id, id: authUser.id }))
+        : dispatch(addLikeForPost({ postId: id, id: authUser.id }));
       doUserLikePost ? dispatch(unlikePost(id)) : dispatch(likePost(id));
     };
 
@@ -128,6 +136,16 @@ const PostItem = forwardRef(
           postId: id,
           content: commentToSend,
         });
+        dispatch(
+          commentPost({
+            userId: authUser.id,
+            userFirstName: authUser.firstName,
+            userLastName: authUser.lastName,
+            userPhotoPicturePath: authUser.picturePath,
+            postId: id,
+            content: commentToSend,
+          })
+        );
       } catch (error) {
         console.log(error);
       }
@@ -244,6 +262,7 @@ const PostItem = forwardRef(
                   sx={{ mt: 2 }}
                   disabled={!commentToSend!}
                   variant="outlined"
+                  size="small"
                   onClick={sendComment}
                 >
                   Send
