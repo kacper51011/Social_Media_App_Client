@@ -13,7 +13,8 @@ import { useAppSelector } from "../hooks/reduxHooks";
 export type displayedColumn = "profile" | "posts" | "follows";
 
 const Main = () => {
-  const followings = useAppSelector((state) => state.auth?.user?.following);
+  const followings = useAppSelector((state) => state.auth.user?.following);
+  const posts = useAppSelector((state) => state.posts.posts);
   const [displayedColumn, setDisplayedColumn] =
     useState<displayedColumn>("posts");
 
@@ -26,7 +27,7 @@ const Main = () => {
     return displayedColumn === column ? "block" : "none";
   };
   const [pageNum, setPageNum] = useState(1);
-  const { firstLoad, loading, error, posts, hasMore } = usePostsLoad(
+  const { firstLoad, loading, error, hasMore } = usePostsLoad(
     `/api/post/getPosts/${pageNum}`,
     pageNum
   );

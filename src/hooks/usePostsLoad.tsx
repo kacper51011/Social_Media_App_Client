@@ -1,6 +1,8 @@
 import axios from "axios";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Comment, Post } from "../components/column posts/PostItem";
+import { deleteLoadedPosts, setNewPosts } from "../store/postsSlice";
 
 // I made the decision about two loading states, caused by two different animations on first load and every other ones
 
@@ -8,9 +10,11 @@ const usePostsLoad = (url: string, page: number) => {
   const [firstLoad, setFirstLoad] = useState(true);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [posts, setPosts] = useState<Post[]>([]);
+
   const [hasMore, setHasMore] = useState(false);
   const controller = new AbortController();
+
+  const dispatch = useDispatch();
 
   const getData = async () => {
     try {
@@ -24,9 +28,8 @@ const usePostsLoad = (url: string, page: number) => {
         signal: controller.signal,
       });
       console.log(response.data);
-      setPosts((posts) => {
-        return [...posts, ...response.data.posts];
-      });
+
+      dispatch(setNewPosts(response.data.posts));
       setHasMore(response.data.posts.length > 0);
       setLoading(false);
       setFirstLoad(false);
@@ -36,16 +39,20 @@ const usePostsLoad = (url: string, page: number) => {
 
       setFirstLoad(false);
     }
-    controller.abort();
+    return controller.abort();
   };
 
   useEffect(() => {
     getData();
-
-    return;
   }, [page, url]);
 
-  return { firstLoad, loading, error, posts, hasMore };
+  useEffect(() => {
+    return () => {
+      dispatch(deleteLoadedPosts());
+    };
+  }, []);
+
+  return { firstLoad, loading, error, hasMore };
 };
 
 export default usePostsLoad;

@@ -27,13 +27,17 @@ const CommentItem = ({
           {commentCreatorFirstName[0]}{" "}
         </Avatar>
       </Grid>
-      <Grid item xs={10} sx={{ width: 1, minHeight: 0.2 }}>
+      <Grid item xs={10.5} sx={{ minHeight: 0.2 }}>
         <Typography>
           {commentCreatorFirstName + " " + commentCreatorLastName}
         </Typography>
         <Paper
           elevation={1}
-          sx={{ backgroundColor: theme.palette.neutral.light, py: 1, px: 0.5 }}
+          sx={{
+            backgroundColor: theme.palette.neutral.light,
+            py: 1,
+            px: 0.5,
+          }}
         >
           <Typography>{commentContent}</Typography>
         </Paper>
