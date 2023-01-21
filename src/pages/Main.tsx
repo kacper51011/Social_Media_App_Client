@@ -101,7 +101,6 @@ const Main = () => {
                     picturePath={post.picturePath}
                     firstName={post.firstName}
                     lastName={post.lastName}
-                    location={post.location}
                     description={post.description}
                     comments={post.comments}
                     likes={post.likes}

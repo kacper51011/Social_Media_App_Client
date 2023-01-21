@@ -15,22 +15,21 @@ import CustomDropzone from "../CustomDropzone";
 import { ReactComponent as RegisterWindowImage } from "../../utils/RegisterWindowImage.svg";
 import { UserRegisterSchema } from "../../utils/ValidationSchemas";
 import axios from "axios";
+import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 // pre: I decided to not mess with dropzone and react hook form + zod,
 // so Im using state for file, which is not controlled by react hook form(state which let user add and delete single image )
 // Also I decided to not preload data in new FormData, cause whole information about it will be in one place, not in components (A bit less code there)
 //
 
-type Props = {
-  setShowRegisterWindow: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
 type UserRegisterType = z.infer<typeof UserRegisterSchema>;
 
-const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
+const RegisterWindow = () => {
   const [registerFile, setRegisterFile] = useState<File | null>(null);
   const theme = useTheme();
   const desktopSize = useMediaQuery(theme.breakpoints.up("md"));
+  const navigate = useNavigate();
 
   const {
     register,
@@ -66,7 +65,7 @@ const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
-      setShowRegisterWindow(false);
+      navigate("/login");
     } catch (err) {
       if (axios.isAxiosError(err)) {
         return setError("customError", {
@@ -236,10 +235,10 @@ const RegisterWindow = ({ setShowRegisterWindow }: Props) => {
           <Typography
             sx={{ cursor: "pointer" }}
             fontWeight="700"
-            component="span"
+            component={Link}
             variant="subtitle1"
             textAlign="center"
-            onClick={() => setShowRegisterWindow(false)}
+            to="/"
           >
             Already&nbsp;have&nbsp;account? Click&nbsp;here!
           </Typography>

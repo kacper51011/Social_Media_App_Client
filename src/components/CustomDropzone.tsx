@@ -48,7 +48,7 @@ const CustomDropzone = ({
         <Typography textAlign="center">
           {!fileToSend
             ? "Drop your Image or click to choose"
-            : "Image choosed!"}
+            : "Image choosen!"}
         </Typography>
       </Box>
       {fileToSend && <Typography mt={2}>Files:</Typography>}

@@ -1,4 +1,3 @@
-import { unstable_useId } from "@mui/material";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Post, Comment } from "../components/column posts/PostItem";
 

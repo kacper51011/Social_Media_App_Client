@@ -16,13 +16,11 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { setLogin } from "../../store/authSlice";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
-type Props = {
-  setShowRegisterWindow: React.Dispatch<React.SetStateAction<boolean>>;
-};
 type UserLoginType = z.infer<typeof UserLoginSchema>;
 
-const LoginWindow = ({ setShowRegisterWindow }: Props) => {
+const LoginWindow = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
@@ -41,6 +39,7 @@ const LoginWindow = ({ setShowRegisterWindow }: Props) => {
       dispatch(setLogin(responseData.data.user));
 
       localStorage.setItem("userInfo", JSON.stringify(responseData.data.user));
+      navigate("/main");
     } catch (err) {
       if (axios.isAxiosError(err)) {
         return setError("customError", {
@@ -137,10 +136,10 @@ const LoginWindow = ({ setShowRegisterWindow }: Props) => {
           <Typography
             sx={{ cursor: "pointer" }}
             fontWeight="700"
-            component="span"
+            component={Link}
             variant="subtitle1"
             textAlign="center"
-            onClick={() => setShowRegisterWindow(true)}
+            to="/register"
           >
             You&nbsp;don`t&nbsp;have&nbsp;account&nbsp;yet? Click&nbsp;here!
           </Typography>

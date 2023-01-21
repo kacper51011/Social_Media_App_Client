@@ -2,11 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 
 import { setLogin, setLogout } from "../store/authSlice";
 
 const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const controller = new AbortController();
@@ -19,6 +21,7 @@ const useAuth = () => {
         dispatch(setLogout());
         localStorage.clear();
         setIsLoggedIn(false);
+        navigate("/");
       } else {
         dispatch(setLogin(response.data.user));
         setIsLoggedIn(true);
@@ -27,6 +30,7 @@ const useAuth = () => {
       dispatch(setLogout());
       localStorage.clear();
       setIsLoggedIn(false);
+      navigate("/");
     }
     return controller.abort();
   };

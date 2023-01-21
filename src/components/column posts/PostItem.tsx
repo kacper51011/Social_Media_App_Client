@@ -34,7 +34,6 @@ export type Post = {
   picturePath: string;
   firstName: string;
   lastName: string;
-  location: string;
   job: string;
   description: string;
   likes: string[];
@@ -62,7 +61,6 @@ const PostItem = forwardRef(
       picturePath,
       firstName,
       lastName,
-
       comments,
       description,
       likes,
