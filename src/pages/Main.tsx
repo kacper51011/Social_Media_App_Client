@@ -16,6 +16,7 @@ const Main = () => {
   const followings = useAppSelector((state) => state.auth.user?.following);
   const posts = useAppSelector((state) => state.posts.posts);
   const user = useAppSelector((state) => state.auth.user);
+
   const [displayedColumn, setDisplayedColumn] =
     useState<displayedColumn>("posts");
 

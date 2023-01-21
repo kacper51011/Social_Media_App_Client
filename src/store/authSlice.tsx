@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type following = {
+export type following = {
   id: string;
   firstName: string;
   lastName: string;
@@ -8,7 +8,7 @@ type following = {
   job: string;
 };
 
-type User = {
+export type User = {
   id: string;
   firstName: string;
   lastName: string;

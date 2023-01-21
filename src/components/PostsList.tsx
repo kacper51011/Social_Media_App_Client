@@ -1,5 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import { useAppSelector } from "../hooks/reduxHooks";
+import usePostsInfiniteScroll from "../hooks/usePostsInfiniteScroll";
 import usePostsLoad from "../hooks/usePostsLoad";
 import PostItem from "./column posts/PostItem";
 import CustomSkeleton from "./CustomSkeleton";
@@ -9,6 +10,8 @@ type Props = {
 };
 
 const PostsList = ({ route }: Props) => {
+  // it always use the postsSlice (it resets anytime someone leave current page/change selected cause of the usePostsLoad hook logic)
+
   const posts = useAppSelector((state) => state.posts.posts);
   const [pageNumber, setPageNumber] = useState(1);
   const { loading, error, hasMore } = usePostsLoad(
@@ -16,22 +19,11 @@ const PostsList = ({ route }: Props) => {
     pageNumber
   );
 
-  const observer = useRef<IntersectionObserver>();
-  const lastPostElementRef = useCallback(
-    (node: Element) => {
-      if (loading) return;
-      if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          setPageNumber((prev) => prev + 1);
-        }
-      });
-      if (node) {
-        observer.current.observe(node);
-      }
-    },
-    [loading, hasMore]
-  );
+  const lastPostElementRef = usePostsInfiniteScroll({
+    loading,
+    setPageNumber,
+    hasMore,
+  });
 
   return (
     <>

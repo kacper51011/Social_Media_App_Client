@@ -1,6 +1,8 @@
+import FollowedPersonItem from "../components/column follows/FollowedPersonItem";
 import FollowsContainer from "../components/column follows/FollowsContainer";
 import PostInputComponent from "../components/column posts/PostInputComponent";
 import UserCard from "../components/column user/UserCard";
+import PostsList from "../components/PostsList";
 import UserPageContainer from "../components/UserPageContainer";
 import { useAppSelector } from "../hooks/reduxHooks";
 
@@ -12,7 +14,7 @@ type Props = {
 
 const AuthUserPage = ({ checkVisibility }: Props) => {
   const followings = useAppSelector((state) => state.auth.user?.following);
-  const posts = useAppSelector((state) => state.posts.posts);
+
   const user = useAppSelector((state) => state.auth.user);
 
   return (
@@ -20,22 +22,41 @@ const AuthUserPage = ({ checkVisibility }: Props) => {
       checkVisibility={checkVisibility}
       profileColumn={
         <UserCard
-          photo={""}
-          firstName={""}
-          lastName={""}
-          followedPeopleNumber={0}
-          location={""}
-          job={""}
-          numberOfProfileViews={0}
-          numberOfLikes={0}
+          photo={user!.picturePath}
+          firstName={user!.firstName}
+          lastName={user!.lastName}
+          location={user!.location}
+          followedPeopleNumber={user!.followingIDs.length}
+          job={user!.job}
+          numberOfLikes={10}
+          numberOfProfileViews={user!.viewsProfile}
         />
       }
       postsColumn={
         <>
           <PostInputComponent />
+          <PostsList route="/api/post/getPosts/" />
         </>
       }
-      followsColumn={<FollowsContainer />}
+      followsColumn={
+        <FollowsContainer
+          childrens={
+            followings &&
+            followings.map((following) => {
+              return (
+                <FollowedPersonItem
+                  key={following.id}
+                  id={following.id}
+                  photo={following.picturePath}
+                  firstName={following.firstName}
+                  lastName={following.lastName}
+                  job={following.job}
+                />
+              );
+            })
+          }
+        />
+      }
     />
   );
 };
