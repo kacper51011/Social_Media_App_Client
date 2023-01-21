@@ -34,6 +34,7 @@ function App() {
 
             <Route path="/main" element={<PageProtection />}>
               <Route index element={<Main />}></Route>
+              <Route path="/main/:id"></Route>
             </Route>
           </Routes>
         </CssBaseline>

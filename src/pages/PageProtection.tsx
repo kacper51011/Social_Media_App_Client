@@ -1,8 +1,5 @@
 import { Navigate, Outlet } from "react-router";
 import { useAppSelector } from "../hooks/reduxHooks";
-import useAuth from "../hooks/useAuth";
-
-import Home from "./Home";
 
 const PageProtection = () => {
   const user = useAppSelector((state) => state.auth.user);

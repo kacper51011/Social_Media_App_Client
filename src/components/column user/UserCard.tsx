@@ -15,8 +15,13 @@ type Props = {
 };
 
 const UserCard = ({
+  photo,
   firstName,
-
+  lastName,
+  followedPeopleNumber,
+  location,
+  job,
+  numberOfProfileViews,
   numberOfLikes,
 }: Props) => {
   const user = useAppSelector((state) => state.auth.user);
@@ -35,15 +40,15 @@ const UserCard = ({
     >
       <Grid container width="1" direction="row" alignItems="center">
         <Grid item xs={2.5}>
-          <Avatar src={`assets/${user?.picturePath}`}>{firstName[0]}</Avatar>
+          <Avatar src={`assets/${photo}`}>{firstName[0]}</Avatar>
         </Grid>
 
         <Grid sx={{ flexDirection: "column", justifyContent: "center" }}>
           <Typography sx={{ cursor: "pointer" }} variant="body1">
-            {user!.firstName + " " + user!.lastName}
+            {firstName + " " + lastName}
           </Typography>
           <Typography variant="caption">
-            {`${user!.followingIDs.length} Follows`}
+            {`${followedPeopleNumber} Follows`}
           </Typography>
         </Grid>
       </Grid>
@@ -51,13 +56,13 @@ const UserCard = ({
       <Box my={1} mx={0.5} display="flex">
         <PlaceIcon />
         <Typography ml={4} variant="caption">
-          {user!.location}
+          {location}
         </Typography>
       </Box>
       <Box my={1} mx={0.5} display="flex">
         <BusinessCenterIcon />
         <Typography ml={4} variant="caption">
-          {user!.job}
+          {job}
         </Typography>
       </Box>
 
@@ -72,7 +77,7 @@ const UserCard = ({
             <Typography variant="caption">Profile views</Typography>
           </Grid>
           <Grid item py={1}>
-            <Typography> {user!.viewsProfile}</Typography>
+            <Typography> {numberOfProfileViews}</Typography>
           </Grid>
         </Grid>
         <Grid

@@ -235,10 +235,10 @@ const RegisterWindow = () => {
           <Typography
             sx={{ cursor: "pointer" }}
             fontWeight="700"
-            component={Link}
+            component="span"
             variant="subtitle1"
             textAlign="center"
-            to="/"
+            onClick={() => navigate("/")}
           >
             Already&nbsp;have&nbsp;account? Click&nbsp;here!
           </Typography>

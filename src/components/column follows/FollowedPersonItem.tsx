@@ -45,6 +45,7 @@ const FollowedPersonItem = ({
       width="1"
       py={0.25}
       px={0.75}
+      my={1}
       justifyContent="space-between"
       alignItems="center"
       sx={{
@@ -56,7 +57,11 @@ const FollowedPersonItem = ({
         <Avatar src={`assets/${photo}` || ""}>{firstName[0]}</Avatar>
       </Grid>
       <Grid item xs={6} flexDirection="column">
-        <Typography sx={{ cursor: "pointer" }} variant="subtitle1">
+        <Typography
+          sx={{ cursor: "pointer" }}
+          variant="subtitle1"
+          fontWeight="600"
+        >
           {firstName + " " + lastName}
         </Typography>
         <Typography variant="caption">{job}</Typography>

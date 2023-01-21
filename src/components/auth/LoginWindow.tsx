@@ -16,13 +16,13 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { setLogin } from "../../store/authSlice";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
 
 type UserLoginType = z.infer<typeof UserLoginSchema>;
 
 const LoginWindow = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -134,12 +134,14 @@ const LoginWindow = () => {
             Login
           </Button>
           <Typography
-            sx={{ cursor: "pointer" }}
+            sx={{
+              cursor: "pointer",
+            }}
             fontWeight="700"
-            component={Link}
+            component="span"
             variant="subtitle1"
             textAlign="center"
-            to="/register"
+            onClick={() => navigate("/register")}
           >
             You&nbsp;don`t&nbsp;have&nbsp;account&nbsp;yet? Click&nbsp;here!
           </Typography>

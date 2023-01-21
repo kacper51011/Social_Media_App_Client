@@ -5,7 +5,7 @@ import PostItem from "../components/column posts/PostItem";
 import UserCard from "../components/column user/UserCard";
 import FollowedPersonItem from "../components/column follows/FollowedPersonItem";
 import FollowsContainer from "../components/column follows/FollowsContainer";
-import PostInputComponent from "../components/PostInputComponent";
+import PostInputComponent from "../components/column posts/PostInputComponent";
 import usePostsLoad from "../hooks/usePostsLoad";
 import CustomSkeleton from "../components/CustomSkeleton";
 import { useAppSelector } from "../hooks/reduxHooks";
@@ -15,6 +15,7 @@ export type displayedColumn = "profile" | "posts" | "follows";
 const Main = () => {
   const followings = useAppSelector((state) => state.auth.user?.following);
   const posts = useAppSelector((state) => state.posts.posts);
+  const user = useAppSelector((state) => state.auth.user);
   const [displayedColumn, setDisplayedColumn] =
     useState<displayedColumn>("posts");
 
@@ -27,7 +28,7 @@ const Main = () => {
     return displayedColumn === column ? "block" : "none";
   };
   const [pageNum, setPageNum] = useState(1);
-  const { firstLoad, loading, error, hasMore } = usePostsLoad(
+  const { loading, error, hasMore } = usePostsLoad(
     `/api/post/getPosts/${pageNum}`,
     pageNum
   );
@@ -35,7 +36,6 @@ const Main = () => {
   const observer = useRef<IntersectionObserver>();
   const lastPostElementRef = useCallback(
     (node: Element) => {
-      console.log("123");
       if (loading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
@@ -70,14 +70,14 @@ const Main = () => {
             mt={10}
           >
             <UserCard
-              photo=""
-              firstName="Kacper"
-              lastName="Tylec"
-              location="Nagoszyn"
-              followedPeopleNumber={10}
-              job="Programmer"
+              photo={user!.picturePath}
+              firstName={user!.firstName}
+              lastName={user!.lastName}
+              location={user!.location}
+              followedPeopleNumber={user!.followingIDs.length}
+              job={user!.job}
               numberOfLikes={10}
-              numberOfProfileViews={15}
+              numberOfProfileViews={user!.viewsProfile}
             />
           </Grid>
           {/* posts column */}
@@ -92,20 +92,7 @@ const Main = () => {
             {posts.map((post, index) => {
               if (posts.length === index + 1) {
                 return (
-                  <PostItem
-                    ref={lastPostElementRef}
-                    key={post.id}
-                    id={post.id}
-                    userId={post.userId}
-                    userPicturePath={post.userPicturePath}
-                    picturePath={post.picturePath}
-                    firstName={post.firstName}
-                    lastName={post.lastName}
-                    description={post.description}
-                    comments={post.comments}
-                    likes={post.likes}
-                    job={post.job}
-                  />
+                  <PostItem ref={lastPostElementRef} key={post.id} {...post} />
                 );
               } else {
                 return <PostItem key={post.id} {...post} />;
