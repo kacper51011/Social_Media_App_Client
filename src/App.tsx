@@ -10,6 +10,7 @@ import PageProtection from "./pages/PageProtection";
 import useAuth from "./hooks/useAuth";
 import LoginWindow from "./components/auth/LoginWindow";
 import RegisterWindow from "./components/auth/RegisterWindow";
+import OtherUserPage from "./pages/OtherUserPage";
 
 // todo: improve routes and routing overally
 // todo: improve architecture
@@ -34,7 +35,7 @@ function App() {
 
             <Route path="/main" element={<PageProtection />}>
               <Route index element={<Main />}></Route>
-              <Route path="/main/:id"></Route>
+              <Route path=":id" element={<OtherUserPage />}></Route>
             </Route>
           </Routes>
         </CssBaseline>

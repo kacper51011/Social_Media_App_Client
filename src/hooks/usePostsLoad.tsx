@@ -4,13 +4,13 @@ import { useDispatch } from "react-redux";
 
 import { deleteLoadedPosts, setNewPosts } from "../store/postsSlice";
 
-// I made the decision about two loading states, caused by two different animations on first load and every other ones
+// Hook made for fetching and preparing data about posts
 
 const usePostsLoad = (url: string, page: number) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-
   const [hasMore, setHasMore] = useState(false);
+
   const controller = new AbortController();
 
   const dispatch = useDispatch();
@@ -30,6 +30,7 @@ const usePostsLoad = (url: string, page: number) => {
 
       dispatch(setNewPosts(response.data.posts));
       setHasMore(response.data.posts.length > 0);
+
       setLoading(false);
     } catch (err) {
       console.log(err);

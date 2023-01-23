@@ -1,33 +1,33 @@
-import { useState } from "react";
 import { displayedColumn } from "./Main";
-import { useParams } from "react-router";
+import { useOutletContext, useParams } from "react-router";
 import FollowsContainer from "../components/column follows/FollowsContainer";
 import UserCard from "../components/column user/UserCard";
 import UserPageContainer from "../components/UserPageContainer";
+import PostsList from "../components/PostsList";
+import useFetchedUser from "../hooks/useFetchedUser";
 
-type Props = {
-  checkVisibility: (column: displayedColumn) => "block" | "none";
-};
-
-const OtherUserPage = ({ checkVisibility }: Props) => {
-  let params = useParams();
+const OtherUserPage = () => {
+  const { id } = useParams();
+  const checkVisibility: (column: displayedColumn) => "block" | "none" =
+    useOutletContext();
+  const foundUser = useFetchedUser(id as string);
 
   return (
     <UserPageContainer
       checkVisibility={checkVisibility}
       profileColumn={
         <UserCard
-          photo={""}
-          firstName={""}
-          lastName={""}
-          followedPeopleNumber={0}
-          location={""}
-          job={""}
-          numberOfProfileViews={0}
+          photo={foundUser!.picturePath}
+          firstName={foundUser!.firstName}
+          lastName={foundUser!.lastName}
+          followedPeopleNumber={foundUser!.followingIDs.length}
+          location={foundUser!.location}
+          job={foundUser!.job}
+          numberOfProfileViews={foundUser!.viewsProfile}
           numberOfLikes={0}
         />
       }
-      postsColumn={<></>}
+      postsColumn={<PostsList route={`/api/post/getUserPosts/${id}`} />}
       followsColumn={<FollowsContainer />}
     />
   );

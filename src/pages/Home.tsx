@@ -1,12 +1,8 @@
 import Box from "@mui/material/Box";
 
-import { Navigate, Outlet } from "react-router";
-
-import { useAppSelector } from "../hooks/reduxHooks";
+import { Outlet } from "react-router";
 
 const Home = () => {
-  // const [showRegisterWindow, setShowRegisterWindow] = useState(true);
-
   return (
     <Box
       display="flex"
