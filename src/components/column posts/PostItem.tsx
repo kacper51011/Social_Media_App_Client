@@ -25,6 +25,8 @@ import {
   commentPost,
   removeLikeFromPost,
 } from "../../store/postsSlice";
+import { autoBatchEnhancer } from "@reduxjs/toolkit";
+import { useNavigate } from "react-router";
 
 // todo: connect redux toolkit to posts
 export type Post = {
@@ -71,6 +73,7 @@ const PostItem = forwardRef(
     const [commentsVisible, setCommentsVisible] = useState(false);
     const [commentToSend, setCommentToSend] = useState("");
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const authUser = useAppSelector((state) => state.auth.user!);
     const authLikedPosts = useAppSelector(
@@ -165,13 +168,15 @@ const PostItem = forwardRef(
         <Grid container width={1} py={1} direction="row" alignItems="center">
           <Grid item xs={8}>
             <Box display="flex" justifyContent="left" alignItems="top">
-              <Avatar src={`assets/${userPicturePath}`}>{firstName[0]}</Avatar>
+              <Avatar src={`/assets/${userPicturePath}`}>{firstName[0]}</Avatar>
 
               <Typography
                 sx={{ cursor: "pointer" }}
                 fontWeight="bold"
                 variant="body1"
                 ml={1}
+                component="div"
+                onClick={() => navigate(`/main/${userId}`)}
               >
                 {firstName + " " + lastName}
               </Typography>
@@ -213,8 +218,12 @@ const PostItem = forwardRef(
         <Paper elevation={0}>
           <CardMedia
             component="img"
-            src={`assets/${picturePath}`}
-            sx={{ minHeight: "20vw", borderRadius: "16px" }}
+            src={`/assets/${picturePath}`}
+            sx={{
+              height: "auto",
+              maxWidth: "100%",
+              borderRadius: "16px",
+            }}
           />
         </Paper>
         {/* statistics */}

@@ -24,23 +24,21 @@ const UserCard = ({
   numberOfProfileViews,
   numberOfLikes,
 }: Props) => {
-  const user = useAppSelector((state) => state.auth.user);
-
   return (
     <Paper
       elevation={5}
       sx={{
         minWidth: 1,
+
         p: "calc(0.5vw + 10px)",
         display: "flex",
         flexDirection: "column",
         borderRadius: "16px",
-        position: "sticky",
       }}
     >
       <Grid container width="1" direction="row" alignItems="center">
         <Grid item xs={2.5}>
-          <Avatar src={`assets/${photo}`}>{firstName[0]}</Avatar>
+          <Avatar src={`/assets/${photo}`}>{firstName[0]}</Avatar>
         </Grid>
 
         <Grid sx={{ flexDirection: "column", justifyContent: "center" }}>

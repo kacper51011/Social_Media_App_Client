@@ -15,11 +15,13 @@ import { useDispatch } from "react-redux";
 
 import { setMode } from "../../store/themeSlice";
 import useLogout from "../../hooks/useLogout";
+import { useNavigate } from "react-router";
 
 const DesktopNavbar = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const logout = useLogout();
+  const navigate = useNavigate();
 
   const toggleMode = () => {
     dispatch(setMode());
@@ -41,7 +43,13 @@ const DesktopNavbar = () => {
             alignItems: "center",
           }}
         >
-          <Typography variant="h5" color={theme.palette.neutral.main}>
+          <Typography
+            variant="h5"
+            component="div"
+            onClick={() => navigate("/main")}
+            sx={{ cursor: "pointer" }}
+            color={theme.palette.neutral.main}
+          >
             SocialMediaApp
           </Typography>
           <Stack direction="row" minWidth="15%" justifyContent="space-between">

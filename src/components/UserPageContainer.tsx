@@ -39,6 +39,7 @@ const UserPageContainer = ({
         display={{ xs: checkVisibility("posts"), md: "block" }}
         xs={12}
         md={5}
+        mt={10}
       >
         {postsColumn}
       </Grid>

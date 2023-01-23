@@ -5,30 +5,55 @@ import UserCard from "../components/column user/UserCard";
 import UserPageContainer from "../components/UserPageContainer";
 import PostsList from "../components/PostsList";
 import useFetchedUser from "../hooks/useFetchedUser";
+import FollowedPersonItem from "../components/column follows/FollowedPersonItem";
+import { following } from "../store/authSlice";
 
 const OtherUserPage = () => {
-  const { id } = useParams();
   const checkVisibility: (column: displayedColumn) => "block" | "none" =
     useOutletContext();
-  const foundUser = useFetchedUser(id as string);
+
+  const fetchedUser = useFetchedUser();
 
   return (
     <UserPageContainer
       checkVisibility={checkVisibility}
       profileColumn={
-        <UserCard
-          photo={foundUser!.picturePath}
-          firstName={foundUser!.firstName}
-          lastName={foundUser!.lastName}
-          followedPeopleNumber={foundUser!.followingIDs.length}
-          location={foundUser!.location}
-          job={foundUser!.job}
-          numberOfProfileViews={foundUser!.viewsProfile}
-          numberOfLikes={0}
-        />
+        fetchedUser && (
+          <>
+            <UserCard
+              photo={fetchedUser.picturePath}
+              firstName={fetchedUser.firstName}
+              lastName={fetchedUser.lastName}
+              followedPeopleNumber={fetchedUser.followingIDs.length}
+              location={fetchedUser.location}
+              job={fetchedUser.job}
+              numberOfProfileViews={fetchedUser.viewsProfile}
+              numberOfLikes={0}
+            />
+          </>
+        )
       }
-      postsColumn={<PostsList route={`/api/post/getUserPosts/${id}`} />}
-      followsColumn={<FollowsContainer />}
+      postsColumn={
+        <PostsList route={`/api/post/getUserPosts/${fetchedUser?.id}`} />
+      }
+      followsColumn={
+        fetchedUser && (
+          <FollowsContainer
+            childrens={fetchedUser.following.map((following: following) => {
+              return (
+                <FollowedPersonItem
+                  key={following.id}
+                  id={following.id}
+                  photo={following.picturePath}
+                  firstName={following.firstName}
+                  lastName={following.lastName}
+                  job={following.job}
+                />
+              );
+            })}
+          />
+        )
+      }
     />
   );
 };

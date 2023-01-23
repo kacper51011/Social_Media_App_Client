@@ -1,13 +1,14 @@
-import { Navigate, Outlet } from "react-router";
+import { Navigate } from "react-router";
 import { useAppSelector } from "../hooks/reduxHooks";
+import Main from "./Main";
 
-const PageProtection = () => {
+const ProtectedMain = () => {
   const user = useAppSelector((state) => state.auth.user);
   // useAuth();
 
-  return user ? <Outlet /> : <Navigate to="/" />;
+  return user ? <Main /> : <Navigate to="/" />;
 
   // return user ? <Outlet /> : <Home />;
 };
 
-export default PageProtection;
+export default ProtectedMain;

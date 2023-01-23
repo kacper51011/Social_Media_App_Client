@@ -7,6 +7,7 @@ import axios from "axios";
 import { useAppSelector } from "../../hooks/reduxHooks";
 import { unfollow } from "../../store/authSlice";
 import CustomIconButton from "../buttons/CustomIconButton";
+import { useNavigate } from "react-router";
 
 export type FollowProps = {
   id: string;
@@ -23,6 +24,7 @@ const FollowedPersonItem = ({
   job,
   photo,
 }: FollowProps) => {
+  const navigate = useNavigate();
   const theme = useTheme();
   const authUser = useAppSelector((state) => state.auth.user);
   const dispatch = useDispatch();
@@ -54,13 +56,15 @@ const FollowedPersonItem = ({
       }}
     >
       <Grid marginRight={1} item xs={3}>
-        <Avatar src={`assets/${photo}` || ""}>{firstName[0]}</Avatar>
+        <Avatar src={`/assets/${photo}` || ""}>{firstName[0]}</Avatar>
       </Grid>
       <Grid item xs={6} flexDirection="column">
         <Typography
           sx={{ cursor: "pointer" }}
           variant="subtitle1"
           fontWeight="600"
+          component="div"
+          onClick={() => navigate(`/main/${id}`)}
         >
           {firstName + " " + lastName}
         </Typography>

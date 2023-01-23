@@ -59,7 +59,7 @@ const PostInputComponent = () => {
         display: "flex",
         flexDirection: "column",
         borderRadius: "16px",
-        mt: 10,
+
         mb: 5,
         p: 2,
       }}
