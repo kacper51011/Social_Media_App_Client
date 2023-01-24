@@ -10,14 +10,10 @@ import { following } from "../store/authSlice";
 import CustomSkeleton from "../components/CustomSkeleton";
 
 const OtherUserPage = () => {
-  const checkVisibility: (column: displayedColumn) => "block" | "none" =
-    useOutletContext();
-
   const [fetchedUser, loadingUser, error] = useFetchedUser();
 
   return (
     <UserPageContainer
-      checkVisibility={checkVisibility}
       profileColumn={
         <>
           {loadingUser && <CustomSkeleton height="30vh" width="100%" />}

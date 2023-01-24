@@ -19,7 +19,6 @@ const AuthUserPage = () => {
 
   return (
     <UserPageContainer
-      checkVisibility={checkVisibility}
       profileColumn={
         <UserCard
           photo={user!.picturePath}

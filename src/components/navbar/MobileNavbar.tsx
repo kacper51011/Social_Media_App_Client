@@ -11,14 +11,18 @@ import { useDispatch } from "react-redux";
 import { setMode } from "../../store/themeSlice";
 import MobileMenu from "./MobileMenu";
 import useLogout from "../../hooks/useLogout";
+import { useAppSelector } from "../../hooks/reduxHooks";
+import {
+  setToFollowsColumn,
+  setToPostsColumn,
+  setToProfileColumn,
+} from "../../store/columnSlice";
 
-type Props = {
-  changeColumn: (column: displayedColumn) => void;
-};
-
-const MobileNavbar = ({ changeColumn }: Props) => {
+const MobileNavbar = () => {
   const theme = useTheme();
   const logout = useLogout();
+
+  const column = useAppSelector((state) => state.column);
 
   const dispatch = useDispatch();
 
@@ -46,17 +50,17 @@ const MobileNavbar = ({ changeColumn }: Props) => {
 
           <Stack direction="row">
             <CustomIconButton
-              onClick={() => changeColumn("profile")}
+              onClick={() => dispatch(setToProfileColumn())}
               icon={<PersonIcon />}
               title="profile"
             />
             <CustomIconButton
-              onClick={() => changeColumn("posts")}
+              onClick={() => dispatch(setToPostsColumn())}
               icon={<ArticleIcon />}
               title="posts"
             />
             <CustomIconButton
-              onClick={() => changeColumn("follows")}
+              onClick={() => dispatch(setToFollowsColumn())}
               icon={<PeopleIcon />}
               title="follows"
             />
