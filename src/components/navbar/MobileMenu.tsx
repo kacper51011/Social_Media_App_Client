@@ -7,6 +7,8 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate, useParams } from "react-router";
+import useScrollToTop from "../../hooks/useScrollToTop";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
 type Props = {
   toggleMode: () => void;
@@ -16,6 +18,7 @@ const MobileMenu = ({ toggleMode }: Props) => {
   let { id } = useParams();
   const theme = useTheme();
   const navigate = useNavigate();
+  const [visible, scrollToTop] = useScrollToTop();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -69,6 +72,11 @@ const MobileMenu = ({ toggleMode }: Props) => {
             }}
           >
             Home board <HomeIcon sx={{ ml: 2 }} />
+          </MenuItem>
+        )}
+        {visible && (
+          <MenuItem onClick={scrollToTop}>
+            Scroll to Top <ArrowUpwardIcon sx={{ ml: 2 }} />
           </MenuItem>
         )}
       </Menu>

@@ -35,7 +35,7 @@ const AuthUserPage = () => {
       postsColumn={
         <>
           <PostInputComponent />
-          <PostsList route="/api/post/getPosts/" />
+          <PostsList route="/api/post/getPosts" />
         </>
       }
       followsColumn={

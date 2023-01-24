@@ -1,16 +1,19 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
+import { useParams } from "react-router";
 
 import { deleteLoadedPosts, setNewPosts } from "../store/postsSlice";
 
 // Hook made for fetching and preparing data about posts
 
-const usePostsLoad = (url: string, page: number) => {
+const usePostsLoad = (url: string) => {
+  const [page, setPageNumber] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [hasMore, setHasMore] = useState(false);
+
+  const { id } = useParams();
 
   const controller = new AbortController();
 
@@ -21,8 +24,10 @@ const usePostsLoad = (url: string, page: number) => {
       setLoading(true);
       setError(false);
 
+      let idParams = id ? `/${id}/` : "/";
+
       const response = await axios({
-        url: url,
+        url: `${url}${idParams}${page}`,
         method: "GET",
 
         signal: controller.signal,
@@ -34,6 +39,7 @@ const usePostsLoad = (url: string, page: number) => {
 
       setLoading(false);
     } catch (err) {
+      console.log(err);
       setError(true);
     }
     return controller.abort();
@@ -41,15 +47,16 @@ const usePostsLoad = (url: string, page: number) => {
 
   useEffect(() => {
     getData();
-  }, [page, url]);
+  }, [page, url, id]);
 
   useEffect(() => {
     return () => {
+      setPageNumber(1);
       dispatch(deleteLoadedPosts());
     };
-  }, []);
+  }, [url, id]);
 
-  return { loading, error, hasMore };
+  return { loading, error, hasMore, setPageNumber };
 };
 
 export default usePostsLoad;

@@ -22,14 +22,6 @@ const ImageWithText = ({
   ...containerProps
 }: Props) => {
   return (
-    // <Grid container direction="column" {...containerProps}>
-    //   <Grid item xs={4}>
-    //     <Typography {...typographyProps}>{content}</Typography>
-    //   </Grid>
-    //   <Grid item xs={8}>
-    //     {image}
-    //   </Grid>
-    // </Grid>
     <Box
       display="flex"
       flexDirection="column"
@@ -37,9 +29,17 @@ const ImageWithText = ({
       alignItems="center"
       width={width}
       height={height}
+      {...containerProps}
     >
       <Typography variant="h5">{content}</Typography>
-      <Box width={0.6} height={0.7}>
+      <Box
+        width={0.4}
+        height={0.7}
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+      >
         {image}
       </Box>
     </Box>

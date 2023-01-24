@@ -1,4 +1,3 @@
-import { useCallback, useRef, useState } from "react";
 import { useAppSelector } from "../hooks/reduxHooks";
 import usePostsInfiniteScroll from "../hooks/usePostsInfiniteScroll";
 import usePostsLoad from "../hooks/usePostsLoad";
@@ -17,11 +16,7 @@ const PostsList = ({ route }: Props) => {
   // it always use the postsSlice (it resets anytime someone leave current page/change selected cause of the usePostsLoad hook logic)
 
   const posts = useAppSelector((state) => state.posts.posts);
-  const [pageNumber, setPageNumber] = useState(1);
-  const { loading, error, hasMore } = usePostsLoad(
-    `${route}/${pageNumber}`,
-    pageNumber
-  );
+  const { loading, error, hasMore, setPageNumber } = usePostsLoad(`${route}`);
 
   const lastPostElementRef = usePostsInfiniteScroll({
     loading,
@@ -41,7 +36,16 @@ const PostsList = ({ route }: Props) => {
       {loading && <CustomSkeleton width="100%" height="30vw" />}
       {loading && <CustomSkeleton width="100%" height="30vw" />}
       {loading && <CustomSkeleton width="100%" height="30vw" />}
-      {!hasMore && !error && (
+
+      {error && (
+        <ImageWithText
+          content={"Oops! Something went wrong"}
+          image={<PostsError width={0.5} height={0.3} />}
+          width="100%"
+          height="30vw"
+        />
+      )}
+      {!hasMore && !loading && !error && posts.length > 0 && (
         <ImageWithText
           content="No more posts here"
           image={<NoMorePosts />}
@@ -49,20 +53,12 @@ const PostsList = ({ route }: Props) => {
           height="30vw"
         />
       )}
-      {error && (
-        <ImageWithText
-          content={"Oops! Something went wrong"}
-          image={<PostsError />}
-          width="100%"
-          height="30vw"
-        />
-      )}
-      {!hasMore && !loading && posts.length === 0 && (
+      {!hasMore && !error && !loading && posts.length === 0 && (
         <ImageWithText
           content={"This user didn`t create any post yet!"}
           image={<EmptyPostsList />}
           width="100%"
-          height="30vw"
+          height="30vh"
         />
       )}
     </>

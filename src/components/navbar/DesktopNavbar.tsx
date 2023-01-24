@@ -17,33 +17,17 @@ import { useDispatch } from "react-redux";
 import { setMode } from "../../store/themeSlice";
 import useLogout from "../../hooks/useLogout";
 import { useNavigate, useParams } from "react-router";
-import { useState } from "react";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import useScrollToTop from "../../hooks/useScrollToTop";
 
 const DesktopNavbar = () => {
-  const [visible, setVisible] = useState(false);
   const theme = useTheme();
   const dispatch = useDispatch();
   const logout = useLogout();
   const navigate = useNavigate();
   let { id } = useParams();
 
-  const toggleVisible = () => {
-    const scrolled = document.documentElement.scrollTop;
-    if (scrolled > 300) {
-      setVisible(true);
-    } else if (scrolled <= 300) {
-      setVisible(false);
-    }
-  };
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
-  window.addEventListener("scroll", toggleVisible);
+  const [visible, scrollToTop] = useScrollToTop();
 
   const toggleMode = () => {
     dispatch(setMode());
@@ -75,6 +59,7 @@ const DesktopNavbar = () => {
           >
             SocialMediaApp
           </Typography>
+          {/* scroll to Top button */}
           <Stack direction="row" minWidth="15%" justifyContent="space-between">
             {visible && (
               <CustomIconButton
@@ -84,6 +69,7 @@ const DesktopNavbar = () => {
                 onClick={scrollToTop}
               />
             )}
+            {/* Button navigating to main page when user is not on main page (when he checks somebody else account) */}
             {id && (
               <CustomIconButton
                 sx={{ px: 3, py: 1.5 }}

@@ -35,9 +35,7 @@ const OtherUserPage = () => {
           )}
         </>
       }
-      postsColumn={
-        <PostsList route={`/api/post/getUserPosts/${fetchedUser?.id}`} />
-      }
+      postsColumn={<PostsList route={`/api/post/getUserPosts`} />}
       followsColumn={
         <>
           {loadingUser && <CustomSkeleton height="35vh" width="100%" />}
