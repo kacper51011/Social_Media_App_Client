@@ -176,7 +176,10 @@ const PostItem = forwardRef(
                 variant="body1"
                 ml={1}
                 component="div"
-                onClick={() => navigate(`/main/${userId}`)}
+                onClick={() => {
+                  navigate(`/main/${userId}`);
+                  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+                }}
               >
                 {firstName + " " + lastName}
               </Typography>
@@ -191,9 +194,9 @@ const PostItem = forwardRef(
                   onClick={likeUnlike}
                   icon={
                     authLikedPosts.includes(id) ? (
-                      <ThumbDownAltIcon />
+                      <ThumbDownAltIcon color="primary" />
                     ) : (
-                      <ThumbUpAltIcon />
+                      <ThumbUpAltIcon color="primary" />
                     )
                   }
                 />
@@ -202,9 +205,9 @@ const PostItem = forwardRef(
                   onClick={followUnfollow}
                   icon={
                     doUserFollowAuthor ? (
-                      <PersonRemoveIcon />
+                      <PersonRemoveIcon color="primary" />
                     ) : (
-                      <PersonAddIcon />
+                      <PersonAddIcon color="primary" />
                     )
                   }
                 />

@@ -44,7 +44,7 @@ const FollowedPersonItem = ({
   return (
     <Grid
       container
-      width="1"
+      width={1}
       py={0.25}
       px={0.75}
       my={1}
@@ -64,7 +64,10 @@ const FollowedPersonItem = ({
           variant="subtitle1"
           fontWeight="600"
           component="div"
-          onClick={() => navigate(`/main/${id}`)}
+          onClick={() => {
+            navigate(`/main/${id}`);
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+          }}
         >
           {firstName + " " + lastName}
         </Typography>

@@ -1,14 +1,13 @@
-import { Paper, Typography, useTheme } from "@mui/material";
-import { ReactElement } from "react";
+import { Box, Paper, Typography } from "@mui/material";
+import { ReactNode } from "react";
+
 import { FollowProps } from "./FollowedPersonItem";
 
 type Props = {
-  childrens?: ReactElement<FollowProps>[];
+  childrens?: any;
 };
 
 const FollowsContainer = ({ childrens }: Props) => {
-  const theme = useTheme();
-
   return (
     <Paper
       elevation={5}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { TransitionGroup } from "react-transition-group";
 import { useOutletContext } from "react-router";
 import FollowedPersonItem from "../components/column follows/FollowedPersonItem";
 import FollowsContainer from "../components/column follows/FollowsContainer";
@@ -10,6 +11,7 @@ import { useAppSelector } from "../hooks/reduxHooks";
 import usePostsLoad from "../hooks/usePostsLoad";
 
 import { displayedColumn } from "./Main";
+import { Collapse } from "@mui/material";
 
 const AuthUserPage = () => {
   const followings = useAppSelector((state) => state.auth.user?.following);
@@ -42,19 +44,23 @@ const AuthUserPage = () => {
       followsColumn={
         <FollowsContainer
           childrens={
-            followings &&
-            followings.map((following) => {
-              return (
-                <FollowedPersonItem
-                  key={following.id}
-                  id={following.id}
-                  photo={following.picturePath}
-                  firstName={following.firstName}
-                  lastName={following.lastName}
-                  job={following.job}
-                />
-              );
-            })
+            <TransitionGroup>
+              {followings &&
+                followings.map((following) => {
+                  return (
+                    <Collapse key={following.id} collapsedSize={1}>
+                      <FollowedPersonItem
+                        key={following.id}
+                        id={following.id}
+                        photo={following.picturePath}
+                        firstName={following.firstName}
+                        lastName={following.lastName}
+                        job={following.job}
+                      />
+                    </Collapse>
+                  );
+                })}
+            </TransitionGroup>
           }
         />
       }

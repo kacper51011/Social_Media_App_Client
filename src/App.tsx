@@ -12,9 +12,10 @@ import RegisterWindow from "./components/auth/RegisterWindow";
 import OtherUserPage from "./pages/OtherUserPage";
 import AuthUserPage from "./pages/AuthUserPage";
 
-// todo: improve routes and routing overally
 // todo: improve architecture
-// todo: improve image scaling (height)
+// todo: add animations
+// todo: add images with texts as a state informations (errors etc)
+// todo: add 404 route
 
 function App() {
   const mode = useAppSelector((state) => state.theme?.theme);

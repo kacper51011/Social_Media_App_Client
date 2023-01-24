@@ -29,7 +29,7 @@ const UserPageContainer = ({
         display={{ xs: checkVisibility("profile"), md: "block" }}
         xs={12}
         md={3.5}
-        mt={10}
+        mt={{ xs: 5, md: 15 }}
       >
         {profileColumn}
       </Grid>
@@ -39,7 +39,7 @@ const UserPageContainer = ({
         display={{ xs: checkVisibility("posts"), md: "block" }}
         xs={12}
         md={5}
-        mt={10}
+        mt={{ xs: 5, md: 15 }}
       >
         {postsColumn}
       </Grid>
@@ -49,7 +49,7 @@ const UserPageContainer = ({
         display={{ xs: checkVisibility("follows"), md: "block" }}
         xs={10}
         md={3.5}
-        mt={10}
+        mt={{ xs: 5, md: 15 }}
       >
         {followsColumn}
       </Grid>

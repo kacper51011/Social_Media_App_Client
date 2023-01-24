@@ -5,13 +5,17 @@ import { Menu, MenuItem, useTheme } from "@mui/material";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
+import HomeIcon from "@mui/icons-material/Home";
+import { useNavigate, useParams } from "react-router";
 
 type Props = {
   toggleMode: () => void;
 };
 
 const MobileMenu = ({ toggleMode }: Props) => {
+  let { id } = useParams();
   const theme = useTheme();
+  const navigate = useNavigate();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -21,7 +25,7 @@ const MobileMenu = ({ toggleMode }: Props) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const darkMode = true;
+
   return (
     <>
       <CustomIconButton
@@ -53,9 +57,20 @@ const MobileMenu = ({ toggleMode }: Props) => {
             <DarkModeIcon sx={{ ml: 2 }} />
           )}
         </MenuItem>
+
         <MenuItem>
           Use voice helper <SmartToyIcon sx={{ ml: 2 }} />
         </MenuItem>
+        {id && (
+          <MenuItem
+            onClick={() => {
+              navigate("/main");
+              window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+            }}
+          >
+            Home board <HomeIcon sx={{ ml: 2 }} />
+          </MenuItem>
+        )}
       </Menu>
     </>
   );

@@ -1,7 +1,6 @@
 import { Avatar, Box, Divider, Grid, Paper, Typography } from "@mui/material";
 import PlaceIcon from "@mui/icons-material/Place";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
-import { useAppSelector } from "../../hooks/reduxHooks";
 
 type Props = {
   photo: string;
@@ -42,7 +41,11 @@ const UserCard = ({
         </Grid>
 
         <Grid sx={{ flexDirection: "column", justifyContent: "center" }}>
-          <Typography sx={{ cursor: "pointer" }} variant="body1">
+          <Typography
+            fontWeight={600}
+            sx={{ cursor: "pointer" }}
+            variant="body1"
+          >
             {firstName + " " + lastName}
           </Typography>
           <Typography variant="caption">
@@ -52,13 +55,13 @@ const UserCard = ({
       </Grid>
       <Divider sx={{ my: 1 }} />
       <Box my={1} mx={0.5} display="flex">
-        <PlaceIcon />
+        <PlaceIcon color="primary" />
         <Typography ml={4} variant="caption">
           {location}
         </Typography>
       </Box>
       <Box my={1} mx={0.5} display="flex">
-        <BusinessCenterIcon />
+        <BusinessCenterIcon color="primary" />
         <Typography ml={4} variant="caption">
           {job}
         </Typography>

@@ -14,7 +14,9 @@ const CustomIconButton = ({
 }: Props) => {
   return (
     <Tooltip title={title}>
-      <IconButton {...IconButtonProps}>{icon}</IconButton>
+      <IconButton color="primary" {...IconButtonProps}>
+        {icon}
+      </IconButton>
     </Tooltip>
   );
 };

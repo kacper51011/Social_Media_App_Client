@@ -12,7 +12,7 @@ const OtherUserPage = () => {
   const checkVisibility: (column: displayedColumn) => "block" | "none" =
     useOutletContext();
 
-  const fetchedUser = useFetchedUser();
+  const [fetchedUser, loadingUser, error] = useFetchedUser();
 
   return (
     <UserPageContainer

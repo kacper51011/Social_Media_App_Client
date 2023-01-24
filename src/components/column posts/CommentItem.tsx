@@ -28,7 +28,7 @@ const CommentItem = ({
         </Avatar>
       </Grid>
       <Grid item xs={10.5} sx={{ minHeight: 0.2 }}>
-        <Typography variant="caption" fontWeight="500">
+        <Typography variant="caption" fontWeight="600">
           {commentCreatorFirstName + " " + commentCreatorLastName}
         </Typography>
         <Paper
@@ -38,6 +38,7 @@ const CommentItem = ({
             py: 1,
             px: 0.5,
             width: "fit-content",
+            borderRadius: "16px",
           }}
         >
           <Typography variant="caption">{commentContent}</Typography>
