@@ -11,6 +11,7 @@ import LoginWindow from "./components/auth/LoginWindow";
 import RegisterWindow from "./components/auth/RegisterWindow";
 import OtherUserPage from "./pages/OtherUserPage";
 import AuthUserPage from "./pages/AuthUserPage";
+import PageNotFound from "./pages/PageNotFound";
 
 // todo: improve architecture
 // todo: add animations
@@ -34,10 +35,11 @@ function App() {
               <Route path="register" element={<RegisterWindow />}></Route>
             </Route>
 
-            <Route path="/main" element={<Main />}>
+            <Route path="/main" element={user ? <Main /> : <Navigate to="/" />}>
               <Route index element={<AuthUserPage />}></Route>
               <Route path=":id" element={<OtherUserPage />}></Route>
             </Route>
+            <Route path="*" element={<PageNotFound />}></Route>
           </Routes>
         </CssBaseline>
       </ThemeProvider>

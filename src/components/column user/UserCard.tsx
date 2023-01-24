@@ -25,7 +25,7 @@ const UserCard = ({
 }: Props) => {
   return (
     <Paper
-      elevation={5}
+      elevation={2}
       sx={{
         minWidth: 1,
 

@@ -2,10 +2,11 @@ import { Grid, useTheme } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useAppSelector } from "../../hooks/reduxHooks";
-import { unfollow } from "../../store/authSlice";
+import { follow, unfollow } from "../../store/authSlice";
 import CustomIconButton from "../buttons/CustomIconButton";
 import { useNavigate } from "react-router";
 
@@ -29,6 +30,8 @@ const FollowedPersonItem = ({
   const authUser = useAppSelector((state) => state.auth.user);
   const dispatch = useDispatch();
 
+  const isUserFollowed = authUser?.followingIDs.includes(id);
+
   const deleteFollow = async () => {
     try {
       await axios.patch("/api/user/follow", {
@@ -39,6 +42,26 @@ const FollowedPersonItem = ({
       return;
     }
     dispatch(unfollow(id));
+  };
+
+  const addFollow = async () => {
+    try {
+      await axios.patch("/api/user/follow", {
+        id: authUser!.id,
+        userToFollowId: id,
+      });
+    } catch (err) {
+      return;
+    }
+    dispatch(
+      follow({
+        id: id,
+        firstName: firstName,
+        lastName: lastName,
+        picturePath: photo,
+        job: job,
+      })
+    );
   };
 
   return (
@@ -75,13 +98,24 @@ const FollowedPersonItem = ({
       </Grid>
 
       <Grid item xs={2}>
-        <CustomIconButton
-          title={"unfollow"}
-          icon={<PersonRemoveIcon />}
-          onClick={() => {
-            deleteFollow();
-          }}
-        />
+        {isUserFollowed && (
+          <CustomIconButton
+            title={"unfollow"}
+            icon={<PersonRemoveIcon />}
+            onClick={() => {
+              deleteFollow();
+            }}
+          />
+        )}
+        {!isUserFollowed && (
+          <CustomIconButton
+            title={"follow"}
+            icon={<PersonAddIcon />}
+            onClick={() => {
+              addFollow();
+            }}
+          />
+        )}
       </Grid>
     </Grid>
   );

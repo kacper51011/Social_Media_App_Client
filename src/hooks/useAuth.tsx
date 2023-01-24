@@ -21,7 +21,6 @@ const useAuth = () => {
         dispatch(setLogout());
         localStorage.clear();
         setIsLoggedIn(false);
-        navigate("/");
       } else {
         dispatch(setLogin(response.data.user));
         setIsLoggedIn(true);
@@ -30,7 +29,6 @@ const useAuth = () => {
       dispatch(setLogout());
       localStorage.clear();
       setIsLoggedIn(false);
-      navigate("/");
     }
     return controller.abort();
   };

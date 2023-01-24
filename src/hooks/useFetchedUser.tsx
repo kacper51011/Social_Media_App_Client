@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { User } from "../store/authSlice";
 
 const useFetchedUser = () => {
@@ -8,6 +8,7 @@ const useFetchedUser = () => {
   const [loadingUser, setLoadingUser] = useState(true);
   const [error, setError] = useState(false);
   const [fetchedUser, setFetchedUser] = useState<User | null>(null);
+  const navigate = useNavigate();
 
   const fetchUser = async () => {
     try {
@@ -16,7 +17,7 @@ const useFetchedUser = () => {
       const data = await axios.get(`/api/user/getUser/${id}`);
       setFetchedUser(data.data.user as User);
     } catch (err) {
-      setError(true);
+      navigate("*");
     }
     setLoadingUser(false);
   };

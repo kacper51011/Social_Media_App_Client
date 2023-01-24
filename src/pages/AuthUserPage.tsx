@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { TransitionGroup } from "react-transition-group";
 import { useOutletContext } from "react-router";
 import FollowedPersonItem from "../components/column follows/FollowedPersonItem";
@@ -8,8 +7,6 @@ import UserCard from "../components/column user/UserCard";
 import PostsList from "../components/PostsList";
 import UserPageContainer from "../components/UserPageContainer";
 import { useAppSelector } from "../hooks/reduxHooks";
-import usePostsLoad from "../hooks/usePostsLoad";
-
 import { displayedColumn } from "./Main";
 import { Collapse } from "@mui/material";
 

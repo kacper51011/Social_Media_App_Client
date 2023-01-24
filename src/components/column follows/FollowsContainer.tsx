@@ -10,7 +10,7 @@ type Props = {
 const FollowsContainer = ({ childrens }: Props) => {
   return (
     <Paper
-      elevation={5}
+      elevation={2}
       sx={{
         width: 1,
         minHeight: "50vh",

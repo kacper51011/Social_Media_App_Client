@@ -155,7 +155,7 @@ const PostItem = forwardRef(
 
     return (
       <Paper
-        elevation={5}
+        elevation={2}
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -186,7 +186,7 @@ const PostItem = forwardRef(
             </Box>
           </Grid>
 
-          <Grid xs={2} item display="flex" ml="auto">
+          <Grid xs={3} md={2} item display="flex" ml="auto">
             {!IsAuthUserAnAuthor && (
               <>
                 <CustomIconButton

@@ -4,6 +4,10 @@ import usePostsInfiniteScroll from "../hooks/usePostsInfiniteScroll";
 import usePostsLoad from "../hooks/usePostsLoad";
 import PostItem from "./column posts/PostItem";
 import CustomSkeleton from "./CustomSkeleton";
+import ImageWithText from "./ImageWithText";
+import { ReactComponent as NoMorePosts } from "../utils/NoMorePosts.svg";
+import { ReactComponent as PostsError } from "../utils/PostsError.svg";
+import { ReactComponent as EmptyPostsList } from "../utils/EmptyPostsList.svg";
 
 type Props = {
   route: string;
@@ -37,6 +41,30 @@ const PostsList = ({ route }: Props) => {
       {loading && <CustomSkeleton width="100%" height="30vw" />}
       {loading && <CustomSkeleton width="100%" height="30vw" />}
       {loading && <CustomSkeleton width="100%" height="30vw" />}
+      {!hasMore && !error && (
+        <ImageWithText
+          content="No more posts here"
+          image={<NoMorePosts />}
+          width="100%"
+          height="30vw"
+        />
+      )}
+      {error && (
+        <ImageWithText
+          content={"Oops! Something went wrong"}
+          image={<PostsError />}
+          width="100%"
+          height="30vw"
+        />
+      )}
+      {!hasMore && !loading && posts.length === 0 && (
+        <ImageWithText
+          content={"This user didn`t create any post yet!"}
+          image={<EmptyPostsList />}
+          width="100%"
+          height="30vw"
+        />
+      )}
     </>
   );
 };

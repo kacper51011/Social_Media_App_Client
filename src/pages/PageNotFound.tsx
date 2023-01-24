@@ -1,0 +1,24 @@
+import { Box } from "@mui/material";
+import ImageWithText from "../components/ImageWithText";
+import { ReactComponent as PageNotFoundImage } from "../utils/PageNotFoundImage.svg";
+
+const PageNotFound = () => {
+  return (
+    <Box
+      width="100vw"
+      height="100vh"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <ImageWithText
+        content={"Couldn`t find the page"}
+        image={<PageNotFoundImage />}
+        width={"70%"}
+        height={"70%"}
+      />
+    </Box>
+  );
+};
+
+export default PageNotFound;

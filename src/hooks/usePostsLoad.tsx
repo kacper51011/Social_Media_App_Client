@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 
 import { deleteLoadedPosts, setNewPosts } from "../store/postsSlice";
 
@@ -33,7 +34,6 @@ const usePostsLoad = (url: string, page: number) => {
 
       setLoading(false);
     } catch (err) {
-      console.log(err);
       setError(true);
     }
     return controller.abort();
