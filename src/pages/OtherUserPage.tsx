@@ -3,7 +3,7 @@ import { useOutletContext } from "react-router";
 import FollowsContainer from "../components/column follows/FollowsContainer";
 import UserCard from "../components/column user/UserCard";
 import UserPageContainer from "../components/UserPageContainer";
-import PostsList from "../components/PostsList";
+import PostsList from "../components/column posts/PostsList";
 import useFetchedUser from "../hooks/useFetchedUser";
 import FollowedPersonItem from "../components/column follows/FollowedPersonItem";
 import { following } from "../store/authSlice";

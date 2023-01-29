@@ -22,6 +22,7 @@ import useScrollToTop from "../../hooks/useScrollToTop";
 import { ReactComponent as UKFlag } from "../../utils/united-kingdom-flag-icon.svg";
 import { ReactComponent as PLFlag } from "../../utils/poland-flag-icon.svg";
 import { useTranslation } from "react-i18next";
+import LanguageChangeButton from "../buttons/LanguageChangeButton";
 
 const DesktopNavbar = () => {
   const theme = useTheme();
@@ -108,7 +109,7 @@ const DesktopNavbar = () => {
               icon={<SettingsIcon />}
               title={t("settings")}
             />
-            {i18n.language === "pl" && (
+            {/* {i18n.language === "pl" && (
               <CustomIconButton
                 icon={<PLFlag width="50px" height="30px" />}
                 title="Polski język"
@@ -125,7 +126,8 @@ const DesktopNavbar = () => {
                   i18n.changeLanguage("pl");
                 }}
               />
-            )}
+            )} */}
+            <LanguageChangeButton />
 
             <CustomIconButton
               sx={{ px: 3, py: 1.5 }}

@@ -36,6 +36,8 @@ const resources = {
       postsColumn: "Posts",
       profileColumn: "Profile",
       followsColumn: "Follows",
+      mobileTheme: "Change theme",
+      changeLanguage: "Language",
     },
     dropzone: {
       beforeFile: "Drop your image or click to choose",
@@ -100,6 +102,8 @@ const resources = {
       postsColumn: "Posty",
       profileColumn: "Profil",
       followsColumn: "Obserwowani",
+      mobileTheme: "Zmień tryb",
+      changeLanguage: "Język",
     },
     dropzone: {
       beforeFile: "Przenieś zdjęcie tutaj lub kliknij aby wybrać!",

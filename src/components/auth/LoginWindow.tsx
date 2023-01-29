@@ -23,7 +23,7 @@ type UserLoginType = z.infer<typeof UserLoginSchema>;
 const LoginWindow = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { t } = useTranslation("loginPage");
+  const { t, i18n } = useTranslation("loginPage");
 
   const {
     register,

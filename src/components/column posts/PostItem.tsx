@@ -193,7 +193,7 @@ const PostItem = forwardRef(
               <>
                 <CustomIconButton
                   title={
-                    authLikedPosts.includes(id)
+                    !authLikedPosts.includes(id)
                       ? t("buttonLike")
                       : t("buttonUnlike")
                   }
@@ -208,7 +208,9 @@ const PostItem = forwardRef(
                 />
                 <CustomIconButton
                   title={
-                    doUserFollowAuthor ? t("buttonFollow") : t("buttonUnfollow")
+                    !doUserFollowAuthor
+                      ? t("buttonFollow")
+                      : t("buttonUnfollow")
                   }
                   onClick={followUnfollow}
                   icon={

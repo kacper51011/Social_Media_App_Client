@@ -1,12 +1,12 @@
-import { useAppSelector } from "../hooks/reduxHooks";
-import usePostsInfiniteScroll from "../hooks/usePostsInfiniteScroll";
-import usePostsLoad from "../hooks/usePostsLoad";
-import PostItem from "./column posts/PostItem";
-import CustomSkeleton from "./CustomSkeleton";
-import ImageWithText from "./ImageWithText";
-import { ReactComponent as NoMorePosts } from "../utils/NoMorePosts.svg";
-import { ReactComponent as PostsError } from "../utils/PostsError.svg";
-import { ReactComponent as EmptyPostsList } from "../utils/EmptyPostsList.svg";
+import { useAppSelector } from "../../hooks/reduxHooks";
+import usePostsInfiniteScroll from "../../hooks/usePostsInfiniteScroll";
+import usePostsLoad from "../../hooks/usePostsLoad";
+import PostItem from "./PostItem";
+import CustomSkeleton from "../CustomSkeleton";
+import ImageWithText from "../ImageWithText";
+import { ReactComponent as NoMorePosts } from "../../utils/NoMorePosts.svg";
+import { ReactComponent as PostsError } from "../../utils/PostsError.svg";
+import { ReactComponent as EmptyPostsList } from "../../utils/EmptyPostsList.svg";
 import { useTranslation } from "react-i18next";
 
 type Props = {
