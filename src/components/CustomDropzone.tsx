@@ -3,6 +3,7 @@ import { ComponentProps, Dispatch } from "react";
 import { useDropzone } from "react-dropzone";
 import CustomIconButton from "./buttons/CustomIconButton";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   fileToSend: File | null;
@@ -17,6 +18,7 @@ const CustomDropzone = ({
   ...containerProps
 }: Props) => {
   const theme = useTheme();
+  const { t, i18n } = useTranslation("dropzone");
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     accept: { "image/*": [".png", ".jpg", ".jpeg"] },
@@ -46,12 +48,10 @@ const CustomDropzone = ({
       >
         <InputBase sx={{ display: "none" }} {...getInputProps} />
         <Typography textAlign="center">
-          {!fileToSend
-            ? "Drop your Image or click to choose"
-            : "Image choosen!"}
+          {!fileToSend ? t("beforeFile") : t("afterFile")}
         </Typography>
       </Box>
-      {fileToSend && <Typography mt={2}>Files:</Typography>}
+      {fileToSend && <Typography mt={2}>{t("files")}</Typography>}
       {fileToSend && (
         <Box
           width={1}
@@ -65,7 +65,7 @@ const CustomDropzone = ({
           <CustomIconButton
             size="small"
             icon={<RemoveCircleIcon />}
-            title="delete image"
+            title={t("deleteImage")}
             onClick={() => setFileToSend(null)}
           />
         </Box>

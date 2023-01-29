@@ -14,9 +14,17 @@ import AuthUserPage from "./pages/AuthUserPage";
 import PageNotFound from "./pages/PageNotFound";
 
 // todo: improve architecture
-// todo: add animations
-// todo: add images with texts as a state informations (errors etc)
-// todo: add 404 route
+// Wysrodkowac pionowo sekcje logowania i rejestracji
+
+// Zmienić troszkę dropzone w rejestracji
+
+// Routing
+
+// Zamienic route /main na /
+
+// Zmienic routing profilowy na /profile/:id
+
+// Biblioteka i18n
 
 function App() {
   const mode = useAppSelector((state) => state.theme?.theme);
@@ -26,7 +34,7 @@ function App() {
   useAuth();
 
   return (
-    <Box overflow="hidden" mb={10}>
+    <Box overflow="hidden">
       <ThemeProvider theme={theme}>
         <CssBaseline>
           <Routes>

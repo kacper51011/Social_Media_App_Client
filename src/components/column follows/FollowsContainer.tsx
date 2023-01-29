@@ -1,13 +1,13 @@
-import { Box, Paper, Typography } from "@mui/material";
-import { ReactNode } from "react";
-
-import { FollowProps } from "./FollowedPersonItem";
+import { Paper, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   childrens?: any;
 };
 
 const FollowsContainer = ({ childrens }: Props) => {
+  const { t } = useTranslation("follows");
+
   return (
     <Paper
       elevation={2}
@@ -21,7 +21,7 @@ const FollowsContainer = ({ childrens }: Props) => {
       }}
     >
       <Typography mb={2} fontWeight="bold" variant="caption">
-        Follows List
+        {t("followList")}
       </Typography>
       {childrens}
     </Paper>

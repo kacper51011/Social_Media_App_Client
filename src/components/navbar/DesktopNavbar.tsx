@@ -19,6 +19,9 @@ import useLogout from "../../hooks/useLogout";
 import { useNavigate, useParams } from "react-router";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import useScrollToTop from "../../hooks/useScrollToTop";
+import { ReactComponent as UKFlag } from "../../utils/united-kingdom-flag-icon.svg";
+import { ReactComponent as PLFlag } from "../../utils/poland-flag-icon.svg";
+import { useTranslation } from "react-i18next";
 
 const DesktopNavbar = () => {
   const theme = useTheme();
@@ -26,6 +29,7 @@ const DesktopNavbar = () => {
   const logout = useLogout();
   const navigate = useNavigate();
   let { id } = useParams();
+  const { t, i18n } = useTranslation("navbar");
 
   const [visible, scrollToTop] = useScrollToTop();
 
@@ -52,7 +56,10 @@ const DesktopNavbar = () => {
           <Typography
             variant="h5"
             component="div"
-            onClick={() => navigate("/main")}
+            onClick={() => {
+              window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+              setTimeout(() => navigate("/main"), 500);
+            }}
             fontWeight="500"
             sx={{ cursor: "pointer" }}
             color={theme.palette.neutral.dark}
@@ -65,7 +72,7 @@ const DesktopNavbar = () => {
               <CustomIconButton
                 sx={{ px: 3, py: 1.5 }}
                 icon={<ArrowUpwardIcon />}
-                title="scroll to top"
+                title={t("scroll")}
                 onClick={scrollToTop}
               />
             )}
@@ -74,7 +81,7 @@ const DesktopNavbar = () => {
               <CustomIconButton
                 sx={{ px: 3, py: 1.5 }}
                 icon={<HomeIcon />}
-                title="home board"
+                title={t("home")}
                 onClick={() => {
                   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
                   setTimeout(() => navigate("/main"), 500);
@@ -91,22 +98,39 @@ const DesktopNavbar = () => {
                   <LightModeIcon />
                 )
               }
-              title={theme.palette.mode === "dark" ? "dark mode" : "light mode"}
+              title={
+                theme.palette.mode === "dark" ? t("themeDark") : t("themeLight")
+              }
             />
-            <CustomIconButton
-              sx={{ px: 3, py: 1.5 }}
-              icon={<SmartToyIcon />}
-              title="voice helper"
-            />
+
             <CustomIconButton
               sx={{ px: 3, py: 1.5 }}
               icon={<SettingsIcon />}
-              title="settings"
+              title={t("settings")}
             />
+            {i18n.language === "pl" && (
+              <CustomIconButton
+                icon={<PLFlag width="50px" height="30px" />}
+                title="Polski język"
+                onClick={() => {
+                  i18n.changeLanguage("en");
+                }}
+              />
+            )}
+            {i18n.language === "en" && (
+              <CustomIconButton
+                icon={<UKFlag width="50px" height="30px" />}
+                title="English language"
+                onClick={() => {
+                  i18n.changeLanguage("pl");
+                }}
+              />
+            )}
+
             <CustomIconButton
               sx={{ px: 3, py: 1.5 }}
               icon={<LogoutIcon />}
-              title="logout"
+              title={t("logout")}
               onClick={() => logout()}
             />
           </Stack>

@@ -27,6 +27,7 @@ import {
 } from "../../store/postsSlice";
 import { autoBatchEnhancer } from "@reduxjs/toolkit";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 
 // todo: connect redux toolkit to posts
 export type Post = {
@@ -70,6 +71,7 @@ const PostItem = forwardRef(
     }: Post,
     ref: Ref<Element | null | undefined>
   ) => {
+    const { t } = useTranslation("posts");
     const [commentsVisible, setCommentsVisible] = useState(false);
     const [commentToSend, setCommentToSend] = useState("");
 
@@ -190,7 +192,11 @@ const PostItem = forwardRef(
             {!IsAuthUserAnAuthor && (
               <>
                 <CustomIconButton
-                  title="like post"
+                  title={
+                    authLikedPosts.includes(id)
+                      ? t("buttonLike")
+                      : t("buttonUnlike")
+                  }
                   onClick={likeUnlike}
                   icon={
                     authLikedPosts.includes(id) ? (
@@ -201,7 +207,9 @@ const PostItem = forwardRef(
                   }
                 />
                 <CustomIconButton
-                  title="follow"
+                  title={
+                    doUserFollowAuthor ? t("buttonFollow") : t("buttonUnfollow")
+                  }
                   onClick={followUnfollow}
                   icon={
                     doUserFollowAuthor ? (
@@ -237,7 +245,7 @@ const PostItem = forwardRef(
           my={2}
         >
           <Typography variant="caption">
-            {likes?.length + " " + "likes"}
+            {likes?.length + " " + t("likes")}
           </Typography>
 
           {/* number of comments */}
@@ -247,7 +255,7 @@ const PostItem = forwardRef(
             variant="caption"
             sx={{ cursor: "pointer" }}
           >
-            {comments?.length + " " + "comments"}
+            {comments?.length + " " + t("comments")}
           </Typography>
         </Box>
         {commentsVisible && <Divider />}
@@ -266,6 +274,7 @@ const PostItem = forwardRef(
                   multiline
                   height={1}
                   value={commentToSend}
+                  placeholder={t("comment")!}
                   onChange={(e) => setCommentToSend(e.target.value)}
                 />
                 <Button
@@ -275,7 +284,7 @@ const PostItem = forwardRef(
                   size="small"
                   onClick={sendComment}
                 >
-                  Send
+                  {t("commentButton")}
                 </Button>
               </Box>
               <Divider />

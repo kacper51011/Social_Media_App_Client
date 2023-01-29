@@ -16,7 +16,7 @@ import { ReactComponent as RegisterWindowImage } from "../../utils/RegisterWindo
 import { UserRegisterSchema } from "../../utils/ValidationSchemas";
 import axios from "axios";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 // pre: I decided to not mess with dropzone and react hook form + zod,
 // so Im using state for file, which is not controlled by react hook form(state which let user add and delete single image )
@@ -30,6 +30,7 @@ const RegisterWindow = () => {
   const theme = useTheme();
   const desktopSize = useMediaQuery(theme.breakpoints.up("md"));
   const navigate = useNavigate();
+  const { t } = useTranslation("registerPage");
 
   const {
     register,
@@ -123,12 +124,12 @@ const RegisterWindow = () => {
         px={{ xs: 2, lg: 6 }}
       >
         <Typography textAlign="center" fontWeight="bold" variant="h4">
-          Join&nbsp;us!
+          {t("greeting")}
         </Typography>
         {/* firstName and lastName row */}
         <Box display="flex">
           <TextField
-            label="First Name"
+            label={t("firstName")}
             variant="standard"
             sx={{ width: 0.45 }}
             disabled={isSubmitting}
@@ -136,7 +137,7 @@ const RegisterWindow = () => {
           ></TextField>
           <Box width={0.1} />
           <TextField
-            label="Last Name"
+            label={t("lastName")}
             variant="standard"
             sx={{ width: 0.45 }}
             disabled={isSubmitting}
@@ -148,7 +149,7 @@ const RegisterWindow = () => {
           <TextField
             sx={{ my: 1, width: 0.45 }}
             variant="standard"
-            label="Location"
+            label={t("location")}
             disabled={isSubmitting}
             {...register("location")}
           ></TextField>
@@ -156,7 +157,7 @@ const RegisterWindow = () => {
           <TextField
             sx={{ my: 1, width: 0.45 }}
             variant="standard"
-            label="Job"
+            label={t("job")}
             fullWidth
             disabled={isSubmitting}
             {...register("job")}
@@ -177,7 +178,7 @@ const RegisterWindow = () => {
           <TextField
             sx={{ my: 1, width: 0.45 }}
             variant="standard"
-            label="Password"
+            label={t("password")}
             type="password"
             fullWidth
             disabled={isSubmitting}
@@ -188,7 +189,7 @@ const RegisterWindow = () => {
             sx={{ my: 1, width: 0.45 }}
             variant="standard"
             type="password"
-            label="ConfirmPassword"
+            label={t("confirmPassword")}
             disabled={isSubmitting}
             {...register("confirmPassword")}
             fullWidth
@@ -213,7 +214,6 @@ const RegisterWindow = () => {
           )}
           {errorMessages && (
             <Typography variant="caption" fontWeight="bold" color="error">
-              {" "}
               {errorMessages}
             </Typography>
           )}
@@ -227,9 +227,10 @@ const RegisterWindow = () => {
               px: 7,
               color: "white",
               mb: 2,
+              whiteSpace: "nowrap",
             }}
           >
-            Register
+            {t("button")}
           </Button>
 
           <Typography
@@ -239,8 +240,9 @@ const RegisterWindow = () => {
             variant="subtitle1"
             textAlign="center"
             onClick={() => navigate("/")}
+            whiteSpace="nowrap"
           >
-            Already&nbsp;have&nbsp;account? Click&nbsp;here!
+            {t("link")}
           </Typography>
         </Box>
       </Box>

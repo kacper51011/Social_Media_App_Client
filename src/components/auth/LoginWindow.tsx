@@ -16,12 +16,14 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { setLogin } from "../../store/authSlice";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 
 type UserLoginType = z.infer<typeof UserLoginSchema>;
 
 const LoginWindow = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation("loginPage");
 
   const {
     register,
@@ -82,7 +84,7 @@ const LoginWindow = () => {
         pb={2}
       >
         <Typography textAlign="center" fontWeight="bold" variant="h4">
-          Welcome&nbsp;back!
+          {t("greeting")}
         </Typography>
         <Box my={3}>
           <TextField
@@ -94,9 +96,9 @@ const LoginWindow = () => {
             disabled={isSubmitting}
           />
           <TextField
-            placeholder="Password"
             variant="standard"
             type="password"
+            label={t("password")}
             sx={{ my: 2 }}
             fullWidth
             {...register("password")}
@@ -129,9 +131,10 @@ const LoginWindow = () => {
               px: 7,
               color: "white",
               mb: 2,
+              whiteSpace: "nowrap",
             }}
           >
-            Login
+            {t("button")}
           </Button>
           <Typography
             sx={{
@@ -142,8 +145,9 @@ const LoginWindow = () => {
             variant="subtitle1"
             textAlign="center"
             onClick={() => navigate("/register")}
+            whiteSpace="nowrap"
           >
-            You&nbsp;don`t&nbsp;have&nbsp;account&nbsp;yet? Click&nbsp;here!
+            {t("link")}
           </Typography>
         </Box>
       </Box>

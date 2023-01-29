@@ -15,6 +15,7 @@ import axios from "axios";
 import { useAppSelector } from "../../hooks/reduxHooks";
 import { useDispatch } from "react-redux";
 import { setNewUserPost } from "../../store/authSlice";
+import { useTranslation } from "react-i18next";
 
 const PostInputComponent = () => {
   // I created separate state for file to send, it helps me with deleting already downloaded files from upload list
@@ -23,6 +24,7 @@ const PostInputComponent = () => {
   const [postInput, setPostInput] = useState("");
   const [fileToSend, setFileToSend] = useState<null | File>(null);
   const theme = useTheme();
+  const { t, i18n } = useTranslation("dropzone");
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     accept: { "image/*": [".png", ".jpg", ".jpeg"] },
     maxSize: 3000000,
@@ -85,7 +87,7 @@ const PostInputComponent = () => {
                 setPostInput(e.target.value);
               }}
               value={postInput}
-              placeholder="Write your post here..."
+              placeholder={t("inputPlaceholder")!}
               sx={{ width: "90%" }}
             />
           </Paper>
@@ -96,7 +98,7 @@ const PostInputComponent = () => {
       <Divider orientation="horizontal" sx={{ my: 2 }} />
       <Box display="flex" justifyContent="right" width={1}>
         <Button disabled={!postInput} variant="outlined" type="submit">
-          Send
+          {t("button")}
         </Button>
       </Box>
     </Paper>

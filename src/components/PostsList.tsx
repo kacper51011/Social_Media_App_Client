@@ -7,6 +7,7 @@ import ImageWithText from "./ImageWithText";
 import { ReactComponent as NoMorePosts } from "../utils/NoMorePosts.svg";
 import { ReactComponent as PostsError } from "../utils/PostsError.svg";
 import { ReactComponent as EmptyPostsList } from "../utils/EmptyPostsList.svg";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   route: string;
@@ -17,6 +18,7 @@ const PostsList = ({ route }: Props) => {
 
   const posts = useAppSelector((state) => state.posts.posts);
   const { loading, error, hasMore, setPageNumber } = usePostsLoad(`${route}`);
+  const { t } = useTranslation("imagesWithText");
 
   const lastPostElementRef = usePostsInfiniteScroll({
     loading,
@@ -39,7 +41,7 @@ const PostsList = ({ route }: Props) => {
 
       {error && (
         <ImageWithText
-          content={"Oops! Something went wrong"}
+          content={t("error")}
           image={<PostsError width={0.5} height={0.3} />}
           width="100%"
           height="30vw"
@@ -47,7 +49,7 @@ const PostsList = ({ route }: Props) => {
       )}
       {!hasMore && !loading && !error && posts.length > 0 && (
         <ImageWithText
-          content="No more posts here"
+          content={t("noMore")}
           image={<NoMorePosts />}
           width="100%"
           height="30vw"
@@ -55,7 +57,7 @@ const PostsList = ({ route }: Props) => {
       )}
       {!hasMore && !error && !loading && posts.length === 0 && (
         <ImageWithText
-          content={"This user didn`t create any post yet!"}
+          content={t("noPosts")}
           image={<EmptyPostsList />}
           width="100%"
           height="30vh"

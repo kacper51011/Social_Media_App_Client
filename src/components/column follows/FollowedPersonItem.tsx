@@ -9,6 +9,7 @@ import { useAppSelector } from "../../hooks/reduxHooks";
 import { follow, unfollow } from "../../store/authSlice";
 import CustomIconButton from "../buttons/CustomIconButton";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 
 export type FollowProps = {
   id: string;
@@ -29,6 +30,7 @@ const FollowedPersonItem = ({
   const theme = useTheme();
   const authUser = useAppSelector((state) => state.auth.user);
   const dispatch = useDispatch();
+  const { t } = useTranslation("follows");
 
   const isUserFollowed = authUser?.followingIDs.includes(id);
 
@@ -100,7 +102,7 @@ const FollowedPersonItem = ({
       <Grid item xs={2}>
         {isUserFollowed && (
           <CustomIconButton
-            title={"unfollow"}
+            title={t("unfollow")}
             icon={<PersonRemoveIcon />}
             onClick={() => {
               deleteFollow();
@@ -109,7 +111,7 @@ const FollowedPersonItem = ({
         )}
         {!isUserFollowed && (
           <CustomIconButton
-            title={"follow"}
+            title={t("follow")}
             icon={<PersonAddIcon />}
             onClick={() => {
               addFollow();

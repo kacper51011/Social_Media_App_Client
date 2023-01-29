@@ -1,6 +1,7 @@
 import { Avatar, Box, Divider, Grid, Paper, Typography } from "@mui/material";
 import PlaceIcon from "@mui/icons-material/Place";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   photo: string;
@@ -23,6 +24,8 @@ const UserCard = ({
   numberOfProfileViews,
   numberOfLikes,
 }: Props) => {
+  const { t, i18n } = useTranslation("userCard");
+
   return (
     <Paper
       elevation={2}
@@ -49,7 +52,7 @@ const UserCard = ({
             {firstName + " " + lastName}
           </Typography>
           <Typography variant="caption">
-            {`${followedPeopleNumber} Follows`}
+            {`${followedPeopleNumber} ${t("followsInfo")}`}
           </Typography>
         </Grid>
       </Grid>
@@ -75,7 +78,7 @@ const UserCard = ({
           sx={{ justifyContent: "space-between" }}
         >
           <Grid item py={1}>
-            <Typography variant="caption">Profile views</Typography>
+            <Typography variant="caption">{t("viewsInfo")}</Typography>
           </Grid>
           <Grid item py={1}>
             <Typography> {numberOfProfileViews}</Typography>
@@ -87,7 +90,7 @@ const UserCard = ({
           sx={{ justifyContent: "space-between" }}
         >
           <Grid item py={1}>
-            <Typography variant="caption">Likes under your posts</Typography>
+            <Typography variant="caption">{t("likesInfo")}</Typography>
           </Grid>
           <Grid item py={1}>
             <Typography>{numberOfLikes}</Typography>
