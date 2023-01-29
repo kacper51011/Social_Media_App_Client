@@ -16,15 +16,11 @@ import PageNotFound from "./pages/PageNotFound";
 // todo: improve architecture
 // Wysrodkowac pionowo sekcje logowania i rejestracji
 
-// Zmienić troszkę dropzone w rejestracji
-
 // Routing
 
 // Zamienic route /main na /
 
 // Zmienic routing profilowy na /profile/:id
-
-// Biblioteka i18n
 
 function App() {
   const mode = useAppSelector((state) => state.theme?.theme);

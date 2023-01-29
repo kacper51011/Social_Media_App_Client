@@ -6,23 +6,21 @@ import PersonIcon from "@mui/icons-material/Person";
 import { Stack, useTheme, Box } from "@mui/material";
 import ArticleIcon from "@mui/icons-material/Article";
 import PeopleIcon from "@mui/icons-material/People";
-import { displayedColumn } from "../../pages/Main";
 import { useDispatch } from "react-redux";
 import { setMode } from "../../store/themeSlice";
 import MobileMenu from "./MobileMenu";
 import useLogout from "../../hooks/useLogout";
-import { useAppSelector } from "../../hooks/reduxHooks";
 import {
   setToFollowsColumn,
   setToPostsColumn,
   setToProfileColumn,
 } from "../../store/columnSlice";
+import { useTranslation } from "react-i18next";
 
 const MobileNavbar = () => {
   const theme = useTheme();
   const logout = useLogout();
-
-  const column = useAppSelector((state) => state.column);
+  const { t } = useTranslation();
 
   const dispatch = useDispatch();
 
@@ -52,24 +50,24 @@ const MobileNavbar = () => {
             <CustomIconButton
               onClick={() => dispatch(setToProfileColumn())}
               icon={<PersonIcon />}
-              title="profile"
+              title={t("profileColumn")}
             />
             <CustomIconButton
               onClick={() => dispatch(setToPostsColumn())}
               icon={<ArticleIcon />}
-              title="posts"
+              title={t("postsColumn")}
             />
             <CustomIconButton
               onClick={() => dispatch(setToFollowsColumn())}
               icon={<PeopleIcon />}
-              title="follows"
+              title={t("followsColumn")}
             />
           </Stack>
 
           <CustomIconButton
             onClick={() => logout()}
             icon={<LogoutIcon />}
-            title="logout"
+            title={t("logout")}
           />
         </Toolbar>
       </AppBar>

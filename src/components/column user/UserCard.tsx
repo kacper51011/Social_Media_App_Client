@@ -24,18 +24,18 @@ const UserCard = ({
   numberOfProfileViews,
   numberOfLikes,
 }: Props) => {
-  const { t, i18n } = useTranslation("userCard");
+  const { t } = useTranslation("userCard");
 
   return (
     <Paper
       elevation={2}
       sx={{
         minWidth: 1,
-
         p: "calc(0.5vw + 10px)",
         display: "flex",
         flexDirection: "column",
         borderRadius: "16px",
+        mb: 5,
       }}
     >
       <Grid container width="1" direction="row" alignItems="center">

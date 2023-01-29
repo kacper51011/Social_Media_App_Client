@@ -17,13 +17,14 @@ import axios from "axios";
 import { setLogin } from "../../store/authSlice";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
+import LanguageChangeButton from "../buttons/LanguageChangeButton";
 
 type UserLoginType = z.infer<typeof UserLoginSchema>;
 
 const LoginWindow = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation("loginPage");
+  const { t } = useTranslation("loginPage");
 
   const {
     register,
@@ -68,8 +69,12 @@ const LoginWindow = () => {
         borderRadius: "16px",
         display: "flex",
         justifyContent: "center",
+        position: "relative",
       }}
     >
+      <Box position="absolute" display="flex" justifyContent="center" mx="auto">
+        <LanguageChangeButton />
+      </Box>
       <Box
         component="form"
         onSubmit={handleSubmit(onSubmit)}

@@ -23,7 +23,7 @@ const CommentItem = ({
       my={1}
     >
       <Grid item>
-        <Avatar src={`assets/${commentCreatorPicture}` || ""}>
+        <Avatar src={`/assets/${commentCreatorPicture}` || ""}>
           {commentCreatorFirstName[0]}{" "}
         </Avatar>
       </Grid>

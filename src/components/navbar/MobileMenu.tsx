@@ -9,7 +9,6 @@ import { useNavigate, useParams } from "react-router";
 import useScrollToTop from "../../hooks/useScrollToTop";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import { useTranslation } from "react-i18next";
-import LanguageChangeButton from "../buttons/LanguageChangeButton";
 import { ReactComponent as UKFlag } from "../../utils/united-kingdom-flag-icon.svg";
 import { ReactComponent as PLFlag } from "../../utils/poland-flag-icon.svg";
 

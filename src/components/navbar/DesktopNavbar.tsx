@@ -9,7 +9,6 @@ import {
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LogoutIcon from "@mui/icons-material/Logout";
-import SmartToyIcon from "@mui/icons-material/SmartToy";
 import HomeIcon from "@mui/icons-material/Home";
 import CustomIconButton from "../buttons/CustomIconButton";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -19,10 +18,9 @@ import useLogout from "../../hooks/useLogout";
 import { useNavigate, useParams } from "react-router";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import useScrollToTop from "../../hooks/useScrollToTop";
-import { ReactComponent as UKFlag } from "../../utils/united-kingdom-flag-icon.svg";
-import { ReactComponent as PLFlag } from "../../utils/poland-flag-icon.svg";
 import { useTranslation } from "react-i18next";
 import LanguageChangeButton from "../buttons/LanguageChangeButton";
+import SearchIcon from "@mui/icons-material/Search";
 
 const DesktopNavbar = () => {
   const theme = useTheme();
@@ -30,7 +28,7 @@ const DesktopNavbar = () => {
   const logout = useLogout();
   const navigate = useNavigate();
   let { id } = useParams();
-  const { t, i18n } = useTranslation("navbar");
+  const { t } = useTranslation("navbar");
 
   const [visible, scrollToTop] = useScrollToTop();
 
@@ -52,11 +50,14 @@ const DesktopNavbar = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+
+            mx: 1,
           }}
         >
           <Typography
             variant="h5"
             component="div"
+            mr={5}
             onClick={() => {
               window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
               setTimeout(() => navigate("/main"), 500);
@@ -67,6 +68,7 @@ const DesktopNavbar = () => {
           >
             SocialMediaApp
           </Typography>
+
           {/* scroll to Top button */}
           <Stack direction="row" minWidth="15%" justifyContent="space-between">
             {visible && (
@@ -109,24 +111,7 @@ const DesktopNavbar = () => {
               icon={<SettingsIcon />}
               title={t("settings")}
             />
-            {/* {i18n.language === "pl" && (
-              <CustomIconButton
-                icon={<PLFlag width="50px" height="30px" />}
-                title="Polski język"
-                onClick={() => {
-                  i18n.changeLanguage("en");
-                }}
-              />
-            )}
-            {i18n.language === "en" && (
-              <CustomIconButton
-                icon={<UKFlag width="50px" height="30px" />}
-                title="English language"
-                onClick={() => {
-                  i18n.changeLanguage("pl");
-                }}
-              />
-            )} */}
+
             <LanguageChangeButton />
 
             <CustomIconButton

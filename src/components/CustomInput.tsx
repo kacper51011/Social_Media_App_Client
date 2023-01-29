@@ -23,7 +23,7 @@ const CustomInput = ({ height = 0.3, width = 1, ...inputProps }: Props) => {
       height={height}
     >
       <Grid item>
-        <Avatar src={`assets/${user?.picturePath}`}>
+        <Avatar src={`/assets/${user?.picturePath}`}>
           {user?.firstName[0]}{" "}
         </Avatar>
       </Grid>

@@ -4,7 +4,7 @@ import { ReactComponent as UKFlag } from "../../utils/united-kingdom-flag-icon.s
 import { ReactComponent as PLFlag } from "../../utils/poland-flag-icon.svg";
 
 const LanguageChangeButton = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   return i18n.language === "pl" ? (
     <CustomIconButton

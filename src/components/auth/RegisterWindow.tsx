@@ -17,6 +17,7 @@ import { UserRegisterSchema } from "../../utils/ValidationSchemas";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
+import LanguageChangeButton from "../buttons/LanguageChangeButton";
 
 // pre: I decided to not mess with dropzone and react hook form + zod,
 // so Im using state for file, which is not controlled by react hook form(state which let user add and delete single image )
@@ -100,8 +101,13 @@ const RegisterWindow = () => {
         borderRadius: "16px",
         display: "flex",
         justifyContent: "center",
+        position: "relative",
       }}
     >
+      <Box position="absolute" display="flex" justifyContent="center" mx="auto">
+        <LanguageChangeButton />
+      </Box>
+
       {desktopSize && (
         <Box
           width={0.5}
@@ -197,7 +203,7 @@ const RegisterWindow = () => {
         </Box>
         <Box display="flex" flexDirection="column" alignItems="center">
           <CustomDropzone
-            width={0.8}
+            width={1}
             mt={3}
             fileToSend={registerFile}
             setFileToSend={setRegisterFile}
@@ -222,12 +228,12 @@ const RegisterWindow = () => {
             variant="contained"
             disabled={isSubmitting}
             sx={{
-              width: 0.3,
+              minWidth: 0.3,
               py: 1.5,
               px: 7,
               color: "white",
               mb: 2,
-              whiteSpace: "nowrap",
+              whiteSpace: "pre",
             }}
           >
             {t("button")}
