@@ -11,13 +11,17 @@ import { useTranslation } from "react-i18next";
 
 type Props = {
   route: string;
+  query?: string | null;
 };
 
-const PostsList = ({ route }: Props) => {
+const PostsList = ({ route, query }: Props) => {
   // it always use the postsSlice (it resets anytime someone leave current page/change selected cause of the usePostsLoad hook logic)
 
   const posts = useAppSelector((state) => state.posts.posts);
-  const { loading, error, hasMore, setPageNumber } = usePostsLoad(`${route}`);
+  const { loading, error, hasMore, setPageNumber } = usePostsLoad(
+    `${route}`,
+    query
+  );
   const { t } = useTranslation("imagesWithText");
 
   const lastPostElementRef = usePostsInfiniteScroll({

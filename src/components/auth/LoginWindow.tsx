@@ -42,7 +42,7 @@ const LoginWindow = () => {
       dispatch(setLogin(responseData.data.user));
 
       localStorage.setItem("userInfo", JSON.stringify(responseData.data.user));
-      navigate("/main");
+      navigate("/");
     } catch (err) {
       if (axios.isAxiosError(err)) {
         return setError("customError", {

@@ -7,7 +7,7 @@ import { deleteLoadedPosts, setNewPosts } from "../store/postsSlice";
 
 // Hook made for fetching and preparing data about posts
 
-const usePostsLoad = (url: string) => {
+const usePostsLoad = (url: string, query?: string | null) => {
   const [page, setPageNumber] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -23,11 +23,12 @@ const usePostsLoad = (url: string) => {
     try {
       setLoading(true);
       setError(false);
-
+      let queryParams = query ? `?search=${query}` : "";
       let idParams = id ? `/${id}/` : "/";
+      let combinedUrl = `${url}${idParams}${page}${queryParams}`;
 
       const response = await axios({
-        url: `${url}${idParams}${page}`,
+        url: combinedUrl,
         method: "GET",
 
         signal: controller.signal,
@@ -47,14 +48,14 @@ const usePostsLoad = (url: string) => {
 
   useEffect(() => {
     getData();
-  }, [page, url, id]);
+  }, [page, url, id, query]);
 
   useEffect(() => {
     return () => {
       setPageNumber(1);
       dispatch(deleteLoadedPosts());
     };
-  }, [url, id]);
+  }, [url, id, query]);
 
   return { loading, error, hasMore, setPageNumber };
 };

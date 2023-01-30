@@ -3,9 +3,16 @@ import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
 import { useTheme } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
-import { ComponentProps } from "react";
+import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
+import { ComponentProps, Dispatch, SetStateAction, useState } from "react";
 
-const SearchInput = ({ ...props }: ComponentProps<typeof Paper>) => {
+type Props = {
+  setSearch: Dispatch<SetStateAction<string | null>>;
+  query: string | null;
+} & ComponentProps<typeof InputBase>;
+
+const SearchInput = ({ setSearch, query, ...props }: Props) => {
+  const [textToSearch, setTextToSearch] = useState<string | null>(null);
   const theme = useTheme();
 
   return (
@@ -18,10 +25,26 @@ const SearchInput = ({ ...props }: ComponentProps<typeof Paper>) => {
         py: 0.25,
         display: "flex",
       }}
-      {...props}
     >
-      <InputBase placeholder="Search for posts..." sx={{ flexGrow: 1 }} />
-      <IconButton sx={{ flexGrow: 0 }}>
+      <InputBase
+        {...props}
+        onChange={(e) => setTextToSearch(e.target.value)}
+        placeholder="Search for posts..."
+        value={textToSearch}
+        sx={{ flexGrow: 1 }}
+      />
+      {query && (
+        <IconButton
+          onClick={() => {
+            setSearch(null);
+            setTextToSearch("");
+          }}
+          sx={{ flexGrow: 0 }}
+        >
+          <ClearRoundedIcon />
+        </IconButton>
+      )}
+      <IconButton onClick={() => setSearch(textToSearch)} sx={{ flexGrow: 0 }}>
         <SearchIcon />
       </IconButton>
     </Paper>

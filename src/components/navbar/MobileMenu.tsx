@@ -68,7 +68,7 @@ const MobileMenu = ({ toggleMode }: Props) => {
           <MenuItem
             onClick={() => {
               window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-              setTimeout(() => navigate("/main"), 1000);
+              setTimeout(() => navigate("/"), 1000);
             }}
           >
             {t("home")} <HomeIcon sx={{ ml: 2 }} />

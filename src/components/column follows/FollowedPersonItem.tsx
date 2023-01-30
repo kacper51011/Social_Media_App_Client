@@ -90,7 +90,7 @@ const FollowedPersonItem = ({
           fontWeight="600"
           component="div"
           onClick={() => {
-            navigate(`/main/${id}`);
+            navigate(`/profile/${id}`);
             window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
           }}
         >

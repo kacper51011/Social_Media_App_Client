@@ -16,6 +16,7 @@ import { useAppSelector } from "../../hooks/reduxHooks";
 import { useDispatch } from "react-redux";
 import { setNewUserPost } from "../../store/authSlice";
 import { useTranslation } from "react-i18next";
+import { addPost } from "../../store/postsSlice";
 
 const PostInputComponent = () => {
   // I created separate state for file to send, it helps me with deleting already downloaded files from upload list
@@ -45,7 +46,9 @@ const PostInputComponent = () => {
       const response = await axios.post("/api/post/createPost", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      dispatch(setNewUserPost(response.data.message));
+      console.log(response.data.message);
+      dispatch(setNewUserPost(response.data.message.id));
+      dispatch(addPost(response.data.message));
     } catch (err) {
       console.log(err);
     }

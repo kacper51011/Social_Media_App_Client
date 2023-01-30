@@ -245,7 +245,7 @@ const RegisterWindow = () => {
             component="span"
             variant="subtitle1"
             textAlign="center"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/login")}
             whiteSpace="nowrap"
           >
             {t("link")}

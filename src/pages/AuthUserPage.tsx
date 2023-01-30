@@ -8,10 +8,11 @@ import UserPageContainer from "../components/UserPageContainer";
 import { useAppSelector } from "../hooks/reduxHooks";
 import { Collapse } from "@mui/material";
 import SearchComponent from "../components/column posts/SearchComponent";
+import { useState } from "react";
 
 const AuthUserPage = () => {
+  const [search, setSearch] = useState<string | null>(null);
   const followings = useAppSelector((state) => state.auth.user?.following);
-
   const user = useAppSelector((state) => state.auth.user);
 
   return (
@@ -28,13 +29,14 @@ const AuthUserPage = () => {
             numberOfLikes={10}
             numberOfProfileViews={user!.viewsProfile}
           />
-          <SearchComponent />
         </>
       }
       postsColumn={
         <>
+          <SearchComponent setSearch={setSearch} query={search} />
           <PostInputComponent />
-          <PostsList route="/api/post/getPosts" />
+
+          <PostsList route="/api/post/getPosts" query={search} />
         </>
       }
       followsColumn={

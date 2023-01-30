@@ -20,7 +20,7 @@ import { useTranslation } from "react-i18next";
 const MobileNavbar = () => {
   const theme = useTheme();
   const logout = useLogout();
-  const { t } = useTranslation();
+  const { t } = useTranslation("navbar");
 
   const dispatch = useDispatch();
 

@@ -25,7 +25,6 @@ import {
   commentPost,
   removeLikeFromPost,
 } from "../../store/postsSlice";
-import { autoBatchEnhancer } from "@reduxjs/toolkit";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 
@@ -179,7 +178,7 @@ const PostItem = forwardRef(
                 ml={1}
                 component="div"
                 onClick={() => {
-                  navigate(`/main/${userId}`);
+                  navigate(`/profile/${userId}`);
                   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
                 }}
               >
@@ -257,7 +256,7 @@ const PostItem = forwardRef(
             variant="caption"
             sx={{ cursor: "pointer" }}
           >
-            {comments?.length + " " + t("comments")}
+            {`${comments ? comments.length : 0} ${t("comments")}`}
           </Typography>
         </Box>
         {commentsVisible && <Divider />}

@@ -1,5 +1,3 @@
-import { displayedColumn } from "./Main";
-import { useOutletContext } from "react-router";
 import FollowsContainer from "../components/column follows/FollowsContainer";
 import UserCard from "../components/column user/UserCard";
 import UserPageContainer from "../components/UserPageContainer";

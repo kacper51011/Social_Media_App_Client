@@ -1,7 +1,13 @@
-import { Paper, Divider, Button } from "@mui/material";
+import { Paper } from "@mui/material";
+import { Dispatch, SetStateAction } from "react";
 import SearchInput from "../SearchInput";
 
-const SearchComponent = () => {
+type Props = {
+  setSearch: Dispatch<SetStateAction<string | null>>;
+  query: string | null;
+};
+
+const SearchComponent = ({ setSearch, query }: Props) => {
   return (
     <Paper
       sx={{
@@ -13,7 +19,7 @@ const SearchComponent = () => {
         p: 2,
       }}
     >
-      <SearchInput />
+      <SearchInput setSearch={setSearch} query={query} />
     </Paper>
   );
 };

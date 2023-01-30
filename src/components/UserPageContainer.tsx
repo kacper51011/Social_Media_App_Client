@@ -32,7 +32,7 @@ const UserPageContainer = ({
         }}
         xs={12}
         md={3.5}
-        mt={{ xs: 5, md: 15 }}
+        mt={{ xs: 5, md: 12.5 }}
       >
         {profileColumn}
       </Grid>
@@ -45,7 +45,7 @@ const UserPageContainer = ({
         }}
         xs={12}
         md={5}
-        mt={{ xs: 5, md: 15 }}
+        mt={{ xs: 5, md: 12.5 }}
       >
         {postsColumn}
       </Grid>
@@ -58,7 +58,7 @@ const UserPageContainer = ({
         }}
         xs={10}
         md={3.5}
-        mt={{ xs: 5, md: 15 }}
+        mt={{ xs: 5, md: 12.5 }}
       >
         {followsColumn}
       </Grid>

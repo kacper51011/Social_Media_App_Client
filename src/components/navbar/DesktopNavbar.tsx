@@ -60,7 +60,7 @@ const DesktopNavbar = () => {
             mr={5}
             onClick={() => {
               window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-              setTimeout(() => navigate("/main"), 500);
+              setTimeout(() => navigate("/"), 500);
             }}
             fontWeight="500"
             sx={{ cursor: "pointer" }}
@@ -87,7 +87,7 @@ const DesktopNavbar = () => {
                 title={t("home")}
                 onClick={() => {
                   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-                  setTimeout(() => navigate("/main"), 500);
+                  setTimeout(() => navigate("/"), 500);
                 }}
               />
             )}

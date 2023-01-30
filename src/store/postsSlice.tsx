@@ -19,8 +19,10 @@ const postsSlice = createSlice({
     deleteLoadedPosts: (state) => {
       state.posts = [];
     },
-    addPost: (state, action) => {
-      state.posts.push(action.payload);
+    addPost: (state, action: PayloadAction<Post>) => {
+      const newPost = action.payload;
+
+      state.posts.unshift(action.payload);
     },
     addLikeForPost: (state, action) => {
       const likedPost = state.posts.find(
