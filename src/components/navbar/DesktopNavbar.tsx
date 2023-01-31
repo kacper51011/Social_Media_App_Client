@@ -16,11 +16,8 @@ import { useDispatch } from "react-redux";
 import { setMode } from "../../store/themeSlice";
 import useLogout from "../../hooks/useLogout";
 import { useNavigate, useParams } from "react-router";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import useScrollToTop from "../../hooks/useScrollToTop";
 import { useTranslation } from "react-i18next";
 import LanguageChangeButton from "../buttons/LanguageChangeButton";
-import SearchIcon from "@mui/icons-material/Search";
 
 const DesktopNavbar = () => {
   const theme = useTheme();
@@ -29,8 +26,6 @@ const DesktopNavbar = () => {
   const navigate = useNavigate();
   let { id } = useParams();
   const { t } = useTranslation("navbar");
-
-  const [visible, scrollToTop] = useScrollToTop();
 
   const toggleMode = () => {
     dispatch(setMode());
@@ -71,26 +66,6 @@ const DesktopNavbar = () => {
 
           {/* scroll to Top button */}
           <Stack direction="row" minWidth="15%" justifyContent="space-between">
-            {visible && (
-              <CustomIconButton
-                sx={{ px: 3, py: 1.5 }}
-                icon={<ArrowUpwardIcon />}
-                title={t("scroll")}
-                onClick={scrollToTop}
-              />
-            )}
-            {/* Button navigating to main page when user is not on main page (when he checks somebody else account) */}
-            {id && (
-              <CustomIconButton
-                sx={{ px: 3, py: 1.5 }}
-                icon={<HomeIcon />}
-                title={t("home")}
-                onClick={() => {
-                  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-                  setTimeout(() => navigate("/"), 500);
-                }}
-              />
-            )}
             <CustomIconButton
               sx={{ px: 3, py: 1.5 }}
               onClick={() => toggleMode()}

@@ -26,8 +26,9 @@ const AuthUserPage = () => {
             location={user!.location}
             followedPeopleNumber={user!.followingIDs.length}
             job={user!.job}
-            numberOfLikes={10}
+            numberOfLikes={user!.posts?.flat().length || 0}
             numberOfProfileViews={user!.viewsProfile}
+            numberOfFollowedBy={user!.followedByIDs.length}
           />
         </>
       }

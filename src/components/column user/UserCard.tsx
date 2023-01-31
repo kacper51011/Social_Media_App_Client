@@ -12,6 +12,7 @@ type Props = {
   job: string;
   numberOfProfileViews: number;
   numberOfLikes: number;
+  numberOfFollowedBy: number;
 };
 
 const UserCard = ({
@@ -23,6 +24,7 @@ const UserCard = ({
   job,
   numberOfProfileViews,
   numberOfLikes,
+  numberOfFollowedBy,
 }: Props) => {
   const { t } = useTranslation("userCard");
 
@@ -72,6 +74,18 @@ const UserCard = ({
 
       <Divider sx={{ my: 1 }} />
       <Grid container direction="column" py={1}>
+        <Grid
+          container
+          direction="row"
+          sx={{ justifyContent: "space-between" }}
+        >
+          <Grid item py={1}>
+            <Typography variant="caption">{t("followedByInfo")}</Typography>
+          </Grid>
+          <Grid item py={1}>
+            <Typography>{numberOfFollowedBy}</Typography>
+          </Grid>
+        </Grid>
         <Grid
           container
           direction="row"

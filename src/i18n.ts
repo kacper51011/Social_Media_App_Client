@@ -24,7 +24,8 @@ const resources = {
     userCard: {
       followsInfo: "follows",
       viewsInfo: "Profile views",
-      likesInfo: "Likes under own Posts",
+      likesInfo: "Received likes",
+      followedByInfo: "Followed by",
     },
     navbar: {
       themeLight: "Light mode",
@@ -92,7 +93,8 @@ const resources = {
     userCard: {
       followsInfo: "Obserwowanych",
       viewsInfo: "Wyświetlenia profilu",
-      likesInfo: "Ilość polubień pod postami",
+      likesInfo: "Otrzymane polubienia",
+      followedByInfo: "Obserwowany przez",
     },
     navbar: {
       themeLight: "Tryb dzienny",
