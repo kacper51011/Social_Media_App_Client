@@ -1,46 +1,60 @@
-# Getting Started with Create React App
+# My Social Media App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of contents
 
-## Available Scripts
+- [General info](#general-info)
+- [Features](#features)
+- [Technologies](#technologies)
 
-In the project directory, you can run:
+## General info
 
-### `npm start`
+My second big project created in MERN stack with typescript. I decided to make use of the skills I gained from the previous project (Swapbook), but also learn something new. Thats why (comparing to previous project) I used:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React-Hook-Form except of Formik
+- Zod except of Yup
+- Prisma except of Mongoose on Backend
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Features
 
-### `npm test`
+- Authentication and authorization (JWT in backend cookie)
+- 2 Languages (And possibility to change them whenever somebody want)
+- Dark and Light mode
+- Infinite Scroll (separated into two custom Hooks, with dynamic queries and pages)
+- Post creation
+- Liking, unliking Posts
+- Commenting Posts
+- Following and Unfollowing other people (Follows are displayed)
+- Counters of profile views, likes under Posts, follows etc.
+- Search posts by author or description
+- Possibility to see other Person profile
+- Desktop and mobile navbars
+- Dynamic dialogs on desktop (their functionalities are included into mobile menu)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Packages used on frontend part of the project:
+"@emotion/react": "11.10.5",
+"@emotion/styled": "11.10.5",
+"@hookform/resolvers": "2.9.10",
+"@mui/icons-material": "5.11.0",
+"@mui/material": "5.11.2",
+"@reduxjs/toolkit": "1.9.1",
+"@types/jest": "27.5.2",
+"@types/node": "16.18.11",
+"@types/react": "18.0.26",
+"@types/react-dom": "18.0.10",
+"axios": "1.2.1",
+"i18next": "22.4.9",
+"i18next-browser-languagedetector": "7.0.1",
+"react": "18.2.0",
+"react-dom": "18.2.0",
+"react-dropzone": "14.2.3",
+"react-hook-form": "7.41.1",
+"react-i18next": "12.1.4",
+"react-redux": "8.0.5",
+"react-router": "6.6.1",
+"react-router-dom": "6.6.1",
+"react-scripts": "5.0.1",
+"react-transition-group": "4.4.5",
+"typescript": "4.9.4",
+"zod": "3.20.2"

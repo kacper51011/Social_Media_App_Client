@@ -5,6 +5,7 @@ import useScrollToTop from "../../hooks/useScrollToTop";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate, useParams } from "react-router";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   profileColumn: ReactNode;
@@ -21,6 +22,7 @@ const UserPageContainer = ({
 
   const { id } = useParams();
   const navigate = useNavigate();
+  const { t } = useTranslation("navbar");
   const [visible, scrollToTop] = useScrollToTop();
 
   const theme = useTheme();
@@ -78,7 +80,7 @@ const UserPageContainer = ({
       {visible && isDesktop && (
         <SpeedDial
           sx={{ position: "fixed", bottom: 40, right: 40 }}
-          ariaLabel="Scroll to top"
+          ariaLabel={t("scroll")}
           icon={<ArrowUpwardIcon />}
           onClick={scrollToTop}
         />
@@ -86,7 +88,7 @@ const UserPageContainer = ({
       {id && isDesktop && (
         <SpeedDial
           sx={{ position: "fixed", bottom: 40, right: 120 }}
-          ariaLabel="Main page"
+          ariaLabel={t("home")}
           icon={<HomeIcon />}
           onClick={() => {
             window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
