@@ -21,6 +21,8 @@ export type User = {
   followedByIDs: string[];
   followingIDs: string[];
   following: following[];
+  // only for calculating userCard likes  under posts count
+  posts?: string[][];
 };
 
 let userAuthCheck: User | null = localStorage.getItem("userInfo")

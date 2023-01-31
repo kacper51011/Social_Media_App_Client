@@ -4,7 +4,7 @@ import FollowsContainer from "../components/column follows/FollowsContainer";
 import PostInputComponent from "../components/column posts/PostInputComponent";
 import UserCard from "../components/column user/UserCard";
 import PostsList from "../components/column posts/PostsList";
-import UserPageContainer from "../components/UserPageContainer";
+import UserPageContainer from "../components/shared/UserPageContainer";
 import { useAppSelector } from "../hooks/reduxHooks";
 import { Collapse } from "@mui/material";
 import SearchComponent from "../components/column posts/SearchComponent";

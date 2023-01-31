@@ -14,19 +14,13 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
-import CustomInput from "../CustomInput";
+import CustomInput from "../shared/CustomInput";
 import CommentItem from "./CommentItem";
 import { useAppSelector } from "../../hooks/reduxHooks";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { follow, likePost, unfollow, unlikePost } from "../../store/authSlice";
-import {
-  addLikeForPost,
-  commentPost,
-  removeLikeFromPost,
-} from "../../store/postsSlice";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
+import usePostComment from "../../hooks/usePostComment";
+import usePost from "../../hooks/usePost";
 
 // todo: connect redux toolkit to posts
 export type Post = {
@@ -70,12 +64,11 @@ const PostItem = forwardRef(
     }: Post,
     ref: Ref<Element | null | undefined>
   ) => {
-    const { t } = useTranslation("posts");
     const [commentsVisible, setCommentsVisible] = useState(false);
-    const [commentToSend, setCommentToSend] = useState("");
 
+    const { t } = useTranslation("posts");
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+
     const authUser = useAppSelector((state) => state.auth.user!);
     const authLikedPosts = useAppSelector(
       (state) => state.auth.user!.likedPostsIDs
@@ -84,75 +77,24 @@ const PostItem = forwardRef(
       (state) => state.auth.user!.followingIDs
     );
 
+    // booleans used to change icons and custom hook behaviour
+
     const IsAuthUserAnAuthor = authUser.id === userId;
     const doUserLikePost = authLikedPosts.includes(id);
     const doUserFollowAuthor = authFollowings.includes(userId);
 
-    // Function responsible for following and unfollowing post creator through the post
-    const followUnfollow: React.MouseEventHandler<
-      HTMLButtonElement
-    > = async () => {
-      try {
-        await axios.patch("/api/user/follow", {
-          id: authUser!.id,
-          userToFollowId: userId,
-        });
-      } catch (err) {
-        return;
-      }
-      doUserFollowAuthor
-        ? dispatch(unfollow(userId))
-        : dispatch(
-            follow({
-              id: userId,
-              firstName: firstName,
-              lastName: lastName,
-              picturePath: userPicturePath,
-              job: job,
-            })
-          );
-    };
+    const { likeUnlike, followUnfollow } = usePost({
+      id,
+      userId,
+      job,
+      firstName,
+      lastName,
+      userPicturePath,
+      doUserFollowAuthor,
+      doUserLikePost,
+    });
 
-    // function responsible for leaving a like or unliking the post
-    const likeUnlike: React.MouseEventHandler<HTMLButtonElement> = async () => {
-      try {
-        await axios.patch("/api/post/likePost", {
-          userId: authUser!.id,
-          postId: id,
-        });
-      } catch (err) {
-        return;
-      }
-      doUserLikePost
-        ? dispatch(removeLikeFromPost({ postId: id, id: authUser.id }))
-        : dispatch(addLikeForPost({ postId: id, id: authUser.id }));
-      doUserLikePost ? dispatch(unlikePost(id)) : dispatch(likePost(id));
-    };
-
-    const sendComment: React.MouseEventHandler<
-      HTMLButtonElement
-    > = async () => {
-      try {
-        await axios.post("/api/post/commentPost", {
-          id: authUser!.id,
-          postId: id,
-          content: commentToSend,
-        });
-        dispatch(
-          commentPost({
-            userId: authUser.id,
-            userFirstName: authUser.firstName,
-            userLastName: authUser.lastName,
-            userPhotoPicturePath: authUser.picturePath,
-            postId: id,
-            content: commentToSend,
-          })
-        );
-      } catch (error) {
-        console.log(error);
-      }
-      setCommentToSend("");
-    };
+    const { commentToSend, setCommentToSend, sendComment } = usePostComment(id);
 
     return (
       <Paper
@@ -230,6 +172,7 @@ const PostItem = forwardRef(
         <Paper elevation={0}>
           <CardMedia
             component="img"
+            loading="lazy"
             src={`/assets/${picturePath}`}
             sx={{
               height: "auto",

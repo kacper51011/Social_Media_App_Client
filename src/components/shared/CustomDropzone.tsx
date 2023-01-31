@@ -1,7 +1,7 @@
 import { Box, InputBase, Typography, useTheme } from "@mui/material";
 import { ComponentProps, Dispatch } from "react";
 import { useDropzone } from "react-dropzone";
-import CustomIconButton from "./buttons/CustomIconButton";
+import CustomIconButton from "../buttons/CustomIconButton";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import { useTranslation } from "react-i18next";
 

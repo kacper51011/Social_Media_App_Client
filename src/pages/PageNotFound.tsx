@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import ImageWithText from "../components/ImageWithText";
+import ImageWithText from "../components/shared/ImageWithText";
 import { ReactComponent as PageNotFoundImage } from "../utils/PageNotFoundImage.svg";
 
 const PageNotFound = () => {

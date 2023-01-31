@@ -36,12 +36,15 @@ const CommentItem = ({
           sx={{
             backgroundColor: theme.palette.neutral.light,
             py: 1,
-            px: 0.5,
+            mt: 0.25,
+            px: 1,
             width: "fit-content",
             borderRadius: "16px",
           }}
         >
-          <Typography variant="caption">{commentContent}</Typography>
+          <Typography variant="caption" fontWeight={500}>
+            {commentContent}
+          </Typography>
         </Paper>
       </Grid>
     </Grid>

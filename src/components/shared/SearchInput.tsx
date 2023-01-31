@@ -5,6 +5,7 @@ import { useTheme } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import { ComponentProps, Dispatch, SetStateAction, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   setSearch: Dispatch<SetStateAction<string | null>>;
@@ -12,8 +13,9 @@ type Props = {
 } & ComponentProps<typeof InputBase>;
 
 const SearchInput = ({ setSearch, query, ...props }: Props) => {
-  const [textToSearch, setTextToSearch] = useState<string | null>(null);
+  const [textToSearch, setTextToSearch] = useState<string>("");
   const theme = useTheme();
+  const { t } = useTranslation("posts");
 
   return (
     <Paper
@@ -29,7 +31,7 @@ const SearchInput = ({ setSearch, query, ...props }: Props) => {
       <InputBase
         {...props}
         onChange={(e) => setTextToSearch(e.target.value)}
-        placeholder="Search for posts..."
+        placeholder={t("search")!}
         value={textToSearch}
         sx={{ flexGrow: 1 }}
       />

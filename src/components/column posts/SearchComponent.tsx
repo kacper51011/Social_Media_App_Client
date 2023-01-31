@@ -1,6 +1,6 @@
 import { Paper } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
-import SearchInput from "../SearchInput";
+import SearchInput from "../shared/SearchInput";
 
 type Props = {
   setSearch: Dispatch<SetStateAction<string | null>>;

@@ -11,7 +11,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
-import CustomDropzone from "../CustomDropzone";
+import CustomDropzone from "../shared/CustomDropzone";
 import { ReactComponent as RegisterWindowImage } from "../../utils/RegisterWindowImage.svg";
 import { UserRegisterSchema } from "../../utils/ValidationSchemas";
 import axios from "axios";

@@ -56,6 +56,8 @@ const resources = {
       likes: "likes",
       comment: "Write your comment here...",
       commentButton: "SEND",
+      search: "Search for posts...",
+      delete: "Delete post",
     },
     follows: {
       followList: "Follow list",
@@ -120,8 +122,10 @@ const resources = {
       buttonUnfollow: "Usuń obserwację",
       comments: "komentarze",
       likes: "polubień",
-      comment: "Napisz swój komentarz tutaj",
+      comment: "Napisz swój komentarz tutaj...",
       commentButton: "WYŚLIJ",
+      search: "Wyszukaj...",
+      delete: "Usuń post",
     },
     follows: {
       followList: "Lista obserwowanych",

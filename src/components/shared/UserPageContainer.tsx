@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import { ReactNode } from "react";
-import { useAppSelector } from "../hooks/reduxHooks";
+import { useAppSelector } from "../../hooks/reduxHooks";
 
 type Props = {
   profileColumn: ReactNode;
