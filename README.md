@@ -8,7 +8,7 @@
 
 ## General info
 
-My second big project created in MERN stack with typescript. I decided to make use of the skills I gained from the previous project (Swapbook), but also learn something new. Thats why (comparing to previous project) I used:
+My second big original project created in MERN stack with typescript. I decided to make use of the skills I gained from the previous project (Swapbook), but also learn something new. Thats why (comparing to previous project) I used:
 
 - React-Hook-Form except of Formik
 - Zod except of Yup
@@ -33,28 +33,29 @@ My second big project created in MERN stack with typescript. I decided to make u
 ## Technologies
 
 Packages used on frontend part of the project:
-"@emotion/react": "11.10.5",
-"@emotion/styled": "11.10.5",
-"@hookform/resolvers": "2.9.10",
-"@mui/icons-material": "5.11.0",
-"@mui/material": "5.11.2",
-"@reduxjs/toolkit": "1.9.1",
-"@types/jest": "27.5.2",
-"@types/node": "16.18.11",
-"@types/react": "18.0.26",
-"@types/react-dom": "18.0.10",
-"axios": "1.2.1",
-"i18next": "22.4.9",
-"i18next-browser-languagedetector": "7.0.1",
-"react": "18.2.0",
-"react-dom": "18.2.0",
-"react-dropzone": "14.2.3",
-"react-hook-form": "7.41.1",
-"react-i18next": "12.1.4",
-"react-redux": "8.0.5",
-"react-router": "6.6.1",
-"react-router-dom": "6.6.1",
-"react-scripts": "5.0.1",
-"react-transition-group": "4.4.5",
-"typescript": "4.9.4",
-"zod": "3.20.2"
+
+- "@emotion/react": "11.10.5",
+- "@emotion/styled": "11.10.5",
+- "@hookform/resolvers": "2.9.10",
+- "@mui/icons-material": "5.11.0",
+- "@mui/material": "5.11.2",
+- "@reduxjs/toolkit": "1.9.1",
+- "@types/jest": "27.5.2",
+- "@types/node": "16.18.11",
+- "@types/react": "18.0.26",
+- "@types/react-dom": "18.0.10",
+- "axios": "1.2.1",
+- "i18next": "22.4.9",
+- "i18next-browser-languagedetector": "7.0.1",
+- "react": "18.2.0",
+- "react-dom": "18.2.0",
+- "react-dropzone": "14.2.3",
+- "react-hook-form": "7.41.1",
+- "react-i18next": "12.1.4",
+- "react-redux": "8.0.5",
+- "react-router": "6.6.1",
+- "react-router-dom": "6.6.1",
+- "react-scripts": "5.0.1",
+- "react-transition-group": "4.4.5",
+- "typescript": "4.9.4",
+- "zod": "3.20.2"
