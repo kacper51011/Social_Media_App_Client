@@ -11,7 +11,7 @@ type Props = {
   location: string;
   job: string;
   numberOfProfileViews: number;
-  numberOfLikes: number;
+  numberOfPosts: number;
   numberOfFollowedBy: number;
 };
 
@@ -23,7 +23,7 @@ const UserCard = ({
   location,
   job,
   numberOfProfileViews,
-  numberOfLikes,
+  numberOfPosts,
   numberOfFollowedBy,
 }: Props) => {
   const { t } = useTranslation("userCard");
@@ -104,10 +104,10 @@ const UserCard = ({
           sx={{ justifyContent: "space-between" }}
         >
           <Grid item py={1}>
-            <Typography variant="caption">{t("likesInfo")}</Typography>
+            <Typography variant="caption">{t("postInfo")}</Typography>
           </Grid>
           <Grid item py={1}>
-            <Typography>{numberOfLikes}</Typography>
+            <Typography>{numberOfPosts}</Typography>
           </Grid>
         </Grid>
       </Grid>

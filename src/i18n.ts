@@ -18,13 +18,13 @@ const resources = {
       lastName: "Last Name",
       password: "Password",
       confirmPassword: "Confirm Password",
-      location: "location",
-      job: "job",
+      location: "Location",
+      job: "Job",
     },
     userCard: {
       followsInfo: "follows",
       viewsInfo: "Profile views",
-      likesInfo: "Received likes",
+      postInfo: "Shared posts",
       followedByInfo: "Followed by",
     },
     navbar: {
@@ -93,7 +93,7 @@ const resources = {
     userCard: {
       followsInfo: "Obserwowanych",
       viewsInfo: "Wyświetlenia profilu",
-      likesInfo: "Otrzymane polubienia",
+      postInfo: "Udostępnione posty",
       followedByInfo: "Obserwowany przez",
     },
     navbar: {

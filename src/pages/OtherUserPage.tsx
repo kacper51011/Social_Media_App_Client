@@ -24,7 +24,7 @@ const OtherUserPage = () => {
               location={fetchedUser!.location}
               job={fetchedUser!.job}
               numberOfProfileViews={fetchedUser!.viewsProfile}
-              numberOfLikes={fetchedUser!.posts?.flat().length || 0}
+              numberOfPosts={fetchedUser!.postsIds?.length || 0}
               numberOfFollowedBy={fetchedUser!.followedByIDs.length || 0}
             />
           )}

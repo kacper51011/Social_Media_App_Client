@@ -28,9 +28,7 @@ const AuthUserPage = () => {
               user?.followingIDs.length ? user?.followingIDs.length : 0
             }
             job={user!.job}
-            numberOfLikes={
-              user!.posts?.flat().length ? user!.posts?.flat().length : 0
-            }
+            numberOfPosts={user!.postsIds ? user!.postsIds.length : 0}
             numberOfProfileViews={user!.viewsProfile}
             numberOfFollowedBy={
               user!.followedByIDs.length ? user!.followedByIDs.length : 0

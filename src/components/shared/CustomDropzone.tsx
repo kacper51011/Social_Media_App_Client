@@ -22,7 +22,7 @@ const CustomDropzone = ({
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     accept: { "image/*": [".png", ".jpg", ".jpeg"] },
-    maxSize: 3000000,
+    maxSize: 30000000,
     multiple: false,
     disabled: !!fileToSend,
     onDropAccepted(files, event) {
