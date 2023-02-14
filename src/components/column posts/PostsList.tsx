@@ -4,9 +4,9 @@ import usePostsLoad from "../../hooks/usePostsLoad";
 import PostItem from "./PostItem";
 import CustomSkeleton from "../shared/CustomSkeleton";
 import ImageWithText from "../shared/ImageWithText";
-import { ReactComponent as NoMorePosts } from "../../utils/NoMorePosts.svg";
-import { ReactComponent as PostsError } from "../../utils/PostsError.svg";
-import { ReactComponent as EmptyPostsList } from "../../utils/EmptyPostsList.svg";
+import { ReactComponent as NoMorePosts } from "../../assets/NoMorePosts.svg";
+import { ReactComponent as PostsError } from "../../assets/PostsError.svg";
+import { ReactComponent as EmptyPostsList } from "../../assets/EmptyPostsList.svg";
 import { useTranslation } from "react-i18next";
 
 type Props = {

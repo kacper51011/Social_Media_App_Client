@@ -20,14 +20,15 @@ My second big original project created in MERN stack with typescript. I decided 
 - 2 Languages (And possibility to change them whenever somebody want)
 - Dark and Light mode
 - Infinite Scroll (separated into two custom Hooks, with dynamic queries and pages)
-- Post creation
-- Liking, unliking Posts
-- Commenting Posts
-- Following and Unfollowing other people (Follows are displayed)
+- Creating posts
+- Liking and unliking posts
+- Commenting posts
+- Following and Unfollowing other people (Follows are displayed in Follows column)
 - Counters of profile views, likes under Posts, follows etc.
-- Search posts by author or description
+- Searching posts by author or description
 - Possibility to see other Person profile
 - Desktop and mobile navbars
+- Splitted mobile layout
 - Dynamic dialogs on desktop (their functionalities are included into mobile menu)
 
 ## Technologies

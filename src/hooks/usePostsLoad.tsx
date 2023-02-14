@@ -33,7 +33,6 @@ const usePostsLoad = (url: string, query?: string | null) => {
 
         signal: controller.signal,
       });
-      console.log(response.data);
 
       dispatch(setNewPosts(response.data.posts));
       setHasMore(response.data.posts.length > 0);

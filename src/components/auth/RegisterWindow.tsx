@@ -12,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
 import CustomDropzone from "../shared/CustomDropzone";
-import { ReactComponent as RegisterWindowImage } from "../../utils/RegisterWindowImage.svg";
+import { ReactComponent as RegisterWindowImage } from "../../assets/RegisterWindowImage.svg";
 import { UserRegisterSchema } from "../../utils/ValidationSchemas";
 import axios from "axios";
 import { useNavigate } from "react-router";

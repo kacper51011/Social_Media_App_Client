@@ -24,11 +24,17 @@ const AuthUserPage = () => {
             firstName={user!.firstName}
             lastName={user!.lastName}
             location={user!.location}
-            followedPeopleNumber={user!.followingIDs.length}
+            followedPeopleNumber={
+              user?.followingIDs.length ? user?.followingIDs.length : 0
+            }
             job={user!.job}
-            numberOfLikes={user!.posts?.flat().length || 0}
+            numberOfLikes={
+              user!.posts?.flat().length ? user!.posts?.flat().length : 0
+            }
             numberOfProfileViews={user!.viewsProfile}
-            numberOfFollowedBy={user!.followedByIDs.length}
+            numberOfFollowedBy={
+              user!.followedByIDs.length ? user!.followedByIDs.length : 0
+            }
           />
         </>
       }

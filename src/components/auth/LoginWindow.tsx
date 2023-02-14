@@ -1,4 +1,4 @@
-import { ReactComponent as LoginWindowImage } from "../../utils/LoginWindowImage.svg";
+import { ReactComponent as LoginWindowImage } from "../../assets/LoginWindowImage.svg";
 import {
   Paper,
   Box,
@@ -38,7 +38,6 @@ const LoginWindow = () => {
   const onSubmit: SubmitHandler<UserLoginType> = async (data) => {
     try {
       const responseData = await axios.post("/api/user/login", data);
-      console.log(responseData.data.user);
       dispatch(setLogin(responseData.data.user));
 
       localStorage.setItem("userInfo", JSON.stringify(responseData.data.user));

@@ -46,7 +46,7 @@ const PostInputComponent = () => {
       const response = await axios.post("/api/post/createPost", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      console.log(response.data.message);
+
       dispatch(setNewUserPost(response.data.message.id));
       dispatch(addPost(response.data.message));
     } catch (err) {

@@ -9,8 +9,8 @@ import { useNavigate, useParams } from "react-router";
 import useScrollToTop from "../../hooks/useScrollToTop";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import { useTranslation } from "react-i18next";
-import { ReactComponent as UKFlag } from "../../utils/united-kingdom-flag-icon.svg";
-import { ReactComponent as PLFlag } from "../../utils/poland-flag-icon.svg";
+import { ReactComponent as UKFlag } from "../../assets/united-kingdom-flag-icon.svg";
+import { ReactComponent as PLFlag } from "../../assets/poland-flag-icon.svg";
 
 type Props = {
   toggleMode: () => void;
