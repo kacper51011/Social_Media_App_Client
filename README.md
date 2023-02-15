@@ -14,6 +14,7 @@ My second big original project created in MERN stack with typescript. I decided 
 - Zod except of Yup
 - Prisma except of Mongoose on Backend
 
+
 ## Features
 
 - Authentication and authorization (JWT in backend cookie)
