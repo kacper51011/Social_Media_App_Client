@@ -7,7 +7,7 @@ import { deleteLoadedPosts, setNewPosts } from "../store/postsSlice";
 
 // Hook made for fetching and preparing data about posts
 
-const usePostsLoad = (url: string, query?: string | null) => {
+export const usePostsLoad = (url: string, query?: string | null) => {
   const [page, setPageNumber] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -60,5 +60,3 @@ const usePostsLoad = (url: string, query?: string | null) => {
 
   return { loading, error, hasMore, setPageNumber };
 };
-
-export default usePostsLoad;

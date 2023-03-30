@@ -7,7 +7,7 @@ type Props = {
   commentCreatorPicture: string;
 };
 
-const CommentItem = ({
+export const CommentItem = ({
   commentContent,
   commentCreatorFirstName,
   commentCreatorLastName,
@@ -50,5 +50,3 @@ const CommentItem = ({
     </Grid>
   );
 };
-
-export default CommentItem;

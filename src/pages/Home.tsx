@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 
 import { Outlet } from "react-router";
 
-const Home = () => {
+export const Home = () => {
   return (
     <Box
       display="flex"
@@ -18,5 +18,3 @@ const Home = () => {
     </Box>
   );
 };
-
-export default Home;

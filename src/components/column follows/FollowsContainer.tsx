@@ -5,7 +5,7 @@ type Props = {
   childrens?: any;
 };
 
-const FollowsContainer = ({ childrens }: Props) => {
+export const FollowsContainer = ({ childrens }: Props) => {
   const { t } = useTranslation("follows");
 
   return (
@@ -27,5 +27,3 @@ const FollowsContainer = ({ childrens }: Props) => {
     </Paper>
   );
 };
-
-export default FollowsContainer;

@@ -12,7 +12,7 @@ type Props = {
   query: string | null;
 } & ComponentProps<typeof InputBase>;
 
-const SearchInput = ({ setSearch, query, ...props }: Props) => {
+export const SearchInput = ({ setSearch, query, ...props }: Props) => {
   const [textToSearch, setTextToSearch] = useState<string>("");
   const theme = useTheme();
   const { t } = useTranslation("posts");
@@ -52,5 +52,3 @@ const SearchInput = ({ setSearch, query, ...props }: Props) => {
     </Paper>
   );
 };
-
-export default SearchInput;

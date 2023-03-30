@@ -8,7 +8,7 @@ type UserCardProps = {
   user: User;
 };
 
-const UserCard = ({ user }: UserCardProps) => {
+export const UserCard = ({ user }: UserCardProps) => {
   const {
     picturePath,
     firstName,
@@ -111,5 +111,3 @@ const UserCard = ({ user }: UserCardProps) => {
     </Paper>
   );
 };
-
-export default UserCard;

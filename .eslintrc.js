@@ -39,6 +39,7 @@ module.exports = {
   rules: {
     // suppress errors for missing 'import React' in files
     "react/react-in-jsx-scope": "off",
+    "import/no-default-export": "warn",
   },
   plugins: [
     "import", // eslint-plugin-import plugin. https://www.npmjs.com/package/eslint-plugin-import

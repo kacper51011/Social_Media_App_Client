@@ -1,9 +1,9 @@
 import { useAppSelector } from "../../hooks/reduxHooks";
-import usePostsInfiniteScroll from "../../hooks/usePostsInfiniteScroll";
-import usePostsLoad from "../../hooks/usePostsLoad";
-import PostItem from "./PostItem";
-import CustomSkeleton from "../shared/CustomSkeleton";
-import ImageWithText from "../shared/ImageWithText";
+import { usePostsInfiniteScroll } from "../../hooks/usePostsInfiniteScroll";
+import { usePostsLoad } from "../../hooks/usePostsLoad";
+import { PostItem } from "./PostItem";
+import { CustomSkeleton } from "../shared/CustomSkeleton";
+import { ImageWithText } from "../shared/ImageWithText";
 import { ReactComponent as NoMorePosts } from "../../assets/NoMorePosts.svg";
 import { ReactComponent as PostsError } from "../../assets/PostsError.svg";
 import { ReactComponent as EmptyPostsList } from "../../assets/EmptyPostsList.svg";
@@ -14,7 +14,7 @@ type Props = {
   query?: string | null;
 };
 
-const PostsList = ({ route, query }: Props) => {
+export const PostsList = ({ route, query }: Props) => {
   // it always use the postsSlice (it resets anytime someone leave current page/change selected cause of the usePostsLoad hook logic)
 
   const posts = useAppSelector((state) => state.posts.posts);
@@ -70,5 +70,3 @@ const PostsList = ({ route, query }: Props) => {
     </>
   );
 };
-
-export default PostsList;

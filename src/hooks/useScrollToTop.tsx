@@ -1,6 +1,6 @@
 import { MouseEventHandler, useState } from "react";
 
-const useScrollToTop = () => {
+export const useScrollToTop = () => {
   const [visible, setVisible] = useState(false);
 
   const toggleVisible = () => {
@@ -21,5 +21,3 @@ const useScrollToTop = () => {
 
   return [visible, scrollToTop] as const;
 };
-
-export default useScrollToTop;

@@ -17,11 +17,11 @@ import axios from "axios";
 import { setLogin } from "../../store/authSlice";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
-import LanguageChangeButton from "../buttons/LanguageChangeButton";
+import { LanguageChangeButton } from "../buttons/LanguageChangeButton";
 
 type UserLoginType = z.infer<typeof UserLoginSchema>;
 
-const LoginWindow = () => {
+export const LoginWindow = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation("loginPage");
@@ -168,5 +168,3 @@ const LoginWindow = () => {
     </Paper>
   );
 };
-
-export default LoginWindow;

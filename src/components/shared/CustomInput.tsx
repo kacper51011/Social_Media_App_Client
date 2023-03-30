@@ -10,7 +10,11 @@ type Props = {
   "width" | "height" | "fullWidth" | "sx"
 >;
 
-const CustomInput = ({ height = 0.3, width = 1, ...inputProps }: Props) => {
+export const CustomInput = ({
+  height = 0.3,
+  width = 1,
+  ...inputProps
+}: Props) => {
   const theme = useTheme();
   const user = useAppSelector((state) => state.auth.user);
   return (
@@ -42,5 +46,3 @@ const CustomInput = ({ height = 0.3, width = 1, ...inputProps }: Props) => {
     </Grid>
   );
 };
-
-export default CustomInput;

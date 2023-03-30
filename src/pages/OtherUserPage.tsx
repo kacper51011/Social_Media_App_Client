@@ -1,13 +1,13 @@
-import FollowsContainer from "../components/column follows/FollowsContainer";
-import UserCard from "../components/column user/UserCard";
-import UserPageContainer from "../components/shared/UserPageContainer";
-import PostsList from "../components/column posts/PostsList";
-import useFetchedUser from "../hooks/useFetchedUser";
-import FollowedPersonItem from "../components/column follows/FollowedPersonItem";
+import { FollowsContainer } from "../components/column follows/FollowsContainer";
+import { UserCard } from "../components/column user/UserCard";
+import { UserPageContainer } from "../components/shared/UserPageContainer";
+import { PostsList } from "../components/column posts/PostsList";
+import { useFetchedUser } from "../hooks/useFetchedUser";
+import { FollowedPersonItem } from "../components/column follows/FollowedPersonItem";
 import { Following } from "../store/authSlice";
-import CustomSkeleton from "../components/shared/CustomSkeleton";
+import { CustomSkeleton } from "../components/shared/CustomSkeleton";
 
-const OtherUserPage = () => {
+export const OtherUserPage = () => {
   const [fetchedUser, loadingUser] = useFetchedUser();
 
   return (
@@ -39,5 +39,3 @@ const OtherUserPage = () => {
     />
   );
 };
-
-export default OtherUserPage;

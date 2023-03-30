@@ -9,18 +9,18 @@ import {
   Divider,
   Button,
 } from "@mui/material";
-import CustomIconButton from "../buttons/CustomIconButton";
+import { CustomIconButton } from "../buttons/CustomIconButton";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
-import CustomInput from "../shared/CustomInput";
-import CommentItem from "./CommentItem";
+import { CustomInput } from "../shared/CustomInput";
+import { CommentItem } from "./CommentItem";
 import { useAppSelector } from "../../hooks/reduxHooks";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
-import usePostComment from "../../hooks/usePostComment";
-import usePost from "../../hooks/usePost";
+import { usePostComment } from "../../hooks/usePostComment";
+import { usePost } from "../../hooks/usePost";
 
 // todo: connect redux toolkit to posts
 export type Post = {
@@ -49,7 +49,7 @@ export type Comment = {
 // todo: comments and likes as objects, then check if user liked post or not
 
 // eslint-disable-next-line react/display-name
-const PostItem = forwardRef(
+export const PostItem = forwardRef(
   (
     {
       id,
@@ -254,4 +254,3 @@ const PostItem = forwardRef(
     );
   }
 );
-export default PostItem;

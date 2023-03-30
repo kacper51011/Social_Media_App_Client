@@ -1,7 +1,7 @@
 import { Grid, SpeedDial, useMediaQuery, useTheme } from "@mui/material";
 import { ReactNode } from "react";
 import { useAppSelector } from "../../hooks/reduxHooks";
-import useScrollToTop from "../../hooks/useScrollToTop";
+import { useScrollToTop } from "../../hooks/useScrollToTop";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate, useParams } from "react-router";
@@ -13,7 +13,7 @@ type Props = {
   followsColumn: ReactNode;
 };
 
-const UserPageContainer = ({
+export const UserPageContainer = ({
   profileColumn,
   postsColumn,
   followsColumn,
@@ -99,5 +99,3 @@ const UserPageContainer = ({
     </>
   );
 };
-
-export default UserPageContainer;

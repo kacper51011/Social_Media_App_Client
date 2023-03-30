@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useAppSelector } from "../../hooks/reduxHooks";
 import { follow, Following, unfollow } from "../../store/authSlice";
-import CustomIconButton from "../buttons/CustomIconButton";
+import { CustomIconButton } from "../buttons/CustomIconButton";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 
@@ -15,7 +15,7 @@ export type FollowProps = {
   followedPerson: Following;
 };
 
-const FollowedPersonItem = ({ followedPerson }: FollowProps) => {
+export const FollowedPersonItem = ({ followedPerson }: FollowProps) => {
   const navigate = useNavigate();
   const theme = useTheme();
   const authUser = useAppSelector((state) => state.auth.user);
@@ -113,5 +113,3 @@ const FollowedPersonItem = ({ followedPerson }: FollowProps) => {
     </Grid>
   );
 };
-
-export default FollowedPersonItem;

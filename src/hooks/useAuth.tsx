@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setLogin, setLogout } from "../store/authSlice";
 
-const useAuth = () => {
+export const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
 
   const dispatch = useDispatch();
@@ -34,5 +34,3 @@ const useAuth = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 };
-
-export default useAuth;

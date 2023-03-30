@@ -14,7 +14,7 @@ type Props = Pick<
   doUserLikePost: boolean;
 };
 
-const usePost = ({
+export const usePost = ({
   userId,
   firstName,
   lastName,
@@ -67,5 +67,3 @@ const usePost = ({
 
   return { likeUnlike, followUnfollow };
 };
-
-export default usePost;

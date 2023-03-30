@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
-import ImageWithText from "../components/shared/ImageWithText";
-import { ReactComponent as PageNotFoundImage } from "../assets/PageNotFoundImage.svg";
+import { ImageWithText } from "../components/shared/ImageWithText";
+import { PageNotFoundImage } from "../assets";
 
-const PageNotFound = () => {
+export const PageNotFound = () => {
   return (
     <Box
       width="100vw"
@@ -20,5 +20,3 @@ const PageNotFound = () => {
     </Box>
   );
 };
-
-export default PageNotFound;

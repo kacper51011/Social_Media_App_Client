@@ -8,7 +8,7 @@ type Props = {
 } & ComponentProps<typeof Stack>;
 
 // skeleton that will be used in loading places
-const CustomSkeleton = ({ height, width, ...containerProps }: Props) => {
+export const CustomSkeleton = ({ height, width, ...containerProps }: Props) => {
   return (
     <Stack spacing={1} width={width} height={height} {...containerProps}>
       <Skeleton variant="circular" width="15%" height="10%" />
@@ -17,5 +17,3 @@ const CustomSkeleton = ({ height, width, ...containerProps }: Props) => {
     </Stack>
   );
 };
-
-export default CustomSkeleton;

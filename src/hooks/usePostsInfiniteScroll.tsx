@@ -7,7 +7,11 @@ type Props = {
   hasMore: Boolean;
 };
 
-const usePostsInfiniteScroll = ({ loading, setPageNumber, hasMore }: Props) => {
+export const usePostsInfiniteScroll = ({
+  loading,
+  setPageNumber,
+  hasMore,
+}: Props) => {
   // loading logic is implemented in usePostsLoad, this hook is dependent on usePostsLoad, but include additional logic with infinite scroll
   //   I decided to separate both codes because 1. They do other things even if one is dependent on other 2. It looks a bit more readable in my opinion.
   const observer = useRef<IntersectionObserver>();
@@ -30,5 +34,3 @@ const usePostsInfiniteScroll = ({ loading, setPageNumber, hasMore }: Props) => {
 
   return lastPostElementRef;
 };
-
-export default usePostsInfiniteScroll;

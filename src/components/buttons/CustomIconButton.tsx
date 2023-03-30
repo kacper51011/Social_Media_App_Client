@@ -6,10 +6,9 @@ type Props = {
   icon: ReactNode;
 } & ComponentProps<typeof IconButton>;
 
-const CustomIconButton = ({
+export const CustomIconButton = ({
   title,
   icon,
-
   ...IconButtonProps
 }: Props) => {
   return (
@@ -20,5 +19,3 @@ const CustomIconButton = ({
     </Tooltip>
   );
 };
-
-export default CustomIconButton;

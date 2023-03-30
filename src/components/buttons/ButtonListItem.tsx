@@ -12,7 +12,7 @@ export type ButtonListItemProps = {
   content: string;
 } & ComponentProps<typeof ListItemButton>;
 
-const ButtonListItem = ({
+export const ButtonListItem = ({
   icon,
   content,
   ...listItemButtonProps
@@ -26,5 +26,3 @@ const ButtonListItem = ({
     </ListItem>
   );
 };
-
-export default ButtonListItem;

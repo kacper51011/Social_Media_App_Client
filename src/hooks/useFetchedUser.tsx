@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { User } from "../store/authSlice";
 
-const useFetchedUser = () => {
+export const useFetchedUser = () => {
   const { id } = useParams();
   const [loadingUser, setLoadingUser] = useState(true);
   const [error, setError] = useState(false);
@@ -34,5 +34,3 @@ const useFetchedUser = () => {
 
   return [fetchedUser, loadingUser, error] as const;
 };
-
-export default useFetchedUser;

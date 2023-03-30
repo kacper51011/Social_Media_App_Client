@@ -1,6 +1,6 @@
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import CustomIconButton from "../buttons/CustomIconButton";
+import { CustomIconButton } from "../buttons/CustomIconButton";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
 import { Stack, useTheme, Box } from "@mui/material";
@@ -8,12 +8,12 @@ import ArticleIcon from "@mui/icons-material/Article";
 import PeopleIcon from "@mui/icons-material/People";
 import { useDispatch } from "react-redux";
 import { setMode } from "../../store/themeSlice";
-import MobileMenu from "./MobileMenu";
-import useLogout from "../../hooks/useLogout";
+import { MobileMenu } from "./MobileMenu";
+import { useLogout } from "../../hooks/useLogout";
 import { setColumn } from "../../store/columnSlice";
 import { useTranslation } from "react-i18next";
 
-const MobileNavbar = () => {
+export const MobileNavbar = () => {
   const theme = useTheme();
   const logout = useLogout();
   const { t } = useTranslation("navbar");
@@ -70,5 +70,3 @@ const MobileNavbar = () => {
     </Box>
   );
 };
-
-export default MobileNavbar;

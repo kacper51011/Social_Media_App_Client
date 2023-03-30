@@ -2,7 +2,7 @@ import { Navigate } from "react-router";
 import { useAppSelector } from "../hooks/reduxHooks";
 import Main from "./Main";
 
-const ProtectedMain = () => {
+export const ProtectedMain = () => {
   const user = useAppSelector((state) => state.auth.user);
   // useAuth();
 
@@ -10,5 +10,3 @@ const ProtectedMain = () => {
 
   // return user ? <Outlet /> : <Home />;
 };
-
-export default ProtectedMain;

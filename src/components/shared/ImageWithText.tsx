@@ -14,7 +14,7 @@ type Props = {
   "width" | "height" | "display" | "justifyContent" | "alignItems"
 >;
 
-const ImageWithText = ({
+export const ImageWithText = ({
   content,
   image,
   width,
@@ -45,5 +45,3 @@ const ImageWithText = ({
     </Box>
   );
 };
-
-export default ImageWithText;

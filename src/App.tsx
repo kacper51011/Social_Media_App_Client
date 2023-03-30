@@ -2,16 +2,16 @@ import { Routes, Route, Navigate } from "react-router";
 import { useMemo } from "react";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { themeSettings } from "./utils/theme";
-import Main from "./pages/Main";
+import { Main } from "./pages/Main";
 import Box from "@mui/material/Box";
-import Home from "./pages/Home";
+import { Home } from "./pages/Home";
 import { useAppSelector } from "./hooks/reduxHooks";
-import useAuth from "./hooks/useAuth";
-import LoginWindow from "./components/auth/LoginWindow";
-import RegisterWindow from "./components/auth/RegisterWindow";
-import OtherUserPage from "./pages/OtherUserPage";
-import AuthUserPage from "./pages/AuthUserPage";
-import PageNotFound from "./pages/PageNotFound";
+import { useAuth } from "./hooks/useAuth";
+import { LoginWindow } from "./components/loginWindow/LoginWindow";
+import { RegisterWindow } from "./components/auth/RegisterWindow";
+import { OtherUserPage } from "./pages/OtherUserPage";
+import { AuthUserPage } from "./pages/AuthUserPage";
+import { PageNotFound } from "./pages/PageNotFound";
 
 // todo: improve architecture
 // Wysrodkowac pionowo sekcje logowania i rejestracji
@@ -20,7 +20,7 @@ import PageNotFound from "./pages/PageNotFound";
 
 // Zmienic routing profilowy na /profile/:id
 
-function App() {
+export function App() {
   const mode = useAppSelector((state) => state.theme?.theme);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   const user = useAppSelector((state) => state.auth.user?.id);
@@ -60,5 +60,3 @@ function App() {
     </Box>
   );
 }
-
-export default App;

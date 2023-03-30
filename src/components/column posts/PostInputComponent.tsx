@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useDropzone } from "react-dropzone";
 import Button from "@mui/material/Button";
-import CustomDropzone from "../shared/CustomDropzone";
+import { CustomDropzone } from "../shared/CustomDropzone";
 import axios from "axios";
 import { useAppSelector } from "../../hooks/reduxHooks";
 import { useDispatch } from "react-redux";
@@ -18,7 +18,7 @@ import { setNewUserPost } from "../../store/authSlice";
 import { useTranslation } from "react-i18next";
 import { addPost } from "../../store/postsSlice";
 
-const PostInputComponent = () => {
+export const PostInputComponent = () => {
   // I created separate state for file to send, it helps me with deleting already downloaded files from upload list
   const user = useAppSelector((state) => state.auth.user);
   const dispatch = useDispatch();
@@ -107,5 +107,3 @@ const PostInputComponent = () => {
     </Paper>
   );
 };
-
-export default PostInputComponent;
