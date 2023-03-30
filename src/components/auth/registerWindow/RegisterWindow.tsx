@@ -11,13 +11,13 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTheme } from "@mui/material/styles";
 import { useState } from "react";
-import { CustomDropzone } from "../shared/CustomDropzone";
+import { CustomDropzone } from "../../shared/CustomDropzone";
 import { ReactComponent as RegisterWindowImage } from "../../assets/RegisterWindowImage.svg";
-import { UserRegisterSchema } from "../../utils/ValidationSchemas";
+import { UserRegisterSchema } from "../../../utils/ValidationSchemas";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
-import { LanguageChangeButton } from "../buttons/LanguageChangeButton";
+import { LanguageChangeButton } from "../../buttons/LanguageChangeButton";
 
 // pre: I decided to not mess with dropzone and react hook form + zod,
 // so Im using state for file, which is not controlled by react hook form(state which let user add and delete single image )

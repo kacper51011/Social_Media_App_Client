@@ -11,13 +11,13 @@ import {
 import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { UserLoginSchema } from "../../utils/ValidationSchemas";
+import { UserLoginSchema } from "../../../utils/ValidationSchemas";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { setLogin } from "../../store/authSlice";
+import { setLogin } from "../../../store/authSlice";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
-import { LanguageChangeButton } from "../buttons/LanguageChangeButton";
+import { LanguageChangeButton } from "../../buttons/LanguageChangeButton";
 
 type UserLoginType = z.infer<typeof UserLoginSchema>;
 
