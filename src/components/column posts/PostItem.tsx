@@ -48,6 +48,7 @@ export type Comment = {
 
 // todo: comments and likes as objects, then check if user liked post or not
 
+// eslint-disable-next-line react/display-name
 const PostItem = forwardRef(
   (
     {

@@ -1,4 +1,4 @@
-import { Tooltip, IconButton, Typography } from "@mui/material";
+import { Tooltip, IconButton } from "@mui/material";
 import { ComponentProps, ReactNode } from "react";
 
 type Props = {

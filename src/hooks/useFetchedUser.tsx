@@ -29,6 +29,7 @@ const useFetchedUser = () => {
     fetchUser();
 
     return setFetchedUser(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return [fetchedUser, loadingUser, error] as const;

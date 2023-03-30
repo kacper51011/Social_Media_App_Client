@@ -2,30 +2,27 @@ import { Avatar, Box, Divider, Grid, Paper, Typography } from "@mui/material";
 import PlaceIcon from "@mui/icons-material/Place";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import { useTranslation } from "react-i18next";
+import { User } from "../../store/authSlice";
 
-type Props = {
-  photo: string;
-  firstName: string;
-  lastName: string;
-  followedPeopleNumber: number;
-  location: string;
-  job: string;
-  numberOfProfileViews: number;
-  numberOfPosts: number;
-  numberOfFollowedBy: number;
+type UserCardProps = {
+  user: User;
 };
 
-const UserCard = ({
-  photo,
-  firstName,
-  lastName,
-  followedPeopleNumber,
-  location,
-  job,
-  numberOfProfileViews,
-  numberOfPosts,
-  numberOfFollowedBy,
-}: Props) => {
+const UserCard = ({ user }: UserCardProps) => {
+  const {
+    picturePath,
+    firstName,
+    lastName,
+    followingIDs,
+    job,
+    postsIds,
+    viewsProfile,
+    followedByIDs,
+    location,
+  } = user;
+  const followedPeopleNumber = followingIDs.length || 0;
+  const numberOfFollowedBy = followedByIDs.length || 0;
+  const numberOfPosts = postsIds.length || 0;
   const { t } = useTranslation("userCard");
 
   return (
@@ -42,7 +39,7 @@ const UserCard = ({
     >
       <Grid container width="1" direction="row" alignItems="center">
         <Grid item xs={2.5}>
-          <Avatar src={`/assets/${photo}`}>{firstName[0]}</Avatar>
+          <Avatar src={`/assets/${picturePath}`}>{firstName[0]}</Avatar>
         </Grid>
 
         <Grid sx={{ flexDirection: "column", justifyContent: "center" }}>
@@ -95,7 +92,7 @@ const UserCard = ({
             <Typography variant="caption">{t("viewsInfo")}</Typography>
           </Grid>
           <Grid item py={1}>
-            <Typography> {numberOfProfileViews}</Typography>
+            <Typography> {viewsProfile}</Typography>
           </Grid>
         </Grid>
         <Grid

@@ -10,11 +10,7 @@ import { useDispatch } from "react-redux";
 import { setMode } from "../../store/themeSlice";
 import MobileMenu from "./MobileMenu";
 import useLogout from "../../hooks/useLogout";
-import {
-  setToFollowsColumn,
-  setToPostsColumn,
-  setToProfileColumn,
-} from "../../store/columnSlice";
+import { setColumn } from "../../store/columnSlice";
 import { useTranslation } from "react-i18next";
 
 const MobileNavbar = () => {
@@ -48,17 +44,17 @@ const MobileNavbar = () => {
 
           <Stack direction="row">
             <CustomIconButton
-              onClick={() => dispatch(setToProfileColumn())}
+              onClick={() => dispatch(setColumn("profile"))}
               icon={<PersonIcon />}
               title={t("profileColumn")}
             />
             <CustomIconButton
-              onClick={() => dispatch(setToPostsColumn())}
+              onClick={() => dispatch(setColumn("posts"))}
               icon={<ArticleIcon />}
               title={t("postsColumn")}
             />
             <CustomIconButton
-              onClick={() => dispatch(setToFollowsColumn())}
+              onClick={() => dispatch(setColumn("follows"))}
               icon={<PeopleIcon />}
               title={t("followsColumn")}
             />

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type following = {
+export type Following = {
   id: string;
   firstName: string;
   lastName: string;
@@ -20,7 +20,7 @@ export type User = {
   likedPostsIDs: string[];
   followedByIDs: string[];
   followingIDs: string[];
-  following: following[];
+  following: Following[];
 };
 
 let userAuthCheck: User | null = localStorage.getItem("userInfo")
@@ -52,7 +52,7 @@ const authSlice = createSlice({
         (id) => id !== action.payload
       );
     },
-    follow: (state, action: PayloadAction<following>) => {
+    follow: (state, action: PayloadAction<Following>) => {
       state.user!.followingIDs.push(action.payload.id);
       state.user!.following.push({
         ...action.payload,

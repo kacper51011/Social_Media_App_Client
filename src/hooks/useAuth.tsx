@@ -1,14 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
-
 import { setLogin, setLogout } from "../store/authSlice";
 
 const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
-  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const controller = new AbortController();
@@ -35,6 +31,7 @@ const useAuth = () => {
 
   useEffect(() => {
     checkIsLoggedIn();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 };
 

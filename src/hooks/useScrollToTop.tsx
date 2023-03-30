@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 
 const useScrollToTop = () => {
   const [visible, setVisible] = useState(false);
@@ -11,7 +11,7 @@ const useScrollToTop = () => {
       setVisible(false);
     }
   };
-  const scrollToTop: React.MouseEventHandler = () => {
+  const scrollToTop: MouseEventHandler = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",

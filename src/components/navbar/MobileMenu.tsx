@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, MouseEvent } from "react";
 import CustomIconButton from "../buttons/CustomIconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Menu, MenuItem, useTheme } from "@mui/material";
@@ -25,7 +25,7 @@ const MobileMenu = ({ toggleMode }: Props) => {
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {

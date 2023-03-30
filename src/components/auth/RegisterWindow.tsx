@@ -31,7 +31,7 @@ const RegisterWindow = () => {
   const theme = useTheme();
   const desktopSize = useMediaQuery(theme.breakpoints.up("md"));
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation("registerPage");
+  const { t } = useTranslation("registerPage");
 
   const {
     register,

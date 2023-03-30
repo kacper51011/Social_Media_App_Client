@@ -6,31 +6,22 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useAppSelector } from "../../hooks/reduxHooks";
-import { follow, unfollow } from "../../store/authSlice";
+import { follow, Following, unfollow } from "../../store/authSlice";
 import CustomIconButton from "../buttons/CustomIconButton";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 
 export type FollowProps = {
-  id: string;
-  photo: string;
-  firstName: string;
-  lastName: string;
-  job: string;
+  followedPerson: Following;
 };
 
-const FollowedPersonItem = ({
-  id,
-  firstName,
-  lastName,
-  job,
-  photo,
-}: FollowProps) => {
+const FollowedPersonItem = ({ followedPerson }: FollowProps) => {
   const navigate = useNavigate();
   const theme = useTheme();
   const authUser = useAppSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const { t } = useTranslation("follows");
+  const { id, firstName, lastName, picturePath, job } = followedPerson;
 
   const isUserFollowed = authUser?.followingIDs.includes(id);
 
@@ -60,7 +51,7 @@ const FollowedPersonItem = ({
         id: id,
         firstName: firstName,
         lastName: lastName,
-        picturePath: photo,
+        picturePath: picturePath,
         job: job,
       })
     );
@@ -81,7 +72,7 @@ const FollowedPersonItem = ({
       }}
     >
       <Grid marginRight={1} item xs={3}>
-        <Avatar src={`/assets/${photo}` || ""}>{firstName[0]}</Avatar>
+        <Avatar src={`/assets/${picturePath}` || ""}>{firstName[0]}</Avatar>
       </Grid>
       <Grid item xs={6} flexDirection="column">
         <Typography

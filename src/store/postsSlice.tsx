@@ -19,16 +19,7 @@ const postsSlice = createSlice({
     deleteLoadedPosts: (state) => {
       state.posts = [];
     },
-    deleteOwnPost: (state, action: PayloadAction<Pick<Post, "id">>) => {
-      const postToDelete = state.posts.find(
-        (post) => post.id === action.payload.id
-      );
-
-      state.posts = state.posts.filter((post) => post.id !== action.payload.id);
-    },
     addPost: (state, action: PayloadAction<Post>) => {
-      const newPost = action.payload;
-
       state.posts.unshift(action.payload);
     },
     addLikeForPost: (state, action) => {
@@ -76,7 +67,6 @@ export const {
   commentPost,
   removeLikeFromPost,
   addLikeForPost,
-  deleteOwnPost,
 } = postsSlice.actions;
 
 export default postsSlice.reducer;

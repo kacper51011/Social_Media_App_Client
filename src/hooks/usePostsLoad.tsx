@@ -47,6 +47,7 @@ const usePostsLoad = (url: string, query?: string | null) => {
 
   useEffect(() => {
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, url, id, query]);
 
   useEffect(() => {
@@ -54,6 +55,7 @@ const usePostsLoad = (url: string, query?: string | null) => {
       setPageNumber(1);
       dispatch(deleteLoadedPosts());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url, id, query]);
 
   return { loading, error, hasMore, setPageNumber };

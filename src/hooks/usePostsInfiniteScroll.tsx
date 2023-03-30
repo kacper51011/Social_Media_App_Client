@@ -24,6 +24,7 @@ const usePostsInfiniteScroll = ({ loading, setPageNumber, hasMore }: Props) => {
         observer.current.observe(node);
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [loading, hasMore]
   );
 

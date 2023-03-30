@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEventHandler, useState } from "react";
 import {
   Paper,
   Box,
@@ -25,18 +25,18 @@ const PostInputComponent = () => {
   const [postInput, setPostInput] = useState("");
   const [fileToSend, setFileToSend] = useState<null | File>(null);
   const theme = useTheme();
-  const { t, i18n } = useTranslation("dropzone");
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+  const { t } = useTranslation("dropzone");
+  useDropzone({
     accept: { "image/*": [".png", ".jpg", ".jpeg"] },
     maxSize: 3000000,
     multiple: false,
     disabled: !!fileToSend,
-    onDropAccepted(files, event) {
+    onDropAccepted(files) {
       setFileToSend(files[0]);
     },
   });
 
-  const createPost: React.FormEventHandler<HTMLFormElement> = async (event) => {
+  const createPost: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     const formData = new FormData();
     formData.append("userId", user!.id as string);

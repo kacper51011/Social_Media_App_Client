@@ -1,5 +1,5 @@
 import { Box, InputBase, Typography, useTheme } from "@mui/material";
-import { ComponentProps, Dispatch } from "react";
+import { ComponentProps, Dispatch, SetStateAction } from "react";
 import { useDropzone } from "react-dropzone";
 import CustomIconButton from "../buttons/CustomIconButton";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 type Props = {
   fileToSend: File | null;
   holdSpace?: Boolean;
-  setFileToSend: Dispatch<React.SetStateAction<File | null>>;
+  setFileToSend: Dispatch<SetStateAction<File | null>>;
 } & ComponentProps<typeof Box>;
 
 const CustomDropzone = ({
@@ -18,14 +18,14 @@ const CustomDropzone = ({
   ...containerProps
 }: Props) => {
   const theme = useTheme();
-  const { t, i18n } = useTranslation("dropzone");
+  const { t } = useTranslation("dropzone");
 
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+  const { getRootProps, getInputProps } = useDropzone({
     accept: { "image/*": [".png", ".jpg", ".jpeg"] },
     maxSize: 30000000,
     multiple: false,
     disabled: !!fileToSend,
-    onDropAccepted(files, event) {
+    onDropAccepted(files) {
       setFileToSend(files[0]);
     },
   });

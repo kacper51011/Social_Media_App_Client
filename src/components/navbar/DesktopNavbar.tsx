@@ -9,13 +9,12 @@ import {
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LogoutIcon from "@mui/icons-material/Logout";
-import HomeIcon from "@mui/icons-material/Home";
 import CustomIconButton from "../buttons/CustomIconButton";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useDispatch } from "react-redux";
 import { setMode } from "../../store/themeSlice";
 import useLogout from "../../hooks/useLogout";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import LanguageChangeButton from "../buttons/LanguageChangeButton";
 
@@ -24,7 +23,6 @@ const DesktopNavbar = () => {
   const dispatch = useDispatch();
   const logout = useLogout();
   const navigate = useNavigate();
-  let { id } = useParams();
   const { t } = useTranslation("navbar");
 
   const toggleMode = () => {

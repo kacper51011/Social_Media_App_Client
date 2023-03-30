@@ -19,21 +19,7 @@ const AuthUserPage = () => {
     <UserPageContainer
       profileColumn={
         <>
-          <UserCard
-            photo={user!.picturePath}
-            firstName={user!.firstName}
-            lastName={user!.lastName}
-            location={user!.location}
-            followedPeopleNumber={
-              user?.followingIDs.length ? user?.followingIDs.length : 0
-            }
-            job={user!.job}
-            numberOfPosts={user!.postsIds ? user!.postsIds.length : 0}
-            numberOfProfileViews={user!.viewsProfile}
-            numberOfFollowedBy={
-              user!.followedByIDs.length ? user!.followedByIDs.length : 0
-            }
-          />
+          <UserCard user={user!} />
         </>
       }
       postsColumn={
@@ -52,14 +38,7 @@ const AuthUserPage = () => {
                 followings.map((following) => {
                   return (
                     <Collapse key={following.id} collapsedSize={1}>
-                      <FollowedPersonItem
-                        key={following.id}
-                        id={following.id}
-                        photo={following.picturePath}
-                        firstName={following.firstName}
-                        lastName={following.lastName}
-                        job={following.job}
-                      />
+                      <FollowedPersonItem followedPerson={following} />
                     </Collapse>
                   );
                 })}
