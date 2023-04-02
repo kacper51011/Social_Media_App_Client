@@ -1,7 +1,7 @@
 import axios from "axios";
 import { MouseEventHandler, useState } from "react";
 import { useDispatch } from "react-redux";
-import { commentPost } from "../store/postsSlice";
+import { commentPost } from "../../store/postsSlice";
 import { useAppSelector } from "./reduxHooks";
 
 export const usePostComment = (id: string) => {

@@ -1,16 +1,15 @@
 import { useState, MouseEvent } from "react";
-import { CustomIconButton } from "../buttons/CustomIconButton";
+import { CustomIconButton } from "../../shared/components/CustomIconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Menu, MenuItem, useTheme } from "@mui/material";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate, useParams } from "react-router";
-import { useScrollToTop } from "../../hooks/useScrollToTop";
+import { useScrollToTop } from "../../shared/hooks/useScrollToTop";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import { useTranslation } from "react-i18next";
-import { ReactComponent as UKFlag } from "../../assets/united-kingdom-flag-icon.svg";
-import { ReactComponent as PLFlag } from "../../assets/poland-flag-icon.svg";
+import { UKFlag, PLFlag } from "@assets";
 
 type Props = {
   toggleMode: () => void;

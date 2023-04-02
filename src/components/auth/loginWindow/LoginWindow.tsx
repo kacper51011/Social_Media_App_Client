@@ -1,4 +1,4 @@
-import { ReactComponent as LoginWindowImage } from "../../assets/LoginWindowImage.svg";
+import { LoginWindowImage } from "@assets";
 import {
   Paper,
   Box,
@@ -14,10 +14,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { UserLoginSchema } from "../../../utils/ValidationSchemas";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { setLogin } from "../../../store/authSlice";
+import { setLogin } from "@store";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
-import { LanguageChangeButton } from "../../buttons/LanguageChangeButton";
+import { LanguageChangeButton } from "@components";
 
 type UserLoginType = z.infer<typeof UserLoginSchema>;
 

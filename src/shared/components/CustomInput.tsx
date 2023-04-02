@@ -1,6 +1,6 @@
 import { Avatar, Grid, InputBase, Paper, useTheme } from "@mui/material";
 import { ComponentProps } from "react";
-import { useAppSelector } from "../../hooks/reduxHooks";
+import { useAppSelector } from "../hooks/reduxHooks";
 
 type Props = {
   height?: string | number;

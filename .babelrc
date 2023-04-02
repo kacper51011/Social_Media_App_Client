@@ -1,17 +1,23 @@
-{"plugins": [
-    [
-      "module-resolver",
-      {
-        "root": ["./"],
-        "alias": {
-          "@assets": "./src/shared/assets",
-          "@styles": "./src/shared/styles",
-          "@types" : "./src/shared/types",
-          "@sharedComponents" : "./src/shared/shared",
-          "@store" : "./src/store",
-          "@hooks" : "./src/hooks"
-        },
-        "extensions": [".js", ".ts", ".tsx", ".jsx"]
-      }
+{
+    
+    "plugins": [
+      [
+        "module-resolver",
+       
+        {
+          "root": ["./"],
+          "alias": {
+            "@assets": "./src/shared/assets",
+            "@styles" : "./src/shared/styles",
+            "@types" : "./src/shared/types",
+            "@hooks" : "./src/shared/hooks",
+            "@components" : "./src/shared/components",
+            "@store" : "./src/store"
+          },
+          "extensions": [".js", ".ts", ".tsx", ".jsx"]
+        }
+      ]
     ]
-  ]}
+    
+  }
+  

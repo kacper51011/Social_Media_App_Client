@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { User } from "../store/authSlice";
+import { User } from "../../store/authSlice";
 
 export const useFetchedUser = () => {
   const { id } = useParams();

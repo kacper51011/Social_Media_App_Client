@@ -9,18 +9,18 @@ import {
   Divider,
   Button,
 } from "@mui/material";
-import { CustomIconButton } from "../buttons/CustomIconButton";
+import { CustomIconButton } from "../../shared/components/CustomIconButton";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
-import { CustomInput } from "../shared/CustomInput";
+import { CustomInput } from "../../shared/components/CustomInput";
 import { CommentItem } from "./CommentItem";
-import { useAppSelector } from "../../hooks/reduxHooks";
+import { useAppSelector } from "../../shared/hooks/reduxHooks";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
-import { usePostComment } from "../../hooks/usePostComment";
-import { usePost } from "../../hooks/usePost";
+import { usePostComment } from "../../shared/hooks/usePostComment";
+import { usePost } from "../../shared/hooks/usePost";
 
 // todo: connect redux toolkit to posts
 export type Post = {

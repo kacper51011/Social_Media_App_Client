@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Post, Comment } from "../components/column posts/PostItem";
+import { Post, Comment } from "../components/columnPosts/PostItem";
 
 // Slice created mostly to display changed data on live, not after another load from backend
 

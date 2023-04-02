@@ -1,9 +1,8 @@
-import { useRef, useCallback } from "react";
+import { useRef, useCallback, SetStateAction, Dispatch } from "react";
 
-import React from "react";
 type Props = {
   loading: Boolean;
-  setPageNumber: React.Dispatch<React.SetStateAction<number>>;
+  setPageNumber: Dispatch<SetStateAction<number>>;
   hasMore: Boolean;
 };
 

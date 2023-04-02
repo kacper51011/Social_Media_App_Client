@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
-import { ImageWithText } from "../components/shared/ImageWithText";
-import { PageNotFoundImage } from "../assets";
+import { ImageWithText } from "../shared/components/ImageWithText";
+import { PageNotFoundImage } from "../shared/assets";
 
 export const PageNotFound = () => {
   return (

@@ -5,9 +5,9 @@ import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { useAppSelector } from "../../hooks/reduxHooks";
+import { useAppSelector } from "../../shared/hooks/reduxHooks";
 import { follow, Following, unfollow } from "../../store/authSlice";
-import { CustomIconButton } from "../buttons/CustomIconButton";
+import { CustomIconButton } from "../../shared/components/CustomIconButton";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 

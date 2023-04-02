@@ -1,13 +1,13 @@
 import { TransitionGroup } from "react-transition-group";
 import { FollowedPersonItem } from "../components/column follows/FollowedPersonItem";
 import { FollowsContainer } from "../components/column follows/FollowsContainer";
-import { PostInputComponent } from "../components/column posts/PostInputComponent";
+import { PostInputComponent } from "../components/columnPosts/PostInputComponent";
 import { UserCard } from "../components/column user/UserCard";
-import { PostsList } from "../components/column posts/PostsList";
-import { UserPageContainer } from "../components/shared/UserPageContainer";
-import { useAppSelector } from "../hooks/reduxHooks";
+import { PostsList } from "../components/columnPosts/PostsList";
+import { UserPageContainer } from "../shared/components/UserPageContainer";
+import { useAppSelector } from "../shared/hooks/reduxHooks";
 import { Collapse } from "@mui/material";
-import { SearchComponent } from "../components/column posts/SearchComponent";
+import { SearchComponent } from "../components/columnPosts/SearchComponent";
 import { useState } from "react";
 
 export const AuthUserPage = () => {

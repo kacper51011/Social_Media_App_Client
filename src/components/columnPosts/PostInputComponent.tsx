@@ -10,9 +10,9 @@ import {
 } from "@mui/material";
 import { useDropzone } from "react-dropzone";
 import Button from "@mui/material/Button";
-import { CustomDropzone } from "../shared/CustomDropzone";
+import { CustomDropzone } from "../../shared/components/CustomDropzone";
 import axios from "axios";
-import { useAppSelector } from "../../hooks/reduxHooks";
+import { useAppSelector } from "../../shared/hooks/reduxHooks";
 import { useDispatch } from "react-redux";
 import { setNewUserPost } from "../../store/authSlice";
 import { useTranslation } from "react-i18next";

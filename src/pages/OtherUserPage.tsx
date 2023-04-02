@@ -1,11 +1,11 @@
 import { FollowsContainer } from "../components/column follows/FollowsContainer";
 import { UserCard } from "../components/column user/UserCard";
-import { UserPageContainer } from "../components/shared/UserPageContainer";
-import { PostsList } from "../components/column posts/PostsList";
-import { useFetchedUser } from "../hooks/useFetchedUser";
+import { UserPageContainer } from "../shared/components/UserPageContainer";
+import { PostsList } from "../components/columnPosts/PostsList";
+import { useFetchedUser } from "../shared/hooks/useFetchedUser";
 import { FollowedPersonItem } from "../components/column follows/FollowedPersonItem";
 import { Following } from "../store/authSlice";
-import { CustomSkeleton } from "../components/shared/CustomSkeleton";
+import { CustomSkeleton } from "../shared/components/CustomSkeleton";
 
 export const OtherUserPage = () => {
   const [fetchedUser, loadingUser] = useFetchedUser();

@@ -1,6 +1,6 @@
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import { CustomIconButton } from "../buttons/CustomIconButton";
+import { CustomIconButton } from "../../shared/components/CustomIconButton";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
 import { Stack, useTheme, Box } from "@mui/material";
@@ -9,7 +9,7 @@ import PeopleIcon from "@mui/icons-material/People";
 import { useDispatch } from "react-redux";
 import { setMode } from "../../store/themeSlice";
 import { MobileMenu } from "./MobileMenu";
-import { useLogout } from "../../hooks/useLogout";
+import { useLogout } from "../../shared/hooks/useLogout";
 import { setColumn } from "../../store/columnSlice";
 import { useTranslation } from "react-i18next";
 

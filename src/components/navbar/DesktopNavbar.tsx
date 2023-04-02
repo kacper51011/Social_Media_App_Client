@@ -9,14 +9,14 @@ import {
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { CustomIconButton } from "../buttons/CustomIconButton";
+import { CustomIconButton } from "../../shared/components/CustomIconButton";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useDispatch } from "react-redux";
 import { setMode } from "../../store/themeSlice";
-import { useLogout } from "../../hooks/useLogout";
+import { useLogout } from "../../shared/hooks/useLogout";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
-import { LanguageChangeButton } from "../buttons/LanguageChangeButton";
+import { LanguageChangeButton } from "../../shared/components/LanguageChangeButton";
 
 export const DesktopNavbar = () => {
   const theme = useTheme();

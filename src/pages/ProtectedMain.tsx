@@ -1,5 +1,5 @@
 import { Navigate } from "react-router";
-import { useAppSelector } from "../hooks/reduxHooks";
+import { useAppSelector } from "../shared/hooks/reduxHooks";
 import Main from "./Main";
 
 export const ProtectedMain = () => {

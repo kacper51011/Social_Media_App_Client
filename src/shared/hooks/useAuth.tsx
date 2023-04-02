@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setLogin, setLogout } from "../store/authSlice";
+import { setLogin, setLogout } from "../../store/authSlice";
 
 export const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);

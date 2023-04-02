@@ -1,12 +1,8 @@
-import { useAppSelector } from "../../hooks/reduxHooks";
-import { usePostsInfiniteScroll } from "../../hooks/usePostsInfiniteScroll";
-import { usePostsLoad } from "../../hooks/usePostsLoad";
-import { PostItem } from "./PostItem";
-import { CustomSkeleton } from "../shared/CustomSkeleton";
-import { ImageWithText } from "../shared/ImageWithText";
-import { ReactComponent as NoMorePosts } from "../../assets/NoMorePosts.svg";
-import { ReactComponent as PostsError } from "../../assets/PostsError.svg";
-import { ReactComponent as EmptyPostsList } from "../../assets/EmptyPostsList.svg";
+import { Post, PostItem } from "./PostItem";
+import { NoMorePosts, PostsError, EmptyPostsList } from "@assets";
+import { CustomSkeleton, ImageWithText } from "@components";
+import { useAppSelector, usePostsLoad, usePostsInfiniteScroll } from "@hooks";
+import { RefAttributes } from "react";
 import { useTranslation } from "react-i18next";
 
 type Props = {
@@ -32,13 +28,22 @@ export const PostsList = ({ route, query }: Props) => {
 
   return (
     <>
-      {posts.map((post, index) => {
-        if (posts.length === index + 1) {
-          return <PostItem ref={lastPostElementRef} key={post.id} {...post} />;
-        } else {
-          return <PostItem key={post.id} {...post} />;
+      {posts.map(
+        (
+          post: JSX.IntrinsicAttributes &
+            Post &
+            RefAttributes<Element | undefined>,
+          index: number
+        ) => {
+          if (posts.length === index + 1) {
+            return (
+              <PostItem ref={lastPostElementRef} key={post.id} {...post} />
+            );
+          } else {
+            return <PostItem key={post.id} {...post} />;
+          }
         }
-      })}
+      )}
       {loading && <CustomSkeleton width="100%" height="30vw" />}
       {loading && <CustomSkeleton width="100%" height="30vw" />}
       {loading && <CustomSkeleton width="100%" height="30vw" />}

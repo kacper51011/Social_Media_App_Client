@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { CustomIconButton } from "./CustomIconButton";
-import { ReactComponent as UKFlag } from "../../assets/united-kingdom-flag-icon.svg";
-import { ReactComponent as PLFlag } from "../../assets/poland-flag-icon.svg";
+import { PLFlag, UKFlag } from "@assets";
 
 export const LanguageChangeButton = () => {
   const { i18n } = useTranslation();
