@@ -1,4 +1,4 @@
-import { LoginWindowImage } from "@assets";
+import { RegisterWindowImage } from "@assets";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 
 export const ImageBox = () => {
@@ -6,7 +6,7 @@ export const ImageBox = () => {
   const desktopSize = useMediaQuery(theme.breakpoints.up("md"));
   return desktopSize ? (
     <Box width={0.5} display="flex" justifyContent="center" alignItems="center">
-      <LoginWindowImage width="90%" />
+      <RegisterWindowImage width="90%" />
     </Box>
   ) : null;
 };

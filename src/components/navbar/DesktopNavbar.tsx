@@ -13,7 +13,7 @@ import { CustomIconButton } from "../../shared/components/CustomIconButton";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useDispatch } from "react-redux";
 import { setMode } from "../../store/themeSlice";
-import { useLogout } from "../../shared/hooks/useLogout";
+import { useLogout } from "../../features/auth/hooks/useLogout";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { LanguageChangeButton } from "../../shared/components/LanguageChangeButton";

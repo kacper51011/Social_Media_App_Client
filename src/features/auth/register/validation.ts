@@ -10,7 +10,6 @@ export const errorHandler = (
 
   return `${errorField} ${errorCauseMessage} ${errorRange} letters`;
 };
-
 export const UserRegisterSchema = z
   .object({
     firstName: z
@@ -44,8 +43,3 @@ export const UserRegisterSchema = z
     message: "Password doesn't match",
     path: ["confirmpassword"],
   });
-
-export const UserLoginSchema = z.object({
-  email: z.string().email().max(255),
-  password: z.string().min(8).max(200),
-});

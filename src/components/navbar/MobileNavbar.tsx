@@ -9,7 +9,7 @@ import PeopleIcon from "@mui/icons-material/People";
 import { useDispatch } from "react-redux";
 import { setMode } from "../../store/themeSlice";
 import { MobileMenu } from "./MobileMenu";
-import { useLogout } from "../../shared/hooks/useLogout";
+import { useLogout } from "../../features/auth/hooks/useLogout";
 import { setColumn } from "../../store/columnSlice";
 import { useTranslation } from "react-i18next";
 

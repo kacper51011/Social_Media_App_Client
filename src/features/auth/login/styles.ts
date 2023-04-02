@@ -31,3 +31,11 @@ export const buttonStyles: ComponentProps<typeof Button> = {
     whiteSpace: "nowrap",
   },
 };
+
+export const actionsContainerStyles: ComponentProps<typeof Box> = {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "flex-end",
+  alignItems: "center",
+  sx: { mt: 4, mb: 2 },
+};

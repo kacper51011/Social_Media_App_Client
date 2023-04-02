@@ -1,33 +1,28 @@
-import {
-  Box,
-  useMediaQuery,
-  useTheme,
-  Typography,
-  TextField,
-  Button,
-} from "@mui/material";
+import { Box, TextField, Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useLoginForm } from "./useLoginForm";
-import { buttonStyles, formStyles, inputStyles } from "./styles";
+import {
+  actionsContainerStyles,
+  buttonStyles,
+  formStyles,
+  inputStyles,
+} from "./styles";
 import {
   LoginContainer,
   ErrorText,
   LinkToRegister,
   ImageBox,
+  Greeting,
 } from "./components";
 
 export const LoginWindow = () => {
   const { register, errors, formHandle, isSubmitting } = useLoginForm();
   const { t } = useTranslation("loginPage");
-  const theme = useTheme();
-  const desktopSize = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
     <LoginContainer>
       <Box component="form" onSubmit={formHandle} {...formStyles}>
-        <Typography textAlign="center" fontWeight="bold" variant="h4">
-          {t("greeting")}
-        </Typography>
+        <Greeting />
         <Box my={3}>
           <TextField
             label="Email"
@@ -44,19 +39,13 @@ export const LoginWindow = () => {
           />
         </Box>
 
-        <Box
-          display="flex"
-          flexDirection="column"
-          justifyContent="flex-end"
-          alignItems="center"
-          sx={{ mt: 4, mb: 2 }}
-        >
+        <Box {...actionsContainerStyles}>
           <ErrorText errorMessage={errors.customError?.message} />
           <Button {...buttonStyles}>{t("button")}</Button>
           <LinkToRegister />
         </Box>
       </Box>
-      <ImageBox desktopSize={desktopSize} />
+      <ImageBox />
     </LoginContainer>
   );
 };

@@ -6,9 +6,9 @@ import { Main } from "./pages/Main";
 import Box from "@mui/material/Box";
 import { Home } from "./pages/Home";
 import { useAppSelector } from "./shared/hooks/reduxHooks";
-import { useAuth } from "./shared/hooks/useAuth";
+import { useAuth } from "./features/auth/hooks/useAuth";
 
-import { RegisterWindow } from "./components/auth/registerWindow/RegisterWindow";
+import { RegisterWindow } from "./features/auth/register/RegisterWindow";
 import { OtherUserPage } from "./pages/OtherUserPage";
 import { AuthUserPage } from "./pages/AuthUserPage";
 import { PageNotFound } from "./pages/PageNotFound";
