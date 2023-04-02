@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const errorHandler = (
+export const errorHandler = (
   errorField: string,
   errorCause: "max" | "min",
   errorRange: number

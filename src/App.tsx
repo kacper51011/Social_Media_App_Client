@@ -7,11 +7,12 @@ import Box from "@mui/material/Box";
 import { Home } from "./pages/Home";
 import { useAppSelector } from "./shared/hooks/reduxHooks";
 import { useAuth } from "./shared/hooks/useAuth";
-import { LoginWindow } from "./components/auth/loginWindow/LoginWindow";
+
 import { RegisterWindow } from "./components/auth/registerWindow/RegisterWindow";
 import { OtherUserPage } from "./pages/OtherUserPage";
 import { AuthUserPage } from "./pages/AuthUserPage";
 import { PageNotFound } from "./pages/PageNotFound";
+import { LoginWindow } from "./features/auth";
 
 // todo: improve architecture
 // Wysrodkowac pionowo sekcje logowania i rejestracji
