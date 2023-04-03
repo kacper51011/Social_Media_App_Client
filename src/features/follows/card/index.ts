@@ -1,0 +1,1 @@
+export { FollowsCard } from "./FollowsCard";
