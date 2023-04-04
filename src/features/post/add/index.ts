@@ -1,1 +1,1 @@
-export { AddPostInput } from "./CreatePostInput";
+export { CreatePostInput } from "./CreatePostInput";

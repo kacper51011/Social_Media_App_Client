@@ -14,12 +14,11 @@ import { SubmitButton } from "./components";
 import { usePostInput } from "./usePostInput";
 
 export const CreatePostInput = () => {
-  const { postInput, setPostInput, fileToSend, setFileToSend, createPost } =
-    usePostInput();
   const user = useAppSelector((state) => state.auth.user);
   const theme = useTheme();
   const { t } = useTranslation("dropzone");
-
+  const { postInput, setPostInput, fileToSend, setFileToSend, createPost } =
+    usePostInput();
   return (
     <Paper
       onSubmit={createPost}

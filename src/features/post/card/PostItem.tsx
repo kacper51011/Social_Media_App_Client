@@ -1,24 +1,24 @@
-import { forwardRef, Ref, useState } from "react";
+import { forwardRef, MouseEvent, Ref, useState } from "react";
 import {
   Paper,
   Grid,
   Avatar,
   Typography,
-  CardMedia,
   Box,
   Divider,
   Button,
 } from "@mui/material";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
-import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
-import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import { CommentItem } from "../comment/components/CommentItem";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
-import { CustomIconButton, CustomInput } from "@components";
+import { CustomInput } from "@components";
 import { useAppSelector, usePost, usePostComment } from "@hooks";
 import { Post } from "@types";
+import { CardImage } from "./components/CardImage";
+import { LikeButton } from "./components/LikeButton";
+import { FollowButton } from "./components/FollowButton";
+import { commentsDisplayStyle } from "./styles";
+import { AuthorInfo } from "./components/AuthorInfo";
 
 // eslint-disable-next-line react/display-name
 export const PostItem = forwardRef(
@@ -38,7 +38,6 @@ export const PostItem = forwardRef(
     ref: Ref<Element | null | undefined>
   ) => {
     const [commentsVisible, setCommentsVisible] = useState(false);
-
     const { t } = useTranslation("posts");
     const navigate = useNavigate();
 
@@ -83,78 +82,28 @@ export const PostItem = forwardRef(
         {/* avatar, name, location, button to follow */}
         <Grid container width={1} py={1} direction="row" alignItems="center">
           <Grid item xs={8}>
-            <Box display="flex" justifyContent="left" alignItems="top">
-              <Avatar src={`/assets/${userPicturePath}`}>{firstName[0]}</Avatar>
-
-              <Typography
-                sx={{ cursor: "pointer" }}
-                fontWeight="bold"
-                variant="body1"
-                ml={1}
-                component="div"
-                onClick={() => {
-                  navigate(`/profile/${userId}`);
-                  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-                }}
-              >
-                {firstName + " " + lastName}
-              </Typography>
-            </Box>
+            <AuthorInfo
+              userPicturePath={""}
+              firstName={""}
+              userId={""}
+              lastName={""}
+            />
           </Grid>
 
           <Grid xs={3} md={2} item display="flex" ml="auto">
             {!IsAuthUserAnAuthor && (
               <>
-                <CustomIconButton
-                  title={
-                    !authLikedPosts.includes(id)
-                      ? t("buttonLike")
-                      : t("buttonUnlike")
-                  }
-                  onClick={likeUnlike}
-                  icon={
-                    authLikedPosts.includes(id) ? (
-                      <ThumbDownAltIcon color="primary" />
-                    ) : (
-                      <ThumbUpAltIcon color="primary" />
-                    )
-                  }
-                />
-                <CustomIconButton
-                  title={
-                    !doUserFollowAuthor
-                      ? t("buttonFollow")
-                      : t("buttonUnfollow")
-                  }
+                <LikeButton onClick={likeUnlike} isLiked={doUserLikePost} />
+                <FollowButton
                   onClick={followUnfollow}
-                  icon={
-                    doUserFollowAuthor ? (
-                      <PersonRemoveIcon color="primary" />
-                    ) : (
-                      <PersonAddIcon color="primary" />
-                    )
-                  }
+                  isFollowing={doUserFollowAuthor}
                 />
               </>
             )}
           </Grid>
         </Grid>
-        {/* post content */}
         <Typography py={2}>{description}</Typography>
-        {/* post image */}
-        <Paper elevation={0}>
-          <CardMedia
-            component="img"
-            loading="lazy"
-            src={`/assets/${picturePath}`}
-            sx={{
-              height: "auto",
-              maxWidth: "100%",
-              borderRadius: "16px",
-            }}
-          />
-        </Paper>
-        {/* statistics */}
+        <CardImage picturePath={picturePath} />
         <Box
           display="flex"
           flexDirection="row"
@@ -169,8 +118,7 @@ export const PostItem = forwardRef(
           <Typography
             onClick={() => setCommentsVisible(!commentsVisible)}
             component="span"
-            variant="caption"
-            sx={{ cursor: "pointer" }}
+            {...commentsDisplayStyle}
           >
             {`${comments ? comments.length : 0} ${t("comments")}`}
           </Typography>

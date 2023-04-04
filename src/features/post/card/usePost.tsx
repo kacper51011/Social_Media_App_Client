@@ -1,7 +1,6 @@
 import axios from "axios";
 import { MouseEventHandler } from "react";
 import { useDispatch } from "react-redux";
-import { Post } from "./PostItem";
 import { useAppSelector } from "@hooks";
 import {
   follow,
@@ -11,6 +10,7 @@ import {
   addLikeForPost,
   removeLikeFromPost,
 } from "@store";
+import { Post } from "@types";
 
 type Props = Pick<
   Post,
