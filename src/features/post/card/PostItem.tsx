@@ -9,44 +9,16 @@ import {
   Divider,
   Button,
 } from "@mui/material";
-import { CustomIconButton } from "../../shared/components/CustomIconButton";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
-import { CustomInput } from "../../shared/components/CustomInput";
-import { CommentItem } from "./CommentItem";
-import { useAppSelector } from "../../shared/hooks/reduxHooks";
+import { CommentItem } from "../comment/components/CommentItem";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
-import { usePostComment } from "../../shared/hooks/usePostComment";
-import { usePost } from "../../shared/hooks/usePost";
-
-// todo: connect redux toolkit to posts
-export type Post = {
-  id: string;
-  userId: string;
-  userPicturePath: string;
-  picturePath: string;
-  firstName: string;
-  lastName: string;
-  job: string;
-  description: string;
-  likes: string[];
-  comments: Comment[];
-};
-
-export type Comment = {
-  id: string;
-  userId: string;
-  userFirstName: string;
-  userLastName: string;
-  userPhotoPicturePath: string;
-  postId: string;
-  content: string;
-};
-
-// todo: comments and likes as objects, then check if user liked post or not
+import { CustomIconButton, CustomInput } from "@components";
+import { useAppSelector, usePost, usePostComment } from "@hooks";
+import { Post } from "@types";
 
 // eslint-disable-next-line react/display-name
 export const PostItem = forwardRef(
@@ -242,10 +214,10 @@ export const PostItem = forwardRef(
               return (
                 <CommentItem
                   key={comment.id}
-                  commentContent={comment.content}
-                  commentCreatorFirstName={comment.userFirstName}
-                  commentCreatorLastName={comment.userLastName}
-                  commentCreatorPicture={comment.userPhotoPicturePath}
+                  content={comment.content}
+                  creatorFirstName={comment.userFirstName}
+                  creatorLastName={comment.userLastName}
+                  creatorPicture={comment.userPhotoPicturePath}
                 />
               );
             })}

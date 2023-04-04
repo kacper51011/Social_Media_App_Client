@@ -21,3 +21,11 @@ export const formStyle: ComponentProps<typeof Box> = {
   py: 4,
   px: { xs: 2, lg: 6 },
 };
+
+export const actionsContainerStyles: ComponentProps<typeof Box> = {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "flex-end",
+  alignItems: "center",
+  sx: { mb: 2 },
+};

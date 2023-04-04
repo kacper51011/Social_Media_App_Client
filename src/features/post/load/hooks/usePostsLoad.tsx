@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
 
-import { deleteLoadedPosts, setNewPosts } from "../../store/postsSlice";
+import { deleteLoadedPosts, setNewPosts } from "../../../../store/postsSlice";
 
 // Hook made for fetching and preparing data about posts
 

@@ -8,7 +8,7 @@ import {
   RegisterContainer,
   Greeting,
 } from "./components";
-import { buttonStyle, formStyle } from "./styles";
+import { actionsContainerStyles, buttonStyle, formStyle } from "./styles";
 import { useRegisterForm } from "./useRegisterForm";
 
 export const RegisterWindow = () => {
@@ -106,7 +106,7 @@ export const RegisterWindow = () => {
           />
         </Box>
 
-        <Box>
+        <Box {...actionsContainerStyles}>
           <ErrorText errorMessage={errorMessages} />
           <Button {...buttonStyle} disabled={isSubmitting}>
             {t("button")}

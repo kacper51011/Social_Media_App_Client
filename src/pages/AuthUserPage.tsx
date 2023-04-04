@@ -1,9 +1,9 @@
-import { PostInputComponent } from "../components/columnPosts/PostInputComponent";
+import { AddPostInput } from "../features/post/add/CreatePostInput";
 import { UserCard } from "../components/column user/UserCard";
-import { PostsList } from "../components/columnPosts/PostsList";
+import { PostsList } from "../features/post/load/components/PostsList";
 import { UserPageContainer } from "../shared/components/UserPageContainer";
 import { useAppSelector } from "../shared/hooks/reduxHooks";
-import { SearchComponent } from "../components/columnPosts/SearchComponent";
+import { SearchComponent } from "../features/search/SearchComponent";
 import { useState } from "react";
 import { FollowsCard } from "src/features/follows";
 
@@ -22,7 +22,7 @@ export const AuthUserPage = () => {
       postsColumn={
         <>
           <SearchComponent setSearch={setSearch} query={search} />
-          <PostInputComponent />
+          <AddPostInput />
 
           <PostsList route="/api/post/getPosts" query={search} />
         </>

@@ -1,4 +1,3 @@
-import { RegisterWindowImage } from "@assets";
 import { LanguageChangeButton } from "@components";
 import { Paper, Box } from "@mui/material";
 import { PropsWithChildren } from "react";
