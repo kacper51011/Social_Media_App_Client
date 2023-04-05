@@ -37,6 +37,7 @@ export const SearchInput = ({ setSearch, query, ...props }: Props) => {
       />
       {query && (
         <IconButton
+          aria-label={t("searchReset")!}
           onClick={() => {
             setSearch(null);
             setTextToSearch("");
@@ -46,7 +47,11 @@ export const SearchInput = ({ setSearch, query, ...props }: Props) => {
           <ClearRoundedIcon />
         </IconButton>
       )}
-      <IconButton onClick={() => setSearch(textToSearch)} sx={{ flexGrow: 0 }}>
+      <IconButton
+        aria-label={t("searchButton")!}
+        onClick={() => setSearch(textToSearch)}
+        sx={{ flexGrow: 0 }}
+      >
         <SearchIcon />
       </IconButton>
     </Paper>

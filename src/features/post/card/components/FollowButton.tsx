@@ -10,7 +10,7 @@ type Props = {
 };
 
 export const FollowButton = ({ isFollowing, onClick }: Props) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("posts");
   return (
     <CustomIconButton
       title={isFollowing ? t("buttonUnfollow") : t("buttonFollow")}

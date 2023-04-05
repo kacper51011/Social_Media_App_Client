@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { commentPost } from "@store";
 import { useAppSelector } from "@hooks";
 
-export const usePostComment = (id: string) => {
+export const useCommentInput = (id: string) => {
   const [commentToSend, setCommentToSend] = useState("");
   const dispatch = useDispatch();
   const authUser = useAppSelector((state) => state.auth.user!);

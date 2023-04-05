@@ -1,4 +1,4 @@
-import { UserCard } from "../components/column user/UserCard";
+import { UserCard } from "../features/user/UserCard";
 import { UserPageContainer } from "../shared/components/UserPageContainer";
 import { PostsList } from "../features/post/load/components/PostsList";
 import { FollowsCard } from "src/features/follows";

@@ -1,5 +1,5 @@
-import { Post, PostItem } from "../../card/PostItem";
-import { useAppSelector, usePostsLoad, usePostsInfiniteScroll } from "@hooks";
+import { PostItem } from "../../card/PostItem";
+import { useAppSelector } from "@hooks";
 import { RefAttributes } from "react";
 import {
   EmptyListInfo,
@@ -7,6 +7,10 @@ import {
   NoMorePostsInfo,
   ErrorInfo,
 } from "./components";
+import { Post } from "@types";
+import { usePostsInfiniteScroll } from "../hooks/usePostsInfiniteScroll";
+import { usePostsLoad } from "../hooks/usePostsLoad";
+import { Box } from "@mui/material";
 
 type Props = {
   route: string;
@@ -32,7 +36,7 @@ export const PostsList = ({ route, query }: Props) => {
   const PostsListIsEmpty = !hasMore && !error && !loading && posts.length === 0;
 
   return (
-    <>
+    <Box role="main">
       {posts.map(
         (
           post: JSX.IntrinsicAttributes &
@@ -53,6 +57,6 @@ export const PostsList = ({ route, query }: Props) => {
       <ErrorInfo showOn={error} />
       <NoMorePostsInfo showOn={allPostsLoaded} />
       <EmptyListInfo showOn={PostsListIsEmpty} />
-    </>
+    </Box>
   );
 };

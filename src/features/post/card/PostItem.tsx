@@ -1,24 +1,17 @@
-import { forwardRef, MouseEvent, Ref, useState } from "react";
-import {
-  Paper,
-  Grid,
-  Avatar,
-  Typography,
-  Box,
-  Divider,
-  Button,
-} from "@mui/material";
-import { CommentItem } from "../comment/components/CommentItem";
-import { useNavigate } from "react-router";
-import { useTranslation } from "react-i18next";
-import { CustomInput } from "@components";
-import { useAppSelector, usePost, usePostComment } from "@hooks";
+import { forwardRef, Ref } from "react";
+import { Paper, Grid, Typography, Box, Divider } from "@mui/material";
+import { useAppSelector } from "@hooks";
 import { Post } from "@types";
-import { CardImage } from "./components/CardImage";
-import { LikeButton } from "./components/LikeButton";
-import { FollowButton } from "./components/FollowButton";
-import { commentsDisplayStyle } from "./styles";
-import { AuthorInfo } from "./components/AuthorInfo";
+import { ItemContainerStyle } from "./styles";
+import { CommentsSection } from "../comment";
+import { usePost } from "./usePost";
+import {
+  AuthorInfo,
+  LikeButton,
+  FollowButton,
+  CardImage,
+  StatisticsRow,
+} from "./components";
 
 // eslint-disable-next-line react/display-name
 export const PostItem = forwardRef(
@@ -37,10 +30,6 @@ export const PostItem = forwardRef(
     }: Post,
     ref: Ref<Element | null | undefined>
   ) => {
-    const [commentsVisible, setCommentsVisible] = useState(false);
-    const { t } = useTranslation("posts");
-    const navigate = useNavigate();
-
     const authUser = useAppSelector((state) => state.auth.user!);
     const authLikedPosts = useAppSelector(
       (state) => state.auth.user!.likedPostsIDs
@@ -55,7 +44,12 @@ export const PostItem = forwardRef(
     const doUserLikePost = authLikedPosts.includes(id);
     const doUserFollowAuthor = authFollowings.includes(userId);
 
-    const { likeUnlike, followUnfollow } = usePost({
+    const {
+      likeUnlike,
+      followUnfollow,
+      commentsVisibility,
+      toggleCommentsVisibility,
+    } = usePost({
       id,
       userId,
       job,
@@ -66,30 +60,17 @@ export const PostItem = forwardRef(
       doUserLikePost,
     });
 
-    const { commentToSend, setCommentToSend, sendComment } = usePostComment(id);
-
     return (
-      <Paper
-        elevation={2}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          p: { xs: 1, md: 2 },
-          borderRadius: "16px",
-          mb: 5,
-        }}
-      >
-        {/* avatar, name, location, button to follow */}
+      <Paper {...ItemContainerStyle} role="article">
         <Grid container width={1} py={1} direction="row" alignItems="center">
           <Grid item xs={8}>
             <AuthorInfo
-              userPicturePath={""}
-              firstName={""}
-              userId={""}
-              lastName={""}
+              userPicturePath={userPicturePath}
+              firstName={firstName}
+              userId={userId}
+              lastName={lastName}
             />
           </Grid>
-
           <Grid xs={3} md={2} item display="flex" ml="auto">
             {!IsAuthUserAnAuthor && (
               <>
@@ -104,71 +85,16 @@ export const PostItem = forwardRef(
         </Grid>
         <Typography py={2}>{description}</Typography>
         <CardImage picturePath={picturePath} />
-        <Box
-          display="flex"
-          flexDirection="row"
-          justifyContent="space-between"
-          my={2}
-        >
-          <Typography variant="caption">
-            {likes?.length + " " + t("likes")}
-          </Typography>
-
-          {/* number of comments */}
-          <Typography
-            onClick={() => setCommentsVisible(!commentsVisible)}
-            component="span"
-            {...commentsDisplayStyle}
-          >
-            {`${comments ? comments.length : 0} ${t("comments")}`}
-          </Typography>
-        </Box>
-        {commentsVisible && <Divider />}
-
+        <StatisticsRow
+          likes={likes}
+          comments={comments}
+          toggleComments={toggleCommentsVisibility}
+        />
+        {commentsVisibility && <Divider />}
         <Box ref={ref} my={0.2}>
-          {commentsVisible && (
-            <>
-              <Box
-                my={2}
-                display="flex"
-                flexDirection="column"
-                alignItems="flex-end"
-              >
-                <CustomInput
-                  minRows={3}
-                  multiline
-                  height={1}
-                  value={commentToSend}
-                  placeholder={t("comment")!}
-                  onChange={(e) => setCommentToSend(e.target.value)}
-                />
-                <Button
-                  sx={{ mt: 2 }}
-                  disabled={!commentToSend!}
-                  variant="outlined"
-                  size="small"
-                  onClick={sendComment}
-                >
-                  {t("commentButton")}
-                </Button>
-              </Box>
-              <Divider />
-            </>
+          {commentsVisibility && (
+            <CommentsSection id={id} comments={comments} />
           )}
-
-          {commentsVisible &&
-            comments &&
-            comments.map((comment) => {
-              return (
-                <CommentItem
-                  key={comment.id}
-                  content={comment.content}
-                  creatorFirstName={comment.userFirstName}
-                  creatorLastName={comment.userLastName}
-                  creatorPicture={comment.userPhotoPicturePath}
-                />
-              );
-            })}
         </Box>
       </Paper>
     );

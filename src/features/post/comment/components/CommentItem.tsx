@@ -17,9 +17,12 @@ export const CommentItem = ({
   const theme = useTheme();
 
   return (
-    <Grid {...itemContainerStyle}>
+    <Grid {...itemContainerStyle} role="comment">
       <Grid item>
-        <Avatar src={`/assets/${creatorPicture}` || ""}>
+        <Avatar
+          alt="Comment author profile image"
+          src={`http://localhost:3001/assets/${creatorPicture}` || ""}
+        >
           {creatorFirstName[0]}{" "}
         </Avatar>
       </Grid>

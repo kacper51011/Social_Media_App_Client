@@ -27,7 +27,10 @@ export const CreatePostInput = () => {
     >
       <Grid container direction="row" alignItems="center" width={1}>
         <Grid item xs={1}>
-          <Avatar src={`/assets/${user?.picturePath}`} />
+          <Avatar
+            alt="User profile image"
+            src={`http://localhost:3001/assets/${user?.picturePath}`}
+          />
         </Grid>
         <Grid item xs={11} display="flex" justifyContent="right">
           <Paper

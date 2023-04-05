@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "@hooks";
 import {
@@ -30,8 +30,13 @@ export const usePost = ({
   doUserFollowAuthor,
   doUserLikePost,
 }: Props) => {
+  const [commentsVisibility, setCommentsVisible] = useState(false);
   const dispatch = useDispatch();
   const authUser = useAppSelector((state) => state.auth.user!);
+
+  const toggleCommentsVisibility: MouseEventHandler<HTMLSpanElement> = () => {
+    setCommentsVisible(!commentsVisibility);
+  };
 
   const followUnfollow: MouseEventHandler<HTMLButtonElement> = async () => {
     try {
@@ -71,5 +76,10 @@ export const usePost = ({
     doUserLikePost ? dispatch(unlikePost(id)) : dispatch(likePost(id));
   };
 
-  return { likeUnlike, followUnfollow };
+  return {
+    likeUnlike,
+    followUnfollow,
+    commentsVisibility,
+    toggleCommentsVisibility,
+  };
 };

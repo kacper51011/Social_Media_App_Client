@@ -59,6 +59,8 @@ const resources = {
       commentButton: "SEND",
       search: "Search for posts...",
       delete: "Delete post",
+      searchButton: "Search for posts",
+      searchReset: "Reset search",
     },
     follows: {
       followList: "Follow list",
@@ -128,6 +130,8 @@ const resources = {
       commentButton: "WYŚLIJ",
       search: "Wyszukaj...",
       delete: "Usuń post",
+      searchButton: "Szukaj postów",
+      searchReset: "Resetuj wyszukiwanie",
     },
     follows: {
       followList: "Lista obserwowanych",

@@ -6,6 +6,7 @@ export const LoginContainer = ({ children }: PropsWithChildren) => {
   return (
     <Paper
       elevation={4}
+      role="main"
       sx={{
         minHeight: { xs: 0.5, lg: 0.9 },
         width: 0.9,

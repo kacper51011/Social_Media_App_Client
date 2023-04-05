@@ -49,7 +49,7 @@ export const DesktopNavbar = () => {
         >
           <Typography
             variant="h5"
-            component="div"
+            component="h1"
             mr={5}
             onClick={() => {
               window.scrollTo({ top: 0, left: 0, behavior: "smooth" });

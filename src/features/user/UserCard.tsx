@@ -39,7 +39,12 @@ export const UserCard = ({ user }: UserCardProps) => {
     >
       <Grid container width="1" direction="row" alignItems="center">
         <Grid item xs={2.5}>
-          <Avatar src={`/assets/${picturePath}`}>{firstName[0]}</Avatar>
+          <Avatar
+            alt="User profile image"
+            src={`http://localhost:3001/assets/${picturePath}`}
+          >
+            {firstName[0]}
+          </Avatar>
         </Grid>
 
         <Grid sx={{ flexDirection: "column", justifyContent: "center" }}>

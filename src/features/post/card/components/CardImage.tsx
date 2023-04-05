@@ -8,9 +8,10 @@ export const CardImage = ({ picturePath }: Props) => {
   return (
     <Paper elevation={0}>
       <CardMedia
+        alt="Image added to post"
         component="img"
         loading="lazy"
-        src={`/assets/${picturePath}`}
+        src={`http://localhost:3001/assets/${picturePath}`}
         sx={{
           height: "auto",
           maxWidth: "100%",

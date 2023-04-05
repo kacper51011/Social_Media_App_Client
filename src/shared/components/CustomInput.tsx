@@ -27,7 +27,10 @@ export const CustomInput = ({
       height={height}
     >
       <Grid item>
-        <Avatar src={`/assets/${user?.picturePath}`}>
+        <Avatar
+          alt="User profile image"
+          src={`http://localhost:3001/assets/${user?.picturePath}`}
+        >
           {user?.firstName[0]}{" "}
         </Avatar>
       </Grid>

@@ -13,7 +13,7 @@ export const FollowsCard = ({ follows }: Props) => {
         {follows &&
           follows.map((follow) => {
             return (
-              <Collapse>
+              <Collapse key={follow.id}>
                 <FollowsItem followedPerson={follow} key={follow.id} />
               </Collapse>
             );

@@ -24,7 +24,12 @@ export const FollowsItem = ({ followedPerson }: FollowProps) => {
       }}
     >
       <Grid marginRight={1} item xs={3}>
-        <Avatar src={`/assets/${picturePath}` || ""}>{firstName[0]}</Avatar>
+        <Avatar
+          alt="Followed person profile image"
+          src={`http://localhost:3001/assets/${picturePath}` || ""}
+        >
+          {firstName[0]}
+        </Avatar>
       </Grid>
       <Grid item xs={6} flexDirection="column">
         <NameLink id={id} firstName={firstName} lastName={lastName} />

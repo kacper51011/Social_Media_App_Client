@@ -31,7 +31,9 @@ export const ImageWithText = ({
       height={height}
       {...containerProps}
     >
-      <Typography variant="h5">{content}</Typography>
+      <Typography component="h2" variant="h5">
+        {content}
+      </Typography>
       <Box
         width={0.4}
         height={0.7}

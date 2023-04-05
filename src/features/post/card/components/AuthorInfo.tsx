@@ -17,7 +17,12 @@ export const AuthorInfo = ({
   const navigate = useNavigate();
   return (
     <Box display="flex" justifyContent="left" alignItems="top">
-      <Avatar src={`/assets/${userPicturePath}`}>{firstName[0]}</Avatar>
+      <Avatar
+        alt="Post author profile image"
+        src={`http://localhost:3001/assets/${userPicturePath}`}
+      >
+        {firstName[0]}
+      </Avatar>
 
       <Typography
         component="div"
