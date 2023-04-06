@@ -1,4 +1,4 @@
-export { CustomDropzone } from "./CustomDropzone";
+export { CustomDropzone } from "./CustomDropzone/CustomDropzone";
 export { CustomIconButton } from "./CustomIconButton";
 export { CustomInput } from "./CustomInput";
 export { CustomSkeleton } from "./CustomSkeleton";

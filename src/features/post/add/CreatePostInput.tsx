@@ -25,7 +25,7 @@ export const CreatePostInput = () => {
       component="form"
       sx={{ ...inputContainerStyle }}
     >
-      <Grid container direction="row" alignItems="center" width={1}>
+      <Grid role="none" container direction="row" alignItems="center" width={1}>
         <Grid item xs={1}>
           <Avatar
             alt="User profile image"
@@ -34,12 +34,14 @@ export const CreatePostInput = () => {
         </Grid>
         <Grid item xs={11} display="flex" justifyContent="right">
           <Paper
+            role="none"
             sx={{
               backgroundColor: theme.palette.neutral.light,
               ...inputStyle,
             }}
           >
             <InputBase
+              aria-label="input for creating post content"
               onChange={(e) => {
                 setPostInput(e.target.value);
               }}

@@ -50,6 +50,7 @@ export const DesktopNavbar = () => {
           <Typography
             variant="h5"
             component="h1"
+            aria-label="back to top of main page"
             mr={5}
             onClick={() => {
               window.scrollTo({ top: 0, left: 0, behavior: "smooth" });

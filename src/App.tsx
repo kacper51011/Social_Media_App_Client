@@ -29,7 +29,7 @@ export function App() {
   useAuth();
 
   return (
-    <Box overflow="hidden">
+    <Box role="application" overflow="hidden">
       <ThemeProvider theme={theme}>
         <CssBaseline>
           <Routes>

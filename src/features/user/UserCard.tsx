@@ -1,8 +1,11 @@
-import { Avatar, Box, Divider, Grid, Paper, Typography } from "@mui/material";
-import PlaceIcon from "@mui/icons-material/Place";
-import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
-import { useTranslation } from "react-i18next";
-import { User } from "../../store/authSlice";
+import { Divider } from "@mui/material";
+import { User } from "@types";
+import {
+  CardContainer,
+  MainInfoRow,
+  SecondInfoColumn,
+  StatisticsColumn,
+} from "./components";
 
 type UserCardProps = {
   user: User;
@@ -20,99 +23,24 @@ export const UserCard = ({ user }: UserCardProps) => {
     followedByIDs,
     location,
   } = user;
-  const followedPeopleNumber = followingIDs.length || 0;
-  const numberOfFollowedBy = followedByIDs.length || 0;
-  const numberOfPosts = postsIds.length || 0;
-  const { t } = useTranslation("userCard");
 
   return (
-    <Paper
-      elevation={2}
-      sx={{
-        minWidth: 1,
-        p: "calc(0.5vw + 10px)",
-        display: "flex",
-        flexDirection: "column",
-        borderRadius: "16px",
-        mb: 5,
-      }}
-    >
-      <Grid container width="1" direction="row" alignItems="center">
-        <Grid item xs={2.5}>
-          <Avatar
-            alt="User profile image"
-            src={`http://localhost:3001/assets/${picturePath}`}
-          >
-            {firstName[0]}
-          </Avatar>
-        </Grid>
-
-        <Grid sx={{ flexDirection: "column", justifyContent: "center" }}>
-          <Typography
-            fontWeight={600}
-            sx={{ cursor: "pointer" }}
-            variant="body1"
-          >
-            {firstName + " " + lastName}
-          </Typography>
-          <Typography variant="caption">
-            {`${followedPeopleNumber} ${t("followsInfo")}`}
-          </Typography>
-        </Grid>
-      </Grid>
+    <CardContainer>
+      <MainInfoRow
+        picturePath={picturePath}
+        firstName={firstName}
+        lastName={lastName}
+        followingIDs={followingIDs}
+      />
       <Divider sx={{ my: 1 }} />
-      <Box my={1} mx={0.5} display="flex">
-        <PlaceIcon color="primary" />
-        <Typography ml={4} variant="caption">
-          {location}
-        </Typography>
-      </Box>
-      <Box my={1} mx={0.5} display="flex">
-        <BusinessCenterIcon color="primary" />
-        <Typography ml={4} variant="caption">
-          {job}
-        </Typography>
-      </Box>
+      <SecondInfoColumn job={job} location={location} />
 
       <Divider sx={{ my: 1 }} />
-      <Grid container direction="column" py={1}>
-        <Grid
-          container
-          direction="row"
-          sx={{ justifyContent: "space-between" }}
-        >
-          <Grid item py={1}>
-            <Typography variant="caption">{t("followedByInfo")}</Typography>
-          </Grid>
-          <Grid item py={1}>
-            <Typography>{numberOfFollowedBy}</Typography>
-          </Grid>
-        </Grid>
-        <Grid
-          container
-          direction="row"
-          sx={{ justifyContent: "space-between" }}
-        >
-          <Grid item py={1}>
-            <Typography variant="caption">{t("viewsInfo")}</Typography>
-          </Grid>
-          <Grid item py={1}>
-            <Typography> {viewsProfile}</Typography>
-          </Grid>
-        </Grid>
-        <Grid
-          container
-          direction="row"
-          sx={{ justifyContent: "space-between" }}
-        >
-          <Grid item py={1}>
-            <Typography variant="caption">{t("postInfo")}</Typography>
-          </Grid>
-          <Grid item py={1}>
-            <Typography>{numberOfPosts}</Typography>
-          </Grid>
-        </Grid>
-      </Grid>
-    </Paper>
+      <StatisticsColumn
+        postsIds={postsIds}
+        viewsProfile={viewsProfile}
+        followedByIDs={followedByIDs}
+      />
+    </CardContainer>
   );
 };

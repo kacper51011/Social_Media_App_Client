@@ -1,1 +1,2 @@
-export { AddPostInput } from "./add";
+export { PostsList } from "./load";
+export { CreatePostInput } from "./add";

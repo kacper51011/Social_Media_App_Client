@@ -36,9 +36,11 @@ export const UserPageContainer = ({
         justifyContent="center"
         container
         direction="row"
+        role="none"
       >
         {/* profile column */}
         <Grid
+          aria-label="user profile column"
           item
           display={{
             xs: displayedColumn === "profile" ? "block" : "none",
@@ -52,6 +54,7 @@ export const UserPageContainer = ({
         </Grid>
         {/* posts column */}
         <Grid
+          aria-label="posts column"
           item
           display={{
             xs: displayedColumn === "posts" ? "block" : "none",
@@ -65,6 +68,7 @@ export const UserPageContainer = ({
         </Grid>
         {/* follows column */}
         <Grid
+          aria-label="follows column"
           item
           display={{
             xs: displayedColumn === "follows" ? "block" : "none",

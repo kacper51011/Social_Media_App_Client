@@ -8,8 +8,8 @@ import {
   ErrorInfo,
 } from "./components";
 import { Post } from "@types";
-import { usePostsInfiniteScroll } from "../hooks/usePostsInfiniteScroll";
-import { usePostsLoad } from "../hooks/usePostsLoad";
+import { usePostsInfiniteScroll } from "./usePostsInfiniteScroll";
+import { usePostsLoad } from "./usePostsLoad";
 import { Box } from "@mui/material";
 
 type Props = {

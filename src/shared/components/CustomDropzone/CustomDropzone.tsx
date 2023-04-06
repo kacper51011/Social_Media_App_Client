@@ -1,7 +1,7 @@
 import { Box, InputBase, Typography, useTheme } from "@mui/material";
 import { ComponentProps, Dispatch, SetStateAction } from "react";
 import { useDropzone } from "react-dropzone";
-import { CustomIconButton } from "./CustomIconButton";
+import { CustomIconButton } from "../CustomIconButton";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import { useTranslation } from "react-i18next";
 
@@ -47,7 +47,7 @@ export const CustomDropzone = ({
         {...getRootProps({ className: "dropzone" })}
       >
         <InputBase sx={{ display: "none" }} {...getInputProps} />
-        <Typography textAlign="center">
+        <Typography role="status" textAlign="center">
           {!fileToSend ? t("beforeFile") : t("afterFile")}
         </Typography>
       </Box>
