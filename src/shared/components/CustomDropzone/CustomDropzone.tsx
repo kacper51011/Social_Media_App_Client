@@ -4,6 +4,8 @@ import { useDropzone } from "react-dropzone";
 import { CustomIconButton } from "../CustomIconButton";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import { useTranslation } from "react-i18next";
+import { dropzoneBoxStyle } from "./styles";
+import { ChoosenFileInfo, Spaceholder } from "./components";
 
 type Props = {
   fileToSend: File | null;
@@ -33,16 +35,10 @@ export const CustomDropzone = ({
   return (
     <Box {...containerProps}>
       <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        minHeight="calc(3.5vw + 35px)"
+        {...dropzoneBoxStyle}
         sx={{
-          backgroundColor: theme.palette.neutral.medium,
-          borderRadius: "16px",
-          borderStyle: "dashed",
           cursor: !fileToSend ? "pointer" : "default",
-          opacity: 0.7,
+          backgroundColor: theme.palette.neutral.medium,
         }}
         {...getRootProps({ className: "dropzone" })}
       >
@@ -51,25 +47,7 @@ export const CustomDropzone = ({
           {!fileToSend ? t("beforeFile") : t("afterFile")}
         </Typography>
       </Box>
-      {fileToSend && <Typography mt={2}>{t("files")}</Typography>}
-      {fileToSend && (
-        <Box
-          width={1}
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-        >
-          <Typography noWrap variant="caption">
-            {fileToSend.name}
-          </Typography>
-          <CustomIconButton
-            size="small"
-            icon={<RemoveCircleIcon />}
-            title={t("deleteImage")}
-            onClick={() => setFileToSend(null)}
-          />
-        </Box>
-      )}
+      <ChoosenFileInfo fileToSend={fileToSend} setFileToSend={setFileToSend} />
       {/* placeholder for popping file name */}
 
       {holdSpace && !fileToSend && (
@@ -77,24 +55,7 @@ export const CustomDropzone = ({
           Files:
         </Typography>
       )}
-      {holdSpace && !fileToSend && (
-        <Box
-          width={1}
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-          visibility="hidden"
-        >
-          <Typography noWrap variant="caption">
-            placeholder
-          </Typography>
-          <CustomIconButton
-            size="small"
-            icon={<RemoveCircleIcon />}
-            title="delete image"
-          />
-        </Box>
-      )}
+      {holdSpace && !fileToSend && <Spaceholder />}
     </Box>
   );
 };

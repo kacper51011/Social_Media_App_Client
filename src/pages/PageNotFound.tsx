@@ -1,16 +1,11 @@
 import { Box } from "@mui/material";
 import { ImageWithText } from "../shared/components/ImageWithText";
 import { PageNotFoundImage } from "../shared/assets";
+import { notFoundPageStyle } from "@styles";
 
 export const PageNotFound = () => {
   return (
-    <Box
-      width="100vw"
-      height="100vh"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-    >
+    <Box {...notFoundPageStyle}>
       <ImageWithText
         content={"Couldn`t find the page"}
         image={<PageNotFoundImage />}
