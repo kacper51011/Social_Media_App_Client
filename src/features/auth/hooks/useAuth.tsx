@@ -1,4 +1,4 @@
-import { setLogin, setLogout } from "@store";
+import { setLogin, setLogout } from "@store/authSlice";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";

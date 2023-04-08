@@ -1,11 +1,11 @@
 import { CustomIconButton } from "@components";
 import { Stack } from "@mui/material";
-import { setColumn } from "@store";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import PersonIcon from "@mui/icons-material/Person";
 import ArticleIcon from "@mui/icons-material/Article";
 import PeopleIcon from "@mui/icons-material/People";
+import { setColumn } from "src/store/columnSlice";
 
 export const ColumnsChangeButtons = () => {
   const { t } = useTranslation("navbar");

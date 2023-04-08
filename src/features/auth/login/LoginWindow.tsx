@@ -1,6 +1,6 @@
 import { Box, TextField, Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { useLoginForm } from "./useLoginForm";
+
 import {
   actionsContainerStyles,
   buttonStyles,
@@ -14,6 +14,7 @@ import {
   ImageBox,
   Greeting,
 } from "./components";
+import { useLoginForm } from "./useLoginForm";
 
 export const LoginWindow = () => {
   const { register, errors, formHandle, isSubmitting } = useLoginForm();

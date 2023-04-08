@@ -10,9 +10,7 @@
       "import/resolver": {
         "babel-module": {}
       }
-    },
-    "rules": {
-      "import/no-named-as-default-member" : 0
     }
+    
   
 }

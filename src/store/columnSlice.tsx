@@ -1,15 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type ColumnState = "posts" | "profile" | "follows";
+type ColumnState = {
+  column: "posts" | "profile" | "follows";
+};
 
-const initialState = "posts" as ColumnState;
+const initialState = { column: "posts" } as ColumnState;
 
 const columnSlice = createSlice({
   name: "columns",
   initialState,
   reducers: {
-    setColumn: (state, action: PayloadAction<ColumnState>) => {
-      state = action.payload;
+    setColumn: (state, action: PayloadAction<ColumnState["column"]>) => {
+      state.column = action.payload;
     },
   },
 });

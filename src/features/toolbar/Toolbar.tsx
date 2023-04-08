@@ -1,10 +1,10 @@
 import { useTheme, useMediaQuery } from "@mui/material";
-import { MobileNavbar } from "./MobileToolbar/MobileNavbar";
-import { DesktopNavbar } from "./DesktopToolbar/DesktopNavbar";
+import { MobileToolbar } from "./MobileToolbar";
+import { DesktopToolbar } from "./DesktopToolbar";
 
 export const Toolbar = () => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  return mobile ? <MobileNavbar /> : <DesktopNavbar />;
+  return mobile ? <MobileToolbar /> : <DesktopToolbar />;
 };

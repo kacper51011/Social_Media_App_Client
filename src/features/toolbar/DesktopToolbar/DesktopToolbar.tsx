@@ -1,8 +1,13 @@
-import { Container, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import { LanguageChangeButton } from "@components";
-import { TitleLink, ColorModeButton, LogoutButton } from "./components";
+import {
+  TitleLink,
+  ColorModeButton,
+  LogoutButton,
+  Container,
+} from "./components";
 
-export const DesktopNavbar = () => {
+export const DesktopToolbar = () => {
   return (
     <Container>
       <TitleLink />

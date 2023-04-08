@@ -1,10 +1,8 @@
 import { Box, InputBase, Typography, useTheme } from "@mui/material";
 import { ComponentProps, Dispatch, SetStateAction } from "react";
 import { useDropzone } from "react-dropzone";
-import { CustomIconButton } from "../CustomIconButton";
-import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import { useTranslation } from "react-i18next";
-import { dropzoneBoxStyle } from "./styles";
+import { dropzoneBoxStyle, dropzoneSxProps } from "./styles";
 import { ChoosenFileInfo, Spaceholder } from "./components";
 
 type Props = {
@@ -39,6 +37,7 @@ export const CustomDropzone = ({
         sx={{
           cursor: !fileToSend ? "pointer" : "default",
           backgroundColor: theme.palette.neutral.medium,
+          ...dropzoneSxProps,
         }}
         {...getRootProps({ className: "dropzone" })}
       >

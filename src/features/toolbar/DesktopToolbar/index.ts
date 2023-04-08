@@ -1,1 +1,1 @@
-export { DesktopNavbar } from "./DesktopNavbar";
+export { DesktopToolbar } from "./DesktopToolbar";

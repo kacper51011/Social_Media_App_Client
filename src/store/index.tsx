@@ -15,7 +15,8 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+export * from "./columnSlice";
 export * from "./authSlice";
 export * from "./postsSlice";
-export * from "./columnSlice";
 export * from "./themeSlice";

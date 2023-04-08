@@ -5,7 +5,7 @@ import { ColumnsChangeButtons } from "./components/ColumnsChangeButtons";
 import { LogoutButton } from "./components/LogoutButton";
 import { Container } from "./components";
 
-export const MobileNavbar = () => {
+export const MobileToolbar = () => {
   const dispatch = useDispatch();
 
   const toggleMode = () => {
