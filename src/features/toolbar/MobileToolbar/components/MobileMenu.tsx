@@ -1,12 +1,12 @@
 import { useState, MouseEvent } from "react";
-import { CustomIconButton } from "../../shared/components/CustomIconButton";
+import { CustomIconButton } from "@components";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Menu, MenuItem, useTheme } from "@mui/material";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate, useParams } from "react-router";
-import { useScrollToTop } from "../../shared/hooks/useScrollToTop";
+import { useScrollToTop } from "@hooks";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import { useTranslation } from "react-i18next";
 import { UKFlag, PLFlag } from "@assets";
