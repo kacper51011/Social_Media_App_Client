@@ -1,11 +1,10 @@
-import { CreatePostInput } from "../features/post/add/CreatePostInput";
-import { UserCard } from "../features/user/UserCard";
-import { PostsList } from "../features/post/load/components/PostsList";
-import { UserPageContainer } from "../shared/components/UserPageContainer";
-import { useAppSelector } from "../shared/hooks/reduxHooks";
-import { SearchComponent } from "../features/search/SearchComponent";
+import { UserPageContainer } from "@components";
+import { useAppSelector } from "@hooks";
 import { useState } from "react";
 import { FollowsCard } from "src/features/follows";
+import { CreatePostInput, PostsList } from "src/features/post";
+import { SearchComponent } from "src/features/search";
+import { UserCard } from "src/features/user";
 
 export const AuthUserPage = () => {
   const [search, setSearch] = useState<string | null>(null);

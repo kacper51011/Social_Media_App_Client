@@ -1,9 +1,9 @@
-import { UserCard } from "../features/user/UserCard";
-import { UserPageContainer } from "../shared/components/UserPageContainer";
-import { PostsList } from "../features/post/load/components/PostsList";
+import { UserPageContainer } from "@components";
 import { FollowsCard } from "src/features/follows";
 import { useFetchedUser } from "@hooks";
 import { CustomSkeleton } from "@components";
+import { PostsList } from "src/features/post";
+import { UserCard } from "src/features/user";
 
 export const OtherUserPage = () => {
   const [fetchedUser, loadingUser] = useFetchedUser();

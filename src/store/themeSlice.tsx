@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-type Props = {
+type Theme = {
   theme: "light" | "dark";
 };
 
-const initialState: Props = {
+const initialState: Theme = {
   theme: "light",
 };
 
