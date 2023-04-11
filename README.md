@@ -16,6 +16,7 @@ My second big original project created in MERN stack with typescript. I decided 
 
 Link to video:
 https://youtu.be/3ylIUa2QUk4
+
 ## Features
 
 - Authentication and authorization (JWT in backend cookie)
@@ -35,30 +36,12 @@ https://youtu.be/3ylIUa2QUk4
 
 ## Technologies
 
-Packages used on frontend part of the project:
+Main libraries and packages I used:
 
-- "@emotion/react": "11.10.5",
-- "@emotion/styled": "11.10.5",
-- "@hookform/resolvers": "2.9.10",
-- "@mui/icons-material": "5.11.0",
-- "@mui/material": "5.11.2",
-- "@reduxjs/toolkit": "1.9.1",
-- "@types/jest": "27.5.2",
-- "@types/node": "16.18.11",
-- "@types/react": "18.0.26",
-- "@types/react-dom": "18.0.10",
-- "axios": "1.2.1",
-- "i18next": "22.4.9",
-- "i18next-browser-languagedetector": "7.0.1",
-- "react": "18.2.0",
-- "react-dom": "18.2.0",
-- "react-dropzone": "14.2.3",
-- "react-hook-form": "7.41.1",
-- "react-i18next": "12.1.4",
-- "react-redux": "8.0.5",
-- "react-router": "6.6.1",
-- "react-router-dom": "6.6.1",
-- "react-scripts": "5.0.1",
-- "react-transition-group": "4.4.5",
-- "typescript": "4.9.4",
-- "zod": "3.20.2"
+- tools: Vite(migrated from CRA), eslint, babel
+- testing: RTL, Vitest
+- state management: Redux Toolkit
+- UI: Material UI
+- Accessibility: Axe/React-core
+- Internationalization: i18next
+  More in package.json
