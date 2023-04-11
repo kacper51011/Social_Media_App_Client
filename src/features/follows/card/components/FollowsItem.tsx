@@ -1,6 +1,6 @@
 import { Avatar, Grid, Typography, useTheme } from "@mui/material";
 import { useAppSelector } from "@hooks";
-import { Following } from "@store";
+import { Following } from "@types";
 import { FollowsItemButton, NameLink } from "./components";
 import { itemContainerStyle } from "./styles";
 

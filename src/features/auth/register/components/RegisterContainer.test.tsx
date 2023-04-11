@@ -1,13 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it } from "vitest";
-import { LoginContainer } from "./LoginContainer";
+import { RegisterContainer } from "./RegisterContainer";
 
-describe("LoginContainer", () => {
+describe("RegisterContainer", () => {
   it("renders childrens correctly", () => {
     render(
-      <LoginContainer>
+      <RegisterContainer>
         <div>test</div>
-      </LoginContainer>
+      </RegisterContainer>
     );
     expect(screen.getByText("test")).toBeInTheDocument();
   });

@@ -8,7 +8,7 @@ export const FollowsContainer = ({ children }: PropsWithChildren) => {
 
   return (
     <Paper {...cardContainerStyle}>
-      <Typography mb={2} fontWeight="bold" variant="caption">
+      <Typography component="h5" mb={2} fontWeight="bold" variant="caption">
         {t("followList")}
       </Typography>
       {children}

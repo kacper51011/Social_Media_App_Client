@@ -1,7 +1,7 @@
 import { TransitionGroup } from "react-transition-group";
 import { Collapse } from "@mui/material";
-import { Following } from "@store";
 import { FollowsContainer, FollowsItem } from "./components";
+import { Following } from "@types";
 
 type Props = {
   follows: Following[] | null;
