@@ -7,9 +7,11 @@ type Props = {
 export const ErrorText = ({ errorMessage }: Props) => {
   return (
     <>
-      <Typography variant="caption" visibility="hidden">
-        spaceholder for errors
-      </Typography>
+      {!errorMessage && (
+        <Typography variant="caption" visibility="hidden">
+          spaceholder for errors
+        </Typography>
+      )}
       {errorMessage && (
         <Typography variant="caption" color="error" fontWeight="bold">
           {errorMessage}
